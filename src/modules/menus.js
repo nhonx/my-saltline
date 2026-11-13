@@ -1,84 +1,20 @@
 // @ts-nocheck
-import { jr, zi } from './core.js';
+import { jr } from './core.js';
+import { hasLegacyBuild as rT, launchLegacyBuild as aT } from '../game/legacy/legacyLauncher';
+import {
+  DEFAULT_SETTINGS as tL,
+  loadSettings as iL,
+  saveSettings as cc,
+} from '../game/config/settings';
+import {
+  DIFFICULTIES as ab,
+  GAME_MODES as uT,
+  MODE_DESCRIPTIONS as nL,
+  VIEW_PRESETS as cT,
+} from '../game/config/modes';
 
 var oT = 'legacy-v8';
-
-function rT() {
-  return true;
-}
-
-function aT(n) {
-  n.dead = !0;
-  try {
-    n.renderer.setAnimationLoop(null);
-  } catch {}
-  try {
-    n.audio && n.audio.ctx && n.audio.ctx.close && n.audio.ctx.close();
-  } catch {}
-  try {
-    document.pointerLockElement && document.exitPointerLock();
-  } catch {}
-  try {
-    n.renderer.forceContextLoss();
-  } catch {}
-  location.href = '/legacy/v8.html';
-  return true;
-}
-
-var lT = 'saltline.settings.v1',
-  tL = {
-    quality: 'auto',
-    sens: 1,
-    invertY: !1,
-    volume: 0.8,
-    fov: zi.fov,
-    difficulty: 'hard',
-    mode: 'mission',
-    view: 1,
-  },
-  cT = [
-    [1, 'Close'],
-    [2, 'Three-quarter'],
-    [3, 'Compact'],
-  ],
-  uT = [
-    ['mission', 'Mission'],
-    ['holdout', 'Holdout'],
-  ],
-  nL = {
-    mission: 'Cut three relays and reach the boat. About five minutes.',
-    holdout: 'Endless waves that keep growing. Resupply between waves. How long can you hold?',
-  },
-  ab = [
-    ['standard', 'Standard'],
-    ['hard', 'Hard'],
-    ['brutal', 'Brutal'],
-  ],
-  fT = ['low', 'medium', 'high', 'ultra'];
-
-function iL() {
-  let n = { ...tL };
-  try {
-    let e = JSON.parse(localStorage.getItem(lT) || 'null');
-    e &&
-      typeof e == 'object' &&
-      ((e.quality === 'auto' || fT.includes(e.quality)) && (n.quality = e.quality),
-      Number.isFinite(e.sens) && (n.sens = Math.min(3, Math.max(0.2, e.sens))),
-      (n.invertY = !!e.invertY),
-      Number.isFinite(e.volume) && (n.volume = Math.min(1, Math.max(0, e.volume))),
-      Number.isFinite(e.fov) && (n.fov = Math.min(95, Math.max(60, e.fov))),
-      ab.some((t) => t[0] === e.difficulty) && (n.difficulty = e.difficulty),
-      uT.some((t) => t[0] === e.mode) && (n.mode = e.mode),
-      cT.some((t) => t[0] === e.view) && (n.view = e.view));
-  } catch {}
-  return n;
-}
-
-function cc(n) {
-  try {
-    localStorage.setItem(lT, JSON.stringify(n));
-  } catch {}
-}
+var fT = ['low', 'medium', 'high', 'ultra'];
 
 var sL = `
   <dl class="keys">
