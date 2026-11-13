@@ -527,7 +527,8 @@ function pT(n) {
         ((R = !0), ee(!1));
         return;
       }
-      ((C.state === 'playing' || C.state === 'intro') && R && le(), (R = !1));
+      let wsEl = document.getElementById('weapon-select');
+      ((C.state === 'playing' || C.state === 'intro') && R && (!wsEl || wsEl.hidden) && le(), (R = !1));
     }),
     document.addEventListener('visibilitychange', () => {
       document.hidden && (C.state === 'playing' || C.state === 'intro') && le();
