@@ -1,0 +1,99 @@
+# boot.js  top-level minified bindings (use "globals")
+  cv  import  decl@L3  refs=1
+  lv  import  decl@L3  refs=1
+  Av  import  decl@L4  refs=1
+  fv  import  decl@L4  refs=1
+  hv  import  decl@L4  refs=1
+  Pg  import  decl@L5  refs=1
+  zv  import  decl@L5  refs=1
+  Iv  import  decl@L6  refs=1
+  Lv  import  decl@L6  refs=1
+  Wv  import  decl@L7  refs=1
+  f1  import  decl@L7  refs=3
+  Zy  import  decl@L8  refs=1
+  yE  import  decl@L8  refs=1
+  zy  import  decl@L9  refs=1
+  W5  import  decl@L10  refs=1
+  ib  import  decl@L10  refs=1
+  ov  import  decl@L11  refs=1
+  rv  import  decl@L11  refs=1
+  BM  import  decl@L12  refs=1
+  Sr  import  decl@L12  refs=10
+  UM  import  decl@L12  refs=1
+  su  import  decl@L12  refs=1
+  zi  import  decl@L12  refs=1
+  v_  import  decl@L13  refs=1
+  gE  import  decl@L14  refs=1
+  ns  import  decl@L15  refs=2
+  ey  import  decl@L16  refs=2
+  Vg  import  decl@L17  refs=1
+  cE  import  decl@L18  refs=1
+  xE  import  decl@L19  refs=1
+  I5  import  decl@L20  refs=1
+  sT  import  decl@L21  refs=1
+  pT  import  decl@L22  refs=1
+  mT  var  decl@L24  refs=2
+  gT  var  decl@L45  refs=2
+  xT  var  decl@L46  refs=2
+  vT  var  decl@L47  refs=2
+  yT  function  decl@L49  refs=2
+  lL  var  decl@L76  refs=1
+  fa  function  decl@L78  refs=10
+  cL  function  decl@L82  refs=1
+  uL  function  decl@L317  refs=1
+  fL  function  decl@L388  refs=1
+  hL  function  decl@L409  refs=1
+
+## fns["49:0"]  L49-L55  function yT(n) { ((window.__fatal = String(n)), console.error('[fatal] ' + n)); let e 
+  n(param,3)  e(let,5)
+
+## fns["57:33"]  L57-L59  (n) => { window.__errors.push(String(n.message)); }); { let n = console.error.bind(co
+  n(param,1)
+
+## fns["63:18"]  L63-L73  (...e) => { try { window.__errors.push( e .map((t) => (t && t.
+  e(param,2)
+
+## fns["67:15"]  L67-L67  (t) => (t && t.stack) || String(t)) .join(' ') .slice(0, 400), )
+  t(param,3)
+
+## fns["76:27"]  L76-L76  (n) => setTimeout(n, 0)); async function fa(n, e) { (xT && (xT.textContent = n), vT && 
+  n(param,1)
+
+## fns["78:0"]  L78-L80  async function fa(n, e) { (xT && (xT.textContent = n), vT && (vT.style.width = Math.roun
+  n(param,1)  e(param,1)
+
+## fns["82:0"]  L82-L315  async function cL() { let n = Object.fromEntries(new URLSearchParams(location.search)), 
+  n(let,23)  e(let,2)  t(let,106)  i(let,8)  s(let,5)  o(function,4)  r(function,11)  a(let,5)  l(let,2)  c(let,3)  u(let,3)  f(let,1)  h(let,21)  p(catch,1)  p(catch,3)  p(catch,3)  p(let,1)  p(let,1)  d(let,6)  m(catch,3)
+
+## fns["98:2"]  L98-L109  function o(p) { if (p.cam) { let d = String(p.cam).split(',').map(Number); 
+  p(param,7)  d(let,6)
+
+## fns["111:2"]  L111-L121  async function r(p, d, m, x = !1) { let v = performance.now(); try { t[p] = 
+  p(param,6)  d(param,0)  m(param,1)  x(param,1)  v(let,1)  y(let,2)  b(catch,4)
+
+## fns["245:10"]  L245-L253  (p, d) => { let m = t[p]; if (m && m.update) try { m.update(d); 
+  p(param,4)  d(param,1)  m(let,3)  x(catch,3)
+
+## fns["255:32"]  L255-L314  () => { if (n.step) { if (!(window.__step > 0)) return; window.__ste
+  p(let,3)  d(let,4)  m(let,20)  x(let,2)  v(catch,3)  v(let,5)  y(let,5)  b(let,3)  g(let,2)  E(let,2)  v(catch,3)  v(catch,3)
+
+## fns["317:0"]  L317-L386  function uL(n) { let e = document.createElement('pre'); ((e.id = 'bench'), (e.styl
+  n(param,13)  e(let,4)  t(let,2)  i(let,6)  s(let,5)  o(let,6)  r(let,2)  a(let,1)  l(let,2)  c(let,2)  u(let,2)  f(let,2)  h(let,4)  p(let,2)
+
+## fns["346:11"]  L346-L384  (h) { o += h; let p = ((o / a) % 1) * (i.length - 1), d = Math.m
+  h(param,2)  p(let,2)  d(let,5)  m(let,3)  x(let,2)  v(let,6)  y(let,2)  b(let,1)  g(let,1)  E(let,1)  M(let,2)
+
+## fns["364:33"]  L364-L364  (_, T) => _ - T), y = v.reduce((_, T) => _ + T, 0) / v.length, b =
+  _(param,1)  T(param,1)
+
+## fns["365:25"]  L365-L365  (_, T) => _ + T, 0) / v.length, b = v[Math.floor(v.length * 0.99)], 
+  _(param,1)  T(param,1)
+
+## fns["388:0"]  L388-L407  function fL() { let n = () => {}; return { move: { x: 0, y: 0 }, look: { dx: 0
+  n(let,4)
+
+## fns["409:0"]  L409-L433  function hL(n) { return { pos: new THREE.Vector3(0, 0, 4), vel: new THREE.Vector
+  n(param,0)
+
+## fns["435:11"]  L435-L435  (n) => yT((n && n.stack) || n)); 
+  n(param,3)

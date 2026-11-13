@@ -5,7 +5,7 @@ import { Av, fv, hv } from './props.js';
 import { Pg, zv } from './level.js';
 import { Iv, Lv } from './backdrop.js';
 import { Wv, f1 } from './fx.js';
-import { Zy, yE } from './explosives.js';
+import { explosivesModule, createExplosives } from './explosives.js';
 import { zy } from './hands.js';
 import { W5, ib } from './enemies.js';
 import { ov, rv } from './render.js';
@@ -27,7 +27,7 @@ var mT = {
   backdrop: zv,
   ground: Lv,
   fx: Wv,
-  weapon: Zy,
+  weapon: explosivesModule,
   hands: zy,
   enemies: ib,
   props: hv,
@@ -196,7 +196,7 @@ async function cL() {
       (t.player = xE(t)),
       (t.combat = ey(t)));
     try {
-      t.explosives = yE(t);
+      t.explosives = createExplosives(t);
     } catch (p) {
       (console.error('[boot] explosives failed: ' + ((p && p.stack) || p)),
         (t.explosives = { items: [], reset() {}, update() {} }));

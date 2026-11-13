@@ -22,7 +22,7 @@ import { Av, fv, hv } from './modules/props.js';
 import { Pg, zv } from './modules/level.js';
 import { Iv, Lv } from './modules/backdrop.js';
 import { Wv, f1 } from './modules/fx.js';
-import { Zy, yE } from './modules/explosives.js';
+import { explosivesModule, createExplosives } from './modules/explosives.js';
 import { zy } from './modules/hands.js';
 import { W5, ib } from './modules/enemies.js';
 import { ov, rv } from './modules/render.js';
@@ -38,7 +38,7 @@ const SHOWCASE_MODULES: Record<string, any> = {
   backdrop: zv,
   ground: Lv,
   fx: Wv,
-  weapon: Zy,
+  weapon: explosivesModule,
   hands: zy,
   enemies: ib,
   props: hv,
@@ -195,7 +195,7 @@ async function boot() {
     ctx.combat = createCombatSystem(ctx);
 
     try {
-      ctx.explosives = yE(ctx);
+      ctx.explosives = createExplosives(ctx);
     } catch (err: any) {
       console.error('[boot] explosives failed: ' + (err?.stack || err));
       ctx.explosives = { items: [], reset() {}, update() {} };

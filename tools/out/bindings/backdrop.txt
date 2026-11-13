@@ -1,0 +1,391 @@
+# backdrop.js  top-level minified bindings (use "globals")
+  ar  import  decl@L3  refs=1
+  zv  import  decl@L4  refs=1
+  Ei  import  decl@L5  refs=2
+  Jr  import  decl@L5  refs=1
+  Kr  import  decl@L5  refs=2
+  Tr  import  decl@L5  refs=1
+  ot  import  decl@L5  refs=2
+  vt  import  decl@L5  refs=2
+  Ft  var  decl@L9  refs=51
+  lu  var  decl@L10  refs=7
+  xw  var  decl@L11  refs=2
+  gP  var  decl@L12  refs=1
+  gw  var  decl@L13  refs=2
+  zg  var  decl@L14  refs=4
+  Wl  function  decl@L16  refs=8
+  au  function  decl@L21  refs=6
+  Rv  function  decl@L37  refs=2
+  Ig  var  decl@L42  refs=4
+  vw  var  decl@L43  refs=2
+  Cv  function  decl@L45  refs=2
+  yw  var  decl@L59  refs=2
+  po  function  decl@L61  refs=10
+  ho  var  decl@L66  refs=7
+  Pe  function  decl@L104  refs=188
+  Pt  function  decl@L112  refs=57
+  dt  function  decl@L117  refs=79
+  v0  function  decl@L131  refs=33
+  ia  function  decl@L147  refs=6
+  Ua  function  decl@L156  refs=6
+  cu  function  decl@L167  refs=5
+  os  function  decl@L172  refs=15
+  bw  function  decl@L188  refs=1
+  Rn  var  decl@L245  refs=22
+  r0  var  decl@L250  refs=41
+  rs  var  decl@L251  refs=18
+  Li  var  decl@L252  refs=20
+  kv  var  decl@L253  refs=3
+  Qn  var  decl@L254  refs=23
+  Cn  var  decl@L255  refs=26
+  Po  var  decl@L256  refs=13
+  Zi  var  decl@L257  refs=19
+  js  var  decl@L258  refs=15
+  K0  var  decl@L259  refs=30
+  zs  var  decl@L260  refs=16
+  J0  var  decl@L261  refs=30
+  uu  var  decl@L262  refs=7
+  Dg  function  decl@L264  refs=2
+  Mw  function  decl@L824  refs=1
+  bt  var  decl@L851  refs=75
+  xP  var  decl@L852  refs=1
+  Io  var  decl@L853  refs=13
+  Ln  var  decl@L854  refs=25
+  vP  var  decl@L855  refs=1
+  Ks  var  decl@L856  refs=15
+  ch  var  decl@L857  refs=6
+  _w  var  decl@L858  refs=2
+  yP  var  decl@L862  refs=1
+  ds  var  decl@L864  refs=17
+  l1  var  decl@L865  refs=5
+  $o  var  decl@L866  refs=12
+  bP  var  decl@L867  refs=1
+  N0  function  decl@L869  refs=32
+  Ba  function  decl@L882  refs=9
+  fu  function  decl@L889  refs=7
+  Lg  var  decl@L921  refs=2
+  hu  var  decl@L948  refs=7
+  ww  function  decl@L953  refs=1
+  Ew  function  decl@L1359  refs=1
+  Pv  var  decl@L1531  refs=3
+  Ng  var  decl@L1532  refs=4
+  Sw  var  decl@L1536  refs=2
+  Fg  var  decl@L1540  refs=4
+  Aw  var  decl@L1552  refs=2
+  Tw  var  decl@L1556  refs=2
+  Rw  function  decl@L1558  refs=1
+  Cw  function  decl@L2082  refs=1
+  MP  var  decl@L2143  refs=1
+  kw  function  decl@L2145  refs=2
+  Iv  function  decl@L2227  refs=2
+  _P  function  decl@L2231  refs=1
+  Lv  var  decl@L2244  refs=1
+
+## fns["9:9"]  L9-L9  (n, e, t) => new THREE.Vector3(n, e, t), lu = (n) => (n.isVector3 ? n : new THREE.Vector
+  n(param,1)  e(param,1)  t(param,1)
+
+## fns["10:7"]  L10-L10  (n) => (n.isVector3 ? n : new THREE.Vector3(n[0], n[1], n[2])), xw = new THREE.Vector3(0
+  n(param,5)
+
+## fns["16:0"]  L16-L19  function Wl(n, e, t) { let i = Math.imul(n, 374761393) ^ Math.imul(e, 668265263) ^ Math.
+  n(param,1)  e(param,1)  t(param,1)  i(let,5)
+
+## fns["21:0"]  L21-L35  function au(n, e, t) { let i = Math.floor(n), s = Math.floor(e), o = Math.floor(
+  n(param,2)  e(param,2)  t(param,2)  i(let,9)  s(let,9)  o(let,9)  r(let,8)  a(let,6)  l(let,5)  c(let,7)
+
+## fns["29:10"]  L29-L29  (u, f, h) => u + (f - u) * h; return c( c(c(Wl(i, s, o), Wl(i + 1, s, o), r), c(Wl(i
+  u(param,2)  f(param,1)  h(param,1)
+
+## fns["37:0"]  L37-L40  function Rv(n) { let e = n >>> 0; return () => ((e = (Math.imul(e, 1664525) + 10139042
+  n(param,1)  e(let,3)
+
+## fns["45:0"]  L45-L57  function Cv(n, e, t, i = vw, s = 1) { let o = au(n * 0.31 + 11.3, e * 0.23 + 5.1, t * 0.
+  n(param,3)  e(param,2)  t(param,3)  i(param,3)  s(param,2)  o(let,1)  r(let,2)  a(let,3)  l(let,2)  c(let,2)  u(let,2)  f(let,3)
+
+## fns["61:0"]  L61-L64  function po(n, e, t = {}) { let i = n.mats.get(e, { vertexColors: !0, ...t }); return 
+  n(param,1)  e(param,1)  t(param,1)  i(let,2)
+
+## fns["70:5"]  L70-L91  (e, t, i) { if (!t) return; if (Array.isArray(t)) { for (let o of t) this.ad
+  e(param,7)  t(param,12)  i(param,4)  s(let,4)  o(let,3)  r(let,6)  o(let,1)
+
+## fns["86:46"]  L86-L86  (o, r, a) => Cv(o, r, a, i || vw)); let s = this.b.get(e.uuid); (s || ((s = { mat:
+  o(param,1)  r(param,1)  a(param,1)
+
+## fns["92:7"]  L92-L101  ({ cast: e = !0, recv: t = !0 } = {}) { let i = new THREE.Group(); for (let s of t
+  e(param,1)  t(param,1)  i(let,2)  s(let,4)  o(let,1)  r(let,3)  a(let,2)
+
+## fns["104:0"]  L104-L110  function Pe(n, e, t, i, s, o, r = 0) { let a = Math.abs(i - n), l = Math.abs(s - e),
+  n(param,2)  e(param,2)  t(param,2)  i(param,2)  s(param,2)  o(param,2)  r(param,2)  a(let,2)  l(let,2)  c(let,2)  u(let,2)
+
+## fns["112:0"]  L112-L115  function Pt(n, e, t, i, s, o, r, a = 12, l = !1) { let c = vt(n, e, t, a, l); return (
+  n(param,1)  e(param,1)  t(param,1)  i(param,2)  s(param,1)  o(param,1)  r(param,1)  a(param,1)  l(param,1)  c(let,4)
+
+## fns["117:0"]  L117-L129  function dt(n, e, t = 0.03, i = 5, s = !1) { ((n = lu(n)), (e = lu(e))); let o = new T
+  n(param,4)  e(param,4)  t(param,2)  i(param,1)  s(param,1)  o(let,2)  r(let,3)  a(let,2)
+
+## fns["131:0"]  L131-L145  function v0(n, e, t = 0.3, i = 0.3, s = 0) { ((n = lu(n)), (e = lu(e))); let o = new T
+  n(param,6)  e(param,6)  t(param,2)  i(param,2)  s(param,2)  o(let,5)  r(let,3)  a(let,5)  l(let,1)  c(let,2)
+
+## fns["147:0"]  L147-L154  function ia(n, e = 0.03, t = 5) { let i = []; for (let s = 0; s < n.length - 1; s++) {
+  n(param,3)  e(param,1)  t(param,1)  i(let,2)  s(let,4)  o(let,2)
+
+## fns["156:0"]  L156-L165  function Ua(n, e, t = 1, i = 10) { ((n = lu(n)), (e = lu(e))); let s = []; for (let 
+  n(param,3)  e(param,3)  t(param,1)  i(param,2)  s(let,2)  o(let,3)  r(let,3)  a(let,2)
+
+## fns["167:0"]  L167-L170  function cu(n, e, t, i, s, o = 0, r = 0) { let a = new THREE.PlaneGeometry(n, e); retu
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)  s(param,1)  o(param,2)  r(param,2)  a(let,4)
+
+## fns["172:0"]  L172-L186  function os(n, e, t, { h: i = 1.1, post: s = 2.2, r: o = 0.022, tint: r, mid: a = !0 } = {
+  n(param,3)  e(param,3)  t(param,5)  i(param,5)  s(param,1)  o(param,3)  r(param,3)  a(param,1)  l(let,5)  c(let,8)  u(let,8)  f(let,1)  h(let,2)  p(let,3)  d(let,4)
+
+## fns["188:0"]  L188-L243  function bw() { let n = { value: 0 }, e = new THREE.MeshBasicMaterial({ vertexColors
+  n(let,2)  e(let,4)  t(let,3)
+
+## fns["191:24"]  L191-L212  (i) => { ((i.uniforms.uTime = n), (i.vertexShader = `attribute vec3 blin
+  i(param,5)
+
+## fns["218:7"]  L218-L236  (i, s, o = 0, r = 0, a = 0.5) { if (!i) return; let l = i.index ? i.toNonIndex
+  i(param,4)  s(param,3)  o(param,1)  r(param,1)  a(param,1)  l(let,2)  c(let,3)  u(let,4)  f(let,4)  h(let,4)  p(let,8)
+
+## fns["237:9"]  L237-L241  () { if (!t.length) return null; let i = new THREE.Mesh(Tr(t.splice(0), !1), e
+  i(let,3)
+
+## fns["245:9"]  L245-L248  (n, e, t, i = 0.12) => { let s = new THREE.OctahedronGeometry(i, 0); return (s.transla
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)  s(let,2)
+
+## fns["264:0"]  L264-L822  function Dg(n, e, t = {}) { let i = !!t.into, s = t.dz || 0, o = t.into || new h
+  n(param,12)  e(param,2)  t(param,4)  i(let,3)  s(let,2)  o(let,20)  r(let,5)  a(let,47)  l(let,31)  c(let,12)  u(let,4)  f(let,43)  h(let,41)  p(let,3)  d(let,4)  m(let,1)  x(let,160)  v(let,5)  y(function,1)  b(let,5)  g(let,1)  E(let,7)  M(let,26)  _(let,26)  T(let,15)  w(let,31)  S(let,6)  R(let,14)  z(let,18)  I(let,14)  L(function,2)  U(let,2)  k(let,7)  C(let,4)  A(let,18)  F(let,10)  H(let,14)  N(function,3)  Z(function,3)  Q(let,12)  W(function,7)  J(let,23)  G(let,13)  te(let,12)  oe(let,13)  ee(let,27)  le(let,9)  xe(let,3)  j(let,4)  O(let,3)  q(let,3)  ue(let,12)  de(let,5)  $(let,4)  se(let,8)  fe(let,5)  me(let,4)  ge(let,2)  ce(let,5)  P(let,2)  P(let,2)  D(let,2)  P(let,2)  D(let,4)  P(let,4)  D(let,4)  P(let,2)  P(let,2)  P(let,1)  P(let,2)  D(let,2)  P(let,2)  P(let,2)  D(let,2)  P(let,4)  P(let,2)  D(let,2)  P(let,6)  P(let,4)  D(let,2)  P(let,3)  D(let,3)  P(let,2)  P(let,1)  D(let,1)  B(let,2)  X(let,4)  re(let,3)  Y(let,1)  he(let,1)  V(let,2)  ne(let,3)  ye(let,2)  P(let,4)  P(let,9)  D(let,9)  B(let,1)  X(let,3)  re(let,4)  X(let,3)  X(let,4)  X(let,2)  P(let,5)  D(let,6)  B(let,2)  B(let,2)  P(let,2)  D(let,2)  P(let,9)  P(let,2)  P(let,2)  D(let,1)  P(let,4)  D(let,2)  P(let,2)  P(let,5)  P(let,6)  D(let,4)  B(let,4)  X(let,4)  re(let,3)  Y(let,6)  re(let,2)  P(let,9)  D(let,1)  B(let,1)  X(let,2)  re(let,2)  Y(let,6)  P(let,4)  D(let,1)  B(let,1)  P(let,2)  P(let,9)  D(let,15)  B(let,5)  X(let,5)  re(let,7)  Y(let,2)  Y(let,6)  Y(let,9)  P(let,6)  D(let,2)  P(let,19)  D(let,2)  B(let,2)  B(let,2)  P(let,2)  P(let,4)  D(let,2)  P(let,19)  D(let,19)  B(let,2)  P(let,7)  D(let,7)  B(let,9)  P(let,1)  D(let,1)
+
+## fns["270:13"]  L270-L272  (P, D, B, X, re) { (P.translate(0, 0, s), e.add(P, D, B, X, re)); },
+  P(param,2)  D(param,1)  B(param,1)  X(param,1)  re(param,1)
+
+## fns["284:8"]  L284-L284  (P, D, B) => o.add(P, D, B), v = []; if (i) { let P = new Map([ [a.uuid,
+  P(param,1)  D(param,1)  B(param,1)
+
+## fns["297:16"]  L297-L300  (B, X) => { let re = P.get(B.uuid); return re ? [D, X ? [re[0] * X[0], re[1] *
+  B(param,1)  X(param,4)  re(let,5)
+
+## fns["304:2"]  L304-L330  function y(P, D) { let B = P < 23.5 ? 1 : -1; for (let X of [-1.12, 1.12]) { 
+  P(param,27)  D(param,13)  B(let,3)  X(let,5)  re(let,6)  X(let,2)  X(let,1)  re(let,9)  Y(let,4)
+
+## fns["480:12"]  L480-L480  (re, Y) => Ft(rs + (M - rs) * re, 23.8 + (_ - 23.8) * re, Y * (Li + (T - Li) * re)), 
+  re(param,3)  Y(param,1)
+
+## fns["481:10"]  L481-L481  (re, Y) => Ft(r0 + (M - r0) * re, 23.8 + (_ - 23.8) * re, Y * (Li + (T - Li) * re)); (
+  re(param,3)  Y(param,1)
+
+## fns["529:2"]  L529-L538  function L(P, D, B, X, re, Y) { let he = [Pe(-X / 2, -re / 2, 0, X / 2, re / 2, 0.02)]
+  P(param,1)  D(param,1)  B(param,1)  X(param,4)  re(param,5)  Y(param,1)  he(let,4)  V(let,2)  ne(let,2)  ne(let,3)  ye(let,3)
+
+## fns["583:2"]  L583-L603  function N(P, D, B, X, re, Y) { let he = X - D, V = Math.max(2, Math.round(he / 
+  P(param,7)  D(param,6)  B(param,5)  X(param,4)  re(param,2)  Y(param,2)  he(let,3)  V(let,3)  ne(let,4)  ye(let,1)  Te(let,2)  Re(let,2)  ne(let,8)  ye(let,3)  Te(let,2)  Re(let,2)  Ue(let,2)
+
+## fns["604:2"]  L604-L620  function Z(P, D, B, X) { (x(f, Pe(P, B - 0.05, k, D, B, A)), x(f, Pe(P, B - 0.2,
+  P(param,5)  D(param,5)  B(param,9)  X(param,2)  re(let,2)  Y(let,1)
+
+## fns["666:12"]  L666-L673  (X) => { let re = []; for (let Y = 0; Y <= 8; Y++) { let he = (Math.PI
+  X(param,1)  re(let,2)  Y(let,3)  he(let,2)
+
+## fns["708:2"]  L708-L720  function W(P, D, B, X, re = 'z') { let Y = X * 0.46; re === 'z' ? x(h, Pe(P 
+  P(param,6)  D(param,8)  B(param,6)  X(param,3)  re(param,3)  Y(let,4)  he(let,3)  V(let,2)  ne(let,4)  ye(let,4)
+
+## fns["789:9"]  L789-L789  (P, D, B) => q.add(P, D, B), de = 8.3; for (let P of [-0.9, 0.9]) for (let D of 
+  P(param,1)  D(param,1)  B(param,1)
+
+## fns["824:0"]  L824-L849  function Mw(n, e, t, i, { s = 1, up: o = !1, tint: r = [0.3, 0.36, 0.44] } = {}) { let a
+  n(param,1)  e(param,1)  t(param,3)  i(param,3)  s(param,7)  o(param,2)  r(param,1)  a(let,9)  l(let,11)  c(let,3)  c(let,4)  c(let,6)  c(let,6)  c(let,2)  u(let,2)
+
+## fns["826:8"]  L826-L826  (c, u, f, h, p, d) => a.push(Pe(c, u, f, h, p, d)); for (let c of [-5, 5]) for (let u of
+  c(param,1)  u(param,1)  f(param,1)  h(param,1)  p(param,1)  d(param,1)
+
+## fns["858:7"]  L858-L861  (n, e, t) => { let i = Math.min(1, Math.max(0, (t - n) / (e - n))); return i * i *
+  n(param,2)  e(param,1)  t(param,1)  i(let,3)
+
+## fns["862:7"]  L862-L863  (n) => 1.7 * Math.pow(Math.max(0, 1 - n / 20), 2) + 0.5 * Math.pow(Math.max(0, (n - (L
+  n(param,2)
+
+## fns["864:7"]  L864-L864  (n) => Ks + yP(n), l1 = (n) => 1.15 * (1 - _w(14.5, 18, n) + _w(Ln - 10.5, Ln - 8, n)), 
+  n(param,1)
+
+## fns["865:7"]  L865-L865  (n) => 1.15 * (1 - _w(14.5, 18, n) + _w(Ln - 10.5, Ln - 8, n)), $o = (n) => ds(n) + l1(n
+  n(param,2)
+
+## fns["866:7"]  L866-L866  (n) => ds(n) + l1(n), bP = $o(0); function N0(n, e, t) { let i = (bP - e) * 0.22, 
+  n(param,2)
+
+## fns["869:0"]  L869-L880  function N0(n, e, t) { let i = (bP - e) * 0.22, s = Math.max(0, 1 - n / 22), o =
+  n(param,4)  e(param,3)  t(param,1)  i(let,1)  s(let,1)  o(let,1)  r(let,2)  a(let,1)  l(let,2)  c(let,1)  u(let,2)  f(let,3)
+
+## fns["882:0"]  L882-L887  function Ba(n, e, t) { let s = N0(n + 0.05, e, t).sub(N0(Math.max(0, n - 0.05), e, t)), 
+  n(param,4)  e(param,4)  t(param,5)  s(let,1)  o(let,1)  r(let,4)
+
+## fns["889:0"]  L889-L919  function fu(n, e, t, i, s, o = 0.012, r = 6, a = 1) { let l = [], c = [], u = []
+  n(param,2)  e(param,1)  t(param,2)  i(param,1)  s(param,4)  o(param,1)  r(param,6)  a(param,4)  l(let,2)  c(let,2)  u(let,2)  f(let,3)  h(let,3)  p(let,5)  d(let,3)  m(let,3)  x(let,7)  v(let,2)  y(let,4)  b(let,2)  d(let,4)  m(let,5)  x(let,2)  v(let,2)  y(let,4)  b(let,3)
+
+## fns["925:5"]  L925-L930  (e, t, i, s, o) { (this.p.push(e.x, e.y, e.z), this.n.push(t.x, t.y, t.z), 
+  e(param,3)  t(param,3)  i(param,1)  s(param,1)  o(param,3)
+
+## fns["931:8"]  L931-L936  (e, t, i, s) { let o = e[1].clone().sub(e[0]), r = e[3].clone().sub(e[0]), 
+  e(param,5)  t(param,2)  i(param,2)  s(param,1)  o(let,1)  r(let,1)  a(let,1)  l(let,5)
+
+## fns["937:7"]  L937-L946  () { let e = new THREE.BufferGeometry(); return ( e.setAttribute('posi
+  e(let,5)
+
+## fns["948:7"]  L948-L951  (n, e) => { let t = Math.imul(n + 31, 374761393) ^ Math.imul(e + 17, 668265263); r
+  n(param,1)  e(param,1)  t(let,5)
+
+## fns["953:0"]  L953-L1357  function ww(n, e) { let t = new ho(), i = po(n, 'hull_paint'), s = po(n, 'hull_r
+  n(param,10)  e(param,6)  t(let,6)  i(let,4)  s(let,2)  o(let,25)  r(let,38)  a(let,10)  l(let,2)  c(let,3)  u(let,1)  f(let,5)  h(let,84)  p(let,34)  d(let,2)  m(let,6)  x(let,4)  v(let,6)  y(let,5)  b(let,4)  g(let,4)  E(let,3)  M(let,2)  _(let,13)  T(let,14)  w(let,6)  S(let,1)  R(let,9)  z(let,2)  L(let,11)  U(let,8)  k(let,6)  A(let,17)  F(let,21)  H(let,6)  N(let,45)  Z(let,8)  Q(let,2)  W(let,6)  J(let,3)  G(let,3)  te(let,4)  oe(let,1)  ee(let,5)  ee(let,2)  ee(let,16)  le(let,14)  xe(let,3)  j(let,6)  xe(let,3)  j(let,6)  O(let,2)  xe(let,6)  ee(let,6)  le(let,6)  xe(let,7)  j(let,2)  O(let,4)  q(let,4)  ee(let,1)  ee(let,2)  ee(let,3)  ee(let,12)  ee(let,6)  le(let,2)  ee(let,3)  ee(let,4)  le(let,1)  ee(let,2)  le(let,4)  xe(let,2)  ee(let,6)  le(let,6)  xe(let,1)  le(let,2)  ee(let,12)  le(let,2)  xe(let,9)  j(let,8)  O(let,2)  q(let,2)  ue(let,6)  de(let,2)  de(let,4)  de(let,6)  de(let,10)  $(let,2)  ee(let,4)  le(let,2)  xe(let,9)  j(let,3)  O(let,1)  q(let,5)  q(let,4)  ee(let,8)  le(let,8)  xe(let,4)  j(let,4)  O(let,4)  q(let,10)  ue(let,3)  de(let,3)  $(let,3)  se(let,3)  fe(let,4)  q(let,21)  ue(let,8)  ee(let,9)  le(let,5)  xe(let,9)  j(let,8)  O(let,6)  q(let,6)  ue(let,24)  de(let,4)  $(let,10)  se(let,2)  fe(let,1)  me(let,1)  ge(let,1)  ce(let,4)  ee(let,3)
+
+## fns["963:8"]  L963-L963  (ee) => e.add(ee, u, 0), h = (ee, le, xe) => t.add(ee, le, xe), p = [0, 0.35, 0.9,
+  ee(param,1)
+
+## fns["964:8"]  L964-L964  (ee, le, xe) => t.add(ee, le, xe), p = [0, 0.35, 0.9, 1.8, 3, 4.5, 6, 8, 10, 12, 14.5,
+  ee(param,1)  le(param,1)  xe(param,1)
+
+## fns["969:8"]  L969-L974  (ee) => { let le = ds(ee), xe = [vP, -2.3, -0.4, 1]; for (let j = 1; j
+  ee(param,2)  le(let,1)  xe(let,3)  j(let,3)
+
+## fns["979:8"]  L979-L990  (ee, le, xe, j) => { let O = Cv(ee.x * 0.6, ee.y, ee.z * 0.6, void 0, 0.8), 
+  ee(param,5)  le(param,1)  xe(param,1)  j(param,3)  O(let,3)  q(let,10)
+
+## fns["1069:13"]  L1069-L1069  (xe, j) => N0(xe, j, -1).addScaledVector(Ba(xe, j, -1), 0.012), le = [1.05, 0.92, 0.
+  xe(param,2)  j(param,2)
+
+## fns["1081:14"]  L1081-L1081  (se, fe) => N0(se, fe, ee).addScaledVector(Ba(se, fe, ee), 0.07); (h(i, v0($(p[de], 
+  se(param,2)  fe(param,2)
+
+## fns["1097:13"]  L1097-L1097  (de, $, se) => N0(de, $, ee).addScaledVector(Ba(de, $, ee), se); (h(r, v0(ue(xe, j - 0
+  de(param,2)  $(param,2)  se(param,1)
+
+## fns["1161:12"]  L1161-L1180  ([ee, le], xe) => { h(s, Pe(bt - 7.7, Ks, ee - le / 2 - 0.2, bt + 7.7, Ks + 0.42, ee +
+  ee(param,8)  le(param,8)  xe(param,3)  j(let,4)  O(let,2)  O(let,4)  j(let,6)  O(let,4)  q(let,1)  ue(let,4)  de(let,4)  $(let,2)  se(let,4)
+
+## fns["1189:12"]  L1189-L1234  ([ee, le, xe, j], O) => { (h(o, Pe(bt - ee, le, k + j * 0.4, bt + ee, xe, U - j, 0.08)
+  ee(param,10)  le(param,5)  xe(param,4)  j(param,9)  O(param,4)  q(let,4)  ue(let,2)  de(let,2)  $(let,2)  se(let,2)  fe(let,4)  me(let,2)  ge(let,2)  fe(let,4)  me(let,2)  ge(let,1)  ce(let,3)  P(let,2)
+
+## fns["1319:10"]  L1319-L1329  (ee, le, xe, j) => { let O = N0(ee, le, -1); ((O.x -= 0.1), h(l, ia(Ua(O, xe, j, 1
+  ee(param,1)  le(param,1)  xe(param,3)  j(param,3)  O(let,10)  q(let,4)  ue(let,1)  de(let,3)
+
+## fns["1359:0"]  L1359-L1529  function Ew(n, e) { let t = new ho(), i = po(n, 'plastic_grey'), s = po(n, 'pain
+  n(param,5)  e(param,3)  t(let,3)  i(let,8)  s(let,5)  o(let,14)  r(let,18)  a(let,1)  l(let,46)  c(let,2)  u(let,3)  f(let,2)  h(let,2)  p(let,1)  d(let,4)  m(let,2)  x(let,3)  v(let,3)  y(let,7)  b(let,7)  g(let,5)  E(let,4)  M(let,3)  _(let,6)  T(let,3)  w(let,3)  S(let,4)  R(let,3)  z(let,3)  I(let,3)  L(let,4)  U(let,3)  U(let,11)  U(let,4)  U(let,10)  U(let,3)  U(let,2)  U(let,7)  k(let,18)  C(let,2)  A(let,1)  F(let,3)  H(let,3)  N(let,1)  Z(let,2)  U(let,4)  U(let,3)  k(let,2)  C(let,7)  A(let,1)  F(let,3)  H(let,1)  U(let,1)  U(let,4)  k(let,1)  C(let,5)
+
+## fns["1366:8"]  L1366-L1366  (U, k, C) => t.add(U, k, C), c = [2, 2.02, 2.08], u = [0.5, 0.5, 0.52], f = [1
+  U(param,1)  k(param,1)  C(param,1)
+
+## fns["1379:15"]  L1379-L1379  (U) => Ft(U[0], U[1], U[2])), Ft(3.43, 0.8, 0), ...h .slice() 
+  U(param,3)
+
+## fns["1384:13"]  L1384-L1384  (U) => Ft(U[0], U[1], -U[2])), ], d = new THREE.CatmullRomCurve3(p, !1, 'centripet
+  U(param,3)
+
+## fns["1420:8"]  L1420-L1431  (U, k, C) => { let A = k.clone().sub(U).cross(C.clone().sub(U)), F = U.clone
+  U(param,9)  k(param,8)  C(param,8)  A(let,1)  F(let,4)  H(let,2)
+
+## fns["1532:7"]  L1532-L1535  (n, e = 1) => { let t = new THREE.Color(n); return [(e * t.r) / Pv.r, (e * t.g) / 
+  n(param,1)  e(param,3)  t(let,3)
+
+## fns["1539:8"]  L1539-L1539  (n) => Ng(n)), Fg = [ [0.6, 0.17, 0.13], [0.17, 0.29, 0.5], [0.2, 0.42, 0.3]
+  n(param,1)
+
+## fns["1552:7"]  L1552-L1555  (n, e, t) => { let i = Math.min(1, Math.max(0, (t - n) / (e - n))); return i * i *
+  n(param,2)  e(param,1)  t(param,1)  i(let,3)
+
+## fns["1556:7"]  L1556-L1556  (n, e) => 1 - 0.6 * Aw(38, 160, Math.hypot(n + 5, e)); function Rw(n, e) { let t = new 
+  n(param,1)  e(param,1)
+
+## fns["1558:0"]  L1558-L2080  function Rw(n, e) { let t = new ho(), i = po(n, 'paint_white'), s = Rv(90417), 
+  n(param,2)  e(param,13)  t(let,7)  i(let,5)  s(let,22)  o(let,4)  r(let,6)  a(let,4)  l(function,2)  c(let,61)  u(let,2)  f(let,2)  h(let,4)  p(let,2)  d(function,7)  m(let,2)  x(let,7)  v(function,1)  y(function,4)  b(let,2)  g(let,2)  E(let,3)  M(let,9)  _(let,5)  T(let,7)  w(let,5)  S(function,5)  R(let,1)  z(let,2)  L(function,4)  U(let,11)  k(let,2)  C(let,2)  C(let,2)  A(let,2)  F(let,2)  H(let,1)  N(let,2)  C(let,4)  A(let,4)  F(let,6)  H(let,5)  N(let,1)  C(let,2)  A(let,2)  F(let,4)  H(let,4)  F(let,3)  H(let,4)  C(let,4)  A(let,1)  F(let,3)  C(let,4)  A(let,5)  F(let,10)  H(let,1)  N(let,6)  Z(let,7)  C(let,12)  A(let,12)  F(let,15)  N(let,3)  Z(let,2)  Z(let,6)  Q(let,2)  W(let,4)  J(let,2)  G(let,2)  te(let,2)  oe(let,2)  Z(let,2)  Q(let,2)  C(let,5)  A(let,5)  F(let,6)  H(let,3)  N(let,3)  C(let,5)
+
+## fns["1565:2"]  L1565-L1579  function l(C, A, F, H, N = 1) { let Z = au(A * 0.23 + 1.3, F * 0.31, H * 0.23 + 7.7), 
+  C(param,3)  A(param,2)  F(param,2)  H(param,2)  N(param,1)  Z(let,1)  Q(let,2)  W(let,6)  J(let,3)  G(let,3)  te(let,3)  oe(let,6)
+
+## fns["1580:10"]  L1580-L1594  (C, A) => { if (!C) return; if (Array.isArray(C)) { for (let Z of C) c
+  C(param,8)  A(param,3)  F(let,4)  H(let,2)  N(let,1)  Z(let,1)  Z(let,1)
+
+## fns["1592:15"]  L1592-L1592  (Q, W, J) => l(A, Q, W, J, Z)), t.add(i, C)); } else t.add(i, C, A); }, u = 
+  Q(param,1)  W(param,1)  J(param,1)
+
+## fns["1599:2"]  L1599-L1618  function d(C, A, F) { let H = C[1][0] - C[0][0], N = C[1][1] - C[0][1], Z 
+  C(param,13)  A(param,8)  F(param,3)  H(let,2)  N(let,2)  Z(let,2)  Q(let,2)  W(let,2)  J(let,2)  G(let,1)  te(let,4)  oe(let,9)
+
+## fns["1620:8"]  L1620-L1620  (C, A, F) => A.map((H) => l(C, H[0], H[1], H[2], F).slice()); function v(C, A, F, H, N, 
+  C(param,1)  A(param,1)  F(param,1)
+
+## fns["1620:27"]  L1620-L1620  (H) => l(C, H[0], H[1], H[2], F).slice()); function v(C, A, F, H, N, Z, Q, W, J) { f
+  H(param,3)
+
+## fns["1621:2"]  L1621-L1668  function v(C, A, F, H, N, Z, Q, W, J) { for (let G of W) { let te, oe; G =
+  C(param,10)  A(param,9)  F(param,10)  H(param,10)  N(param,12)  Z(param,10)  Q(param,1)  W(param,1)  J(param,3)  G(let,7)  te(let,7)  oe(let,6)  ee(let,4)  le(let,3)
+
+## fns["1669:2"]  L1669-L1806  function y(C, A, F, { faceZ: H = 0, ribs: N = !1, doorRows: Z = 0, west: Q = !1 } = {}) { 
+  C(param,7)  A(param,2)  F(param,3)  H(param,4)  N(param,1)  Z(param,1)  Q(param,2)  W(let,4)  J(let,7)  G(let,2)  te(let,3)  oe(let,4)  ee(let,5)
+
+## fns["1674:18"]  L1674-L1679  (oe, ee) => C.map((le, xe) => { let j = au(le * 0.04 + 3, 0.5, oe.z * 0.
+  oe(param,3)  ee(param,0)
+
+## fns["1675:14"]  L1675-L1679  (le, xe) => { let j = au(le * 0.04 + 3, 0.5, oe.z * 0.05 + 7), O = M
+  le(param,1)  xe(param,0)  j(let,1)  O(let,2)
+
+## fns["1681:11"]  L1681-L1681  (oe, ee) => (oe >= 0 && oe < J.length && ee >= 0 && ee < C.length ? G[oe][ee] : 0); J.
+  oe(param,3)  ee(param,3)
+
+## fns["1682:14"]  L1682-L1804  (oe, ee) => C.forEach((le, xe) => { let j = G[ee][xe], O = oe.z, 
+  oe(param,3)  ee(param,7)
+
+## fns["1683:16"]  L1683-L1804  (le, xe) => { let j = G[ee][xe], O = oe.z, q = Tw(le, O), 
+  le(param,4)  xe(param,10)  j(let,2)  O(let,14)  q(let,7)  ue(let,1)  de(let,2)  $(let,7)  se(let,3)  fe(let,3)  me(let,11)  ge(let,2)  ce(let,22)  P(let,6)  D(let,8)  B(let,6)  X(let,6)  re(let,5)  Y(let,2)  he(let,1)  V(let,2)  ne(let,2)  ye(let,5)  Te(let,3)  Re(let,2)  Ue(let,2)  Ve(let,4)  ze(let,3)  Ge(let,1)  _e(let,8)  Ne(let,2)  Ne(let,4)  ke(let,2)  ye(let,1)  Te(let,7)  Re(let,8)  Ue(let,8)  Ve(let,7)  ze(let,7)  Ge(let,2)  _e(let,3)  Ne(let,6)  ke(let,6)  je(let,5)  _e(let,14)  Ne(let,8)  ye(let,2)  Te(let,5)
+
+## fns["1688:15"]  L1688-L1688  ($, se) => $ >= 0 && se >= 0 && $ < C.length && se < C.length && Math.abs(C[$] - C[se]) < 
+  $(param,3)  se(param,3)
+
+## fns["1715:33"]  L1715-L1715  (ye) => re.includes(ye > 0 ? 'S' : 'N')) : []; if (N && ue && ne
+  ye(param,1)
+
+## fns["1778:19"]  L1778-L1789  (Ne, ke, je, Ze, qe, Oe) => { let mt = [ [Ne, Ze, je],
+  Ne(param,4)  ke(param,2)  je(param,2)  Ze(param,3)  qe(param,2)  Oe(param,1)  mt(let,2)  $e(let,4)  Ke(let,3)
+
+## fns["1826:2"]  L1826-L1898  function S(C, A, F, H, N) { let Q = F, W = [Q[0] * 0.7, Q[1] * 0.7, Q[2] * 0.7];
+  C(param,36)  A(param,15)  F(param,1)  H(param,1)  N(param,1)  Q(let,9)  W(let,4)  J(let,19)  G(let,5)  te(let,8)  oe(let,4)  ee(let,4)  le(let,2)  le(let,2)  le(let,4)  xe(let,2)  j(let,4)  O(let,5)  te(let,2)  oe(let,2)  te(let,2)  te(let,2)  te(let,5)  oe(let,10)  ee(let,4)  le(let,4)  xe(let,4)  te(let,1)  oe(let,16)  ee(let,2)  le(let,10)
+
+## fns["1899:17"]  L1899-L1899  (C, A, F) => c(A, F) }, z = Ng(6172444, 0.7); (S(-61, -52.06, E, -3, 4.5), S(-61
+  C(param,0)  A(param,1)  F(param,1)
+
+## fns["1970:10"]  L1970-L1971  (Z, Q, W, J, G, te, oe) => c(H ? Pe(C + Z, Q, A + W, C + J, G, A + te) : Pe(C + W,
+  Z(param,2)  Q(param,2)  W(param,2)  J(param,2)  G(param,2)  te(param,2)  oe(param,1)
+
+## fns["1990:14"]  L1990-L1993  ([C, A, F, H], N) => { let Z = Mw(t, i, 23.5, C, { s: A, up: F, tint: H }); e.
+  C(param,1)  A(param,2)  F(param,1)  H(param,1)  N(param,2)  Z(let,3)
+
+## fns["1995:2"]  L1995-L2010  function L(C, A, F, H, N, Z, Q) { (c(Pe(C, -1.6, F, A, N, H), Z), c(Pe(C, -1.6, F, A, 
+  C(param,9)  A(param,9)  F(param,5)  H(param,4)  N(param,10)  Z(param,1)  Q(param,1)  W(let,1)  J(let,6)  G(let,7)  te(let,2)  oe(let,1)  ee(let,1)
+
+## fns["2082:0"]  L2082-L2141  function Cw(n, e, t = 12) { let i = Rv(5521), s = [], o = [], r = []; for 
+  n(param,0)  e(param,1)  t(param,1)  i(let,11)  s(let,2)  o(let,2)  r(let,2)  a(let,4)  l(let,3)  c(let,5)  u(let,3)  h(let,3)  p(let,1)  d(let,1)  m(let,1)  x(let,1)  v(let,1)  y(let,4)
+
+## fns["2115:24"]  L2115-L2137  (u) => { ((u.uniforms.uTime = e), (u.vertexShader = `attribute vec4 aOrb
+  u(param,3)
+
+## fns["2145:0"]  L2145-L2225  function kw(n, { only: e = null, showcase: t = !1 } = {}) { let i = (b) => !e || e === b
+  n(param,10)  e(param,2)  t(param,4)  i(let,6)  s(let,10)  o(let,7)  r(let,4)  a(let,13)  l(let,10)  c(let,8)  u(let,4)  f(let,3)  h(let,5)  p(let,2)  d(let,3)  m(let,2)  x(let,2)  v(let,11)  y(function,2)  b(let,1)  b(let,1)  b(let,3)  g(let,2)
+
+## fns["2146:10"]  L2146-L2146  (b) => !e || e === b, s = new THREE.Group(); s.name = 'backdrop'; let o = bw(), 
+  b(param,1)
+
+## fns["2175:8"]  L2175-L2179  (b, g) => { n.physics && n.physics.addBox && p.push(n.physics.addBox
+  b(param,3)  g(param,1)
+
+## fns["2185:13"]  L2185-L2191  (b) => { if (b.isMesh) { x++; let g = b.geometry; m += (g.index ? g.
+  b(param,2)  g(let,3)
+
+## fns["2193:2"]  L2193-L2204  function y(b) { if (((v += b), (o.uTime.value = v), l)) { let g = l.spreader; 
+  b(param,1)  g(let,2)
+
+## fns["2227:0"]  L2227-L2229  async function Iv(n) { return kw(n, {}); } function _P(n) { let e = n.params && MP.in
+  n(param,1)
+
+## fns["2231:0"]  L2231-L2242  function _P(n) { let e = n.params && MP.includes(n.params.bshow) ? n.params.bshow : null
+  n(param,4)  e(let,2)  t(let,2)  i(let,2)
+
+## fns["2241:41"]  L2241-L2241  (s) => t.update(s) }; } var Lv = {}; export { Iv, Lv }; 
+  s(param,1)

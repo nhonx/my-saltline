@@ -1,0 +1,58 @@
+# explosives.js  top-level minified bindings (use "globals")
+  Dz  import  decl@L3  refs=1
+  vE  import  decl@L3  refs=2
+  xh  import  decl@L3  refs=6
+  ig  import  decl@L4  refs=1
+  yE  function  decl@L6  refs=1
+  Zy  var  decl@L278  refs=1
+
+## fns["6:0"]  L6-L276  function yE(n) { let e = new THREE.Group(); ((e.name = 'explosives'), n.scene.add(e));
+  n(param,39)  e(let,9)  t(let,11)  i(let,3)  s(let,2)  o(let,8)  r(let,4)  a(let,1)  l(let,7)  c(let,1)  u(function,2)  f(function,2)  h(let,1)  p(function,2)  d(function,2)  m(function,2)  v(catch,3)  y(let,4)  v(let,3)  y(let,6)  b(let,7)  y(let,9)  b(let,2)  v(catch,3)  v(let,12)  y(let,3)  b(let,1)  g(let,1)  E(let,2)  M(let,1)  _(let,1)  T(let,3)  w(let,2)  S(let,8)  R(let,8)  z(let,1)  I(let,5)  L(let,5)  U(let,6)  k(let,6)  C(let,2)  A(let,3)  F(let,3)  F(let,2)  v(let,1)
+
+## fns["17:2"]  L17-L56  function u(v) { let y = null; try { y = n.props.build(v.name, { ...(v.opts |
+  v(param,16)  y(let,9)  b(let,1)  g(let,2)  E(let,3)  M(let,5)  M(let,2)  M(catch,1)
+
+## fns["57:2"]  L57-L60  function f(v) { v.box || ((v.box = n.physics.addBox(v.min, v.max, { surface: 'me
+  v(param,6)
+
+## fns["65:10"]  L65-L70  (M, _) => v.isWalkable(M, _) && v.isWalkable(M + 0.3, _) && v.isWa
+  M(param,5)  _(param,5)
+
+## fns["71:10"]  L71-L78  (M, _) => M < 28 && M > -37 && Math.abs(_) < 27 && (!v.isW
+  M(param,6)  _(param,5)
+
+## fns["133:23"]  L133-L143  (b) => { if (!b.isMesh || Array.isArray(b.material)) return; let g = b
+  b(param,9)  g(let,2)  E(let,3)
+
+## fns["151:23"]  L151-L153  (g, E) => { (b.setMatrixAt(E, g.m), g.it.inst.push({ im: b, i: E, m: g.m })); 
+  g(param,3)  E(param,2)
+
+## fns["161:2"]  L161-L167  function p(v, y) { if (!v.inst) { v.obj.visible = y; return; } for
+  v(param,3)  y(param,2)  b(let,4)
+
+## fns["168:2"]  L168-L181  function d(v, y, b, g) { if (v.alive) { if (((v.hp -= y), v.hp <= 0)) { 
+  v(param,20)  y(param,1)  b(param,4)  g(param,0)
+
+## fns["182:25"]  L182-L185  (v) => { let y = v && v.box && i.get(v.box); y && d(y, v.from === 'player' ? (n.we
+  v(param,6)  y(let,2)
+
+## fns["186:29"]  L186-L196  (v) => { if (!v || !v.pos) return; let y = 2.2 + (v.size || 1) * 1.6; fo
+  v(param,4)  y(let,1)  b(let,5)  g(let,3)  E(let,2)
+
+## fns["197:2"]  L197-L232  function m(v) { ((v.alive = !1), (v.fuse = -1), p(v, !1), v.box && (
+  v(param,11)  y(let,3)  b(let,4)  g(let,3)  g(catch,1)  g(catch,1)
+
+## fns["236:9"]  L236-L240  () { let v = 0; for (let y of t) y.alive && v++; return v; }, re
+  v(let,2)  y(let,1)
+
+## fns["241:9"]  L241-L243  () { for (let v of t) ((v.alive = !0), (v.hp = v.spec.hp), (v.fuse = -1), p(v, !0), 
+  v(let,6)
+
+## fns["244:14"]  L244-L248  (v = 0, y = !0) { let b = t.filter((E) => E.alive), g = b[v % Math.max(1, b.
+  v(param,1)  y(param,1)  b(let,2)  g(let,5)
+
+## fns["245:23"]  L245-L245  (E) => E.alive), g = b[v % Math.max(1, b.length)]; return (g && (y ? m(g) : 
+  E(param,1)
+
+## fns["249:10"]  L249-L274  (v) { for (let y = 0; y < t.length; y++) { let b = t[y]; if (!(!b.al
+  v(param,2)  y(let,3)  b(let,13)

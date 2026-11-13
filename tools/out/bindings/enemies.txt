@@ -1,0 +1,368 @@
+# enemies.js  top-level minified bindings (use "globals")
+  ar  import  decl@L3  refs=1
+  su  import  decl@L3  refs=1
+  Ei  import  decl@L4  refs=1
+  Tr  import  decl@L4  refs=3
+  bn  import  decl@L4  refs=9
+  th  import  decl@L4  refs=3
+  vt  import  decl@L4  refs=6
+  ib  var  decl@L6  refs=2
+  Oh  var  decl@L10  refs=3
+  z5  function  decl@L74  refs=2
+  US  function  decl@L137  refs=1
+  Bs  var  decl@L154  refs=16
+  F5  var  decl@L155  refs=4
+  Hs  var  decl@L156  refs=16
+  oc  var  decl@L157  refs=8
+  rl  var  decl@L158  refs=9
+  V1  var  decl@L159  refs=5
+  Os  var  decl@L160  refs=16
+  Bn  var  decl@L161  refs=25
+  k0  var  decl@L162  refs=34
+  HD  var  decl@L163  refs=1
+  OD  var  decl@L164  refs=1
+  al  var  decl@L165  refs=9
+  Tt  var  decl@L166  refs=66
+  Xe  var  decl@L167  refs=134
+  Ms  var  decl@L168  refs=17
+  Uo  var  decl@L169  refs=13
+  ki  var  decl@L170  refs=21
+  D5  var  decl@L171  refs=4
+  L5  var  decl@L172  refs=4
+  BS  var  decl@L173  refs=2
+  VD  var  decl@L174  refs=1
+  HS  var  decl@L175  refs=2
+  WD  var  decl@L176  refs=1
+  Vh  function  decl@L178  refs=6
+  ua  var  decl@L190  refs=10
+  OS  var  decl@L194  refs=2
+  jy  var  decl@L195  refs=3
+  GD  var  decl@L196  refs=1
+  Ky  var  decl@L197  refs=2
+  VS  function  decl@L215  refs=1
+  N5  var  decl@L475  refs=3
+  qD  function  decl@L489  refs=1
+  WS  function  decl@L503  refs=1
+  Jy  var  decl@L656  refs=2
+  gn  var  decl@L677  refs=29
+  rr  var  decl@L678  refs=12
+  yB  var  decl@L679  refs=0
+  Qs  var  decl@L680  refs=15
+  Bo  var  decl@L681  refs=13
+  bB  var  decl@L682  refs=0
+  Wh  var  decl@L683  refs=6
+  W1  var  decl@L684  refs=5
+  GS  var  decl@L685  refs=2
+  U5  var  decl@L686  refs=4
+  XD  var  decl@L687  refs=1
+  qS  var  decl@L688  refs=2
+  Ou  var  decl@L692  refs=7
+  XS  function  decl@L694  refs=1
+  tb  var  decl@L1130  refs=2
+  c0  var  decl@L1153  refs=40
+  Yn  var  decl@L1154  refs=24
+  _s  var  decl@L1155  refs=17
+  Gh  var  decl@L1156  refs=6
+  Ho  var  decl@L1157  refs=13
+  Oo  var  decl@L1158  refs=13
+  YS  var  decl@L1159  refs=2
+  G1  var  decl@L1160  refs=5
+  Qy  var  decl@L1161  refs=3
+  B5  var  decl@L1162  refs=4
+  H5  var  decl@L1163  refs=4
+  YD  var  decl@L1164  refs=1
+  O5  var  decl@L1165  refs=4
+  bo  var  decl@L1169  refs=14
+  V5  var  decl@L1170  refs=4
+  ll  function  decl@L1175  refs=9
+  jS  function  decl@L1179  refs=1
+  KS  function  decl@L1940  refs=2
+  qh  var  decl@L1954  refs=6
+  eb  var  decl@L1955  refs=3
+  $S  var  decl@L1956  refs=2
+  ZS  function  decl@L1958  refs=2
+  Bi  var  decl@L1969  refs=20
+  $D  var  decl@L1987  refs=1
+  JS  var  decl@L1988  refs=2
+  kB  var  decl@L1989  refs=0
+  nb  var  decl@L1990  refs=3
+  QS  var  decl@L1991  refs=2
+  eT  var  decl@L1992  refs=2
+  tT  var  decl@L1993  refs=2
+  ZD  var  decl@L1994  refs=1
+  PB  var  decl@L1995  refs=0
+  nT  var  decl@L1996  refs=2
+  iT  var  decl@L1997  refs=2
+  W5  function  decl@L1999  refs=3
+  rc  var  decl@L2404  refs=8
+  ac  var  decl@L2405  refs=8
+  lc  var  decl@L2406  refs=8
+  jD  function  decl@L2408  refs=1
+  KD  function  decl@L2436  refs=1
+
+## fns["14:6"]  L14-L25  (e, t, i = 0, s = 0, o = 0) { let r = t ? this.bones[this.index[t]] : null; if (t 
+  e(param,2)  t(param,4)  i(param,2)  s(param,2)  o(param,2)  r(let,9)  a(let,3)
+
+## fns["26:5"]  L26-L56  (e, t, i, s = [1, 1, 1], o = !0) { let r = this.bones[this.index[t]]; if (!r) thro
+  e(param,4)  t(param,2)  i(param,1)  s(param,3)  o(param,1)  r(let,5)  a(let,13)  l(let,5)  c(let,4)  u(let,2)  f(let,2)  h(let,1)  p(let,8)  d(let,3)  p(let,4)
+
+## fns["57:7"]  L57-L71  (e) { let t = (e || this.order).filter((o) => this.slots[o] && this.slots[o].length), 
+  e(param,1)  t(let,2)  i(let,1)  s(let,4)
+
+## fns["58:37"]  L58-L58  (o) => this.slots[o] && this.slots[o].length), i = t.map((o) => { let r = th
+  o(param,2)
+
+## fns["59:16"]  L59-L64  (o) => { let r = this.slots[o], l = r.some((u) => !u.index) ? r.map((u) 
+  o(param,1)  r(let,3)  l(let,1)  c(let,3)
+
+## fns["61:21"]  L61-L61  (u) => !u.index) ? r.map((u) => (u.index ? u.toNonIndexed() : u)) : r, c = Tr(l,
+  u(param,1)
+
+## fns["61:46"]  L61-L61  (u) => (u.index ? u.toNonIndexed() : u)) : r, c = Tr(l, !1); return c.in
+  u(param,3)
+
+## fns["74:0"]  L74-L135  function z5( n, e, { castShadow: t = !0, receiveShadow: i = !0, radius: 
+  n(param,5)  e(param,2)  t(param,1)  i(param,1)  s(param,9)  o(param,12)  r(param,5)  a(let,5)  l(let,4)  c(let,9)  u(let,3)  f(let,2)  h(let,2)  p(let,10)
+
+## fns["85:22"]  L85-L88  (p) => { let d = new THREE.Bone(); return ((d.name = p.name), d.position.set(p.loc
+  p(param,4)  d(let,3)
+
+## fns["89:18"]  L89-L91  (p, d) => { p.parent >= 0 && a[p.parent].add(a[d]); }); let l = new THREE.Group(),
+  p(param,2)  d(param,1)
+
+## fns["95:18"]  L95-L95  (p) => e[p]), ); ((c.castShadow = t), (c.receiveShadow = i), l.add(c), n
+  p(param,1)
+
+## fns["100:20"]  L100-L102  (p, d) => { p.parent < 0 && c.add(a[d]); }), l.updateMatrixWorld(!0)); let
+  p(param,1)  d(param,1)
+
+## fns["112:12"]  L112-L114  (p) => { f[p.name] = p; }); let h = { group: l, mesh: c, bones: f, skeleton: u, ex
+  p(param,2)
+
+## fns["119:22"]  L119-L119  (d) => e[d]), ); ((p.castShadow = !1), (p.receiveShadow = !1), (p.rend
+  d(param,1)
+
+## fns["137:0"]  L137-L152  function US(n, e, t, i, s, o, r, a) { let l = e * e + t * t, c = Math.sqrt(Math.max(
+  n(param,9)  e(param,3)  t(param,3)  i(param,2)  s(param,1)  o(param,3)  r(param,9)  a(param,8)  l(let,1)  c(let,3)  u(let,10)  f(let,2)  h(let,2)  p(let,1)  d(let,3)  m(let,3)  x(let,1)  v(let,1)
+
+## fns["166:7"]  L166-L166  (n, e, t, i = 0.008) => Ei(n, e, t, i), Xe = (n, e, t, i, s = 0, o = 0, r = 0, a = 1) =>
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)
+
+## fns["167:7"]  L167-L167  (n, e, t, i, s = 0, o = 0, r = 0, a = 1) => th(n, { p: [e, t, i], r: [s, o, r], s: a }), 
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(param,1)
+
+## fns["168:7"]  L168-L168  (n, e, t, i = 12) => vt(n, e, t, i), Uo = (n, e, t, i = 12) => th(vt(n, e, t, i), { r: [
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)
+
+## fns["169:7"]  L169-L169  (n, e, t, i = 12) => th(vt(n, e, t, i), { r: [0, 0, -al] }), ki = (n, e, t, i = 12) => t
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)
+
+## fns["170:7"]  L170-L170  (n, e, t, i = 12) => th(vt(n, e, t, i), { r: [al, 0, 0] }), D5 = new THREE.Vector3(), 
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)
+
+## fns["178:0"]  L178-L188  function Vh(n, e, t, i = t, s = 8) { (D5.set(n[0], n[1], n[2]), L5.set(e[0], e[1], e[2])
+  n(param,3)  e(param,3)  t(param,2)  i(param,1)  s(param,1)  o(let,1)  r(let,2)
+
+## fns["190:9"]  L190-L193  (n, e = 14, t = 10, i = 1, s = 1, o = 1) => { let r = new THREE.SphereGeometry(n, e, t
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)  s(param,1)  o(param,1)  r(let,2)
+
+## fns["194:7"]  L194-L194  (n, e, t) => Xe(Uo(0.0075, 0.0075, 0.006, 6), n, e, t), jy = (n, e, t) => Xe(Ms(0.0075, 
+  n(param,1)  e(param,1)  t(param,1)
+
+## fns["195:7"]  L195-L195  (n, e, t) => Xe(Ms(0.0075, 0.0075, 0.006, 6), n, e, t), GD = (n, e, t) => Xe(ki(0.0075, 
+  n(param,1)  e(param,1)  t(param,1)
+
+## fns["196:7"]  L196-L196  (n, e, t) => Xe(ki(0.0075, 0.0075, 0.006, 6), n, e, t), Ky = { stand: 0.72, L1: 
+  n(param,1)  e(param,1)  t(param,1)
+
+## fns["215:0"]  L215-L473  function VS() { let n = Ky, e = new Oh(); (e.bone('root', null, 0, 0, 0), e.bo
+  n(let,27)  e(let,13)  t(let,96)  i(let,4)  s(let,3)  o(let,9)  r(let,3)  a(let,14)  l(let,6)  c(let,3)  u(let,2)  i(let,3)  i(let,2)  i(let,1)  s(let,1)  i(let,1)  i(let,2)  i(let,3)  s(let,4)  i(let,1)  s(let,1)  i(let,2)  i(let,4)  i(let,22)  s(let,1)  s(let,1)  o(let,1)  s(let,3)  i(let,3)  i(let,1)  s(let,1)  i(let,5)  s(let,5)  o(let,2)
+
+## fns["233:10"]  L233-L233  (i, s, o, r, a) => e.add(i, s, o, r, a); (t('metal', 'body', Xe(Tt(0.27, 0.2, 0.98, 0.02
+  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(param,1)
+
+## fns["489:0"]  L489-L501  function qD() { let n = [ [0.176, -0.036], [0.196, -0.032], [0.206, 0], 
+  n(let,1)
+
+## fns["499:8"]  L499-L499  (e) => new THREE.Vector2(e[0], e[1])); return new THREE.LatheGeometry(n, 28); } functio
+  e(param,2)
+
+## fns["503:0"]  L503-L654  function WS() { let n = N5, e = new Oh(), t = new Oh(), i = (l, c, u, f, h) 
+  n(let,19)  e(let,3)  t(let,4)  i(let,10)  s(let,55)  o(let,1)  r(let,2)  a(let,1)  l(let,2)  u(let,3)  l(let,1)  l(let,9)  c(let,10)  u(let,9)  f(let,10)  h(let,7)  p(let,7)  d(let,2)  m(let,4)  x(let,3)  m(let,3)  x(let,3)  l(let,11)  c(let,1)  c(let,3)  l(let,1)  c(let,1)  l(let,6)
+
+## fns["507:8"]  L507-L509  (l, c, u, f, h) => { (e.bone(l, c, u, f, h), t.bone(l, c, u, f, h)); }; (i('ro
+  l(param,2)  c(param,2)  u(param,2)  f(param,2)  h(param,2)
+
+## fns["519:10"]  L519-L519  (l, c, u, f, h) => e.add(l, c, u, f, h); (s('shell', 'body', Xe(ua(1, 20, 12, 0.118, 0.0
+  l(param,1)  c(param,1)  u(param,1)  f(param,1)  h(param,1)
+
+## fns["688:7"]  L688-L691  (n, e) => { let t = (n - e) % (Math.PI * 2); return (t > Math.PI ? (t -= Math.PI *
+  n(param,1)  e(param,1)  t(let,5)
+
+## fns["692:7"]  L692-L692  (n, e, t) => (n < e ? e : n > t ? t : n); function XS(n, e, t, i) { let s = n.G, o 
+  n(param,3)  e(param,2)  t(param,2)
+
+## fns["694:0"]  L694-L1128  function XS(n, e, t, i) { let s = n.G, o = n.rng, r = t.lensBase.clone(), a 
+  n(param,13)  e(param,2)  t(param,6)  i(param,1)  s(let,29)  o(let,28)  r(let,4)  a(let,10)  l(let,21)  c(let,2)  u(let,2)  f(let,1)  h(let,3)  p(let,4)  d(let,344)  m(function,1)  x(function,1)  v(function,1)
+
+## fns["766:10"]  L766-L777  (y, b, g, E) { return d.alive ? ((d.hp -= y), s.events.emit('enemy
+  y(param,2)  b(param,1)  g(param,3)  E(param,1)
+
+## fns["778:13"]  L778-L825  (y, b = {}) { ((d.active = !0), (d.alive = !0), (d.hp = gn.hp), 
+  y(param,3)  b(param,7)  g(let,3)
+
+## fns["834:12"]  L834-L857  (y, b, g, E) { let T = y.x - d.pos.x, w = (y.y - d.pos.y + 0.03) * 2.3, 
+  y(param,4)  b(param,4)  g(param,1)  E(param,9)  T(let,3)  w(let,3)  S(let,3)  R(let,3)  z(let,3)  I(let,3)  L(let,2)  U(let,3)  k(let,1)  C(let,2)  A(let,5)
+
+## fns["858:11"]  L858-L860  (y) { d.alive ? v(y) : x(y); }, }; function m(y) { ((d.alive = !1), 
+  y(param,2)
+
+## fns["862:2"]  L862-L881  function m(y) { ((d.alive = !1), n.releaseToken(d), (d.dieT = 0), (d
+  y(param,2)
+
+## fns["882:2"]  L882-L914  function x(y) { ((d.dieT += y), (d.vel.y -= 9.5 * y), (d.vel.x *= 1 - 0.4 
+  y(param,12)  b(let,3)  g(let,1)  E(let,4)  M(let,5)  M(let,3)
+
+## fns["915:2"]  L915-L1126  function v(y) { let b = s.player, g = n.t; (d.fwd.set(Math.sin(d.yaw), 0, Ma
+  y(param,24)  b(let,20)  g(let,10)  E(let,8)  M(let,5)  _(let,5)  T(let,5)  w(let,9)  S(let,5)  R(let,6)  z(let,2)  I(let,3)  L(let,3)  U(let,2)  k(let,4)  C(let,4)  A(let,1)  F(let,1)  H(let,2)  N(let,2)  Z(let,3)  Q(let,4)  W(let,5)  J(let,2)  G(let,2)  te(let,2)  oe(let,1)  ee(let,1)  le(let,1)  xe(let,2)  j(let,1)  O(let,3)  q(let,1)  ue(let,2)  de(let,3)  q(let,5)  q(let,2)  q(let,2)  q(let,2)  q(let,13)  ue(let,4)  de(let,5)  $(let,3)  se(let,3)  q(let,2)  q(let,2)  q(let,2)  ue(let,3)  de(let,3)  q(let,1)
+
+## fns["1165:7"]  L1165-L1168  (n, e) => { let t = (n - e) % (Math.PI * 2); return (t > Math.PI ? (t -= Math.PI *
+  n(param,1)  e(param,1)  t(let,5)
+
+## fns["1169:7"]  L1169-L1169  (n, e, t) => (n < e ? e : n > t ? t : n), V5 = [ [0, 3], [1, 2], ]; function 
+  n(param,3)  e(param,2)  t(param,2)
+
+## fns["1175:0"]  L1175-L1177  function ll(n, e, t, i, s) { return ((n.v += ((e - n.x) * t - n.v * i) * s), (n.x += n.v
+  n(param,6)  e(param,1)  t(param,1)  i(param,1)  s(param,2)
+
+## fns["1179:0"]  L1179-L1938  function jS(n, e, t, i) { let s = n.G, o = n.rng, r = t.lensBase.clone(), a 
+  n(param,20)  e(param,1)  t(param,4)  i(param,1)  s(let,45)  o(let,31)  r(let,4)  a(let,8)  l(let,16)  c(let,2)  u(let,2)  f(let,2)  h(let,2)  p(let,3)  d(let,2)  m(let,3)  x(let,3)  v(let,1)  y(let,3)  b(let,18)  g(let,583)  E(function,3)  M(function,4)  _(function,1)  T(function,3)  w(function,7)  S(function,1)  R(function,1)  z(function,1)  I(function,3)  L(function,1)  U(function,1)  k(let,5)
+
+## fns["1291:12"]  L1291-L1305  (k, C, A, F) { if (!g.alive) return !1; if (((g.hp -= k), s.events.emit('e
+  k(param,2)  C(param,1)  A(param,6)  F(param,2)  H(let,2)  N(let,2)  Z(let,4)  Q(let,1)  W(let,2)
+
+## fns["1306:15"]  L1306-L1363  (k, C = {}) { ((g.active = !0), (g.alive = !0), (g.wreck = !1)
+  k(param,5)  C(param,6)  A(let,4)  A(let,2)
+
+## fns["1374:14"]  L1374-L1388  (k, C, A, F) { let H = !1; KS(k, C, g.headPos, 0.155, A, F) && ((F.part = 
+  k(param,3)  C(param,3)  A(param,3)  F(param,9)  H(let,4)  N(let,2)  Z(let,2)  Q(let,3)
+
+## fns["1389:13"]  L1389-L1391  (k) { g.alive ? S(k) : U(k); }, }; function E(k, C, A, F, H) { let
+  k(param,2)
+
+## fns["1393:2"]  L1393-L1399  function E(k, C, A, F, H) { let N = Yn.side[C] * Yn.footX, Z = Yn.footZ[C], 
+  k(param,2)  C(param,2)  A(param,1)  F(param,1)  H(param,2)  N(let,2)  Z(let,2)  Q(let,2)  W(let,2)
+
+## fns["1400:2"]  L1400-L1403  function M(k, C) { (!C && g.hasGoal && g.goal.distanceToSquared(k) < 0.25) || (g
+  k(param,2)  C(param,1)
+
+## fns["1404:2"]  L1404-L1415  function _() { g.planT = c0.replan + o() * 0.15; let k = null; try { k =
+  k(let,5)
+
+## fns["1416:2"]  L1416-L1437  function T(k, C) { if (!g.hasGoal) return ((g.maxSpeed = 0), !0); ((g.planT -= k),
+  k(param,1)  C(param,1)  A(let,3)  F(let,1)  H(let,1)  N(let,2)  Z(let,1)  Q(let,1)  W(let,2)
+
+## fns["1438:2"]  L1438-L1488  function w() { let k = s.player; if (!k) return; let C = 1 / 0, A = k.ey
+  k(let,17)  C(let,4)  A(let,1)  F(let,3)  H(let,3)  N(let,1)  Z(let,2)  Q(let,2)  W(let,2)  Z(let,2)  Q(let,2)  Z(let,3)
+
+## fns["1443:10"]  L1443-L1466  (Z, Q) => { let W = Math.hypot(Z.x - k.pos.x, Z.z - k.pos.z); if ( 
+  Z(param,16)  Q(param,1)  W(let,2)  J(let,6)  G(let,2)  te(let,2)  oe(let,7)  ee(let,4)  le(let,2)  xe(let,2)  j(let,2)
+
+## fns["1489:2"]  L1489-L1719  function S(k) { let C = s.player, A = n.t; (g.fwd.set(Math.sin(g.yaw), 0, Ma
+  k(param,44)  C(let,17)  A(let,0)  F(let,5)  H(let,7)  N(let,4)  Z(let,7)  Q(let,9)  W(let,1)  J(let,1)  G(let,2)  te(let,3)  oe(let,3)  ee(let,7)  le(let,7)  xe(let,4)  j(let,4)  O(let,4)  q(let,3)  ue(let,2)  de(let,3)  $(let,2)  se(let,3)  fe(let,2)  me(let,2)  ge(let,3)  ce(let,1)  P(let,3)  D(let,5)  D(let,3)  B(let,3)  X(let,1)  D(let,3)  B(let,3)  X(let,1)  D(let,1)  D(let,2)  D(let,5)  B(let,2)  X(let,2)  re(let,4)  Y(let,2)  D(let,8)  B(let,1)  X(let,1)  D(let,2)  D(let,2)
+
+## fns["1720:2"]  L1720-L1747  function R(k) { let C = Math.cos(g.yaw + g.tyaw), A = Math.sin(g.yaw + g.tyaw); 
+  k(param,3)  C(let,0)  A(let,0)  F(let,3)  H(let,2)  Z(let,1)
+
+## fns["1748:2"]  L1748-L1793  function z(k) { let C = Math.sin(g.yaw) * g.speed + g.push.x, A = Math.cos(g.yaw
+  k(param,2)  C(let,2)  A(let,2)  F(let,2)  H(let,4)  N(let,1)  Z(let,1)  Z(let,1)  Q(let,4)  H(let,2)  N(let,7)  Z(let,4)  Q(let,3)  W(let,1)  J(let,2)  G(let,6)  J(let,5)  G(let,5)  te(let,3)  oe(let,2)
+
+## fns["1794:2"]  L1794-L1857  function I(k) { let C = Math.cos(g.yaw), A = Math.sin(g.yaw), F = (b[0].p.
+  k(param,8)  C(let,2)  A(let,2)  F(let,2)  H(let,2)  N(let,1)  Z(let,1)  Q(let,1)  W(let,2)  J(let,2)  G(let,2)  te(let,2)  oe(let,1)  ee(let,2)  le(let,2)  xe(let,5)  j(let,4)  O(let,2)  q(let,2)  ue(let,2)  de(let,2)  $(let,9)  se(let,3)  fe(let,2)  me(let,1)  ge(let,2)  ce(let,2)  P(let,2)  D(let,2)  B(let,2)  X(let,1)  re(let,1)  Y(let,1)
+
+## fns["1858:2"]  L1858-L1884  function L(k) { ((g.alive = !1), n.releaseToken(g), (g.dieT = 0), (g
+  k(param,0)  C(let,5)  A(let,2)  F(let,4)  H(let,2)  N(let,2)
+
+## fns["1885:2"]  L1885-L1936  function U(k) { if (g.sink > 0) { ((g.sink += k), (g.pos.y -= 0.22 * k), g.sink 
+  k(param,17)  C(let,11)  A(let,2)  F(let,3)  H(let,3)  N(let,3)  Z(let,5)
+
+## fns["1940:0"]  L1940-L1952  function KS(n, e, t, i, s, o) { let r = n.x - t.x, a = n.y - t.y, l = n.z - t.z,
+  n(param,4)  e(param,4)  t(param,4)  i(param,2)  s(param,1)  o(param,5)  r(let,3)  a(let,3)  l(let,3)  c(let,3)  u(let,1)  f(let,2)  h(let,5)
+
+## fns["1958:0"]  L1958-L1967  function ZS(n, e, t, i, s, o, r) { (qh.copy(i).sub(t), eb.copy(n).sub(t)); let a = qh.
+  n(param,2)  e(param,3)  t(param,3)  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(let,1)  l(let,3)  c(let,1)  u(let,1)  f(let,2)  h(let,5)
+
+## fns["1999:0"]  L1999-L2402  async function W5(n) { let e = su(+((n.params && n.params.eseed) || 9001)), t = [], 
+  n(param,31)  e(let,5)  t(let,15)  i(let,9)  s(let,5)  o(let,6)  r(let,4)  a(let,3)  l(let,1)  c(let,1)  u(let,3)  f(let,25)  h(let,3)  p(let,2)  d(let,4)  m(let,4)  x(let,8)  v(let,3)  y(let,3)  b(let,1)  g(let,11)  E(let,6)  M(function,1)  _(let,14)  T(let,2)  w(let,3)  S(let,2)  R(let,2)  z(function,1)  I(let,1)  L(let,3)  U(let,4)  k(let,2)  k(let,3)  C(let,2)  k(let,3)  C(let,2)
+
+## fns["2067:19"]  L2067-L2067  (k) => Tr(k, !1), requestToken(k) { if (k.hasToken) return !0; let C
+  k(param,1)
+
+## fns["2068:18"]  L2068-L2079  (k) { if (k.hasToken) return !0; let C = 0; for (let Z of t) Z.ali
+  k(param,6)  C(let,2)  A(let,1)  F(let,2)  H(let,1)  N(let,1)  Z(let,1)
+
+## fns["2080:18"]  L2080-L2082  (k) { k.hasToken && ((k.hasToken = !1), (f.tokens = Math.max(0, f.tokens - 1))); 
+  k(param,2)
+
+## fns["2083:11"]  L2083-L2125  (k, C, A) { let F = n.player; if (k.passive || !F) { k.los = !1;
+  k(param,45)  C(param,7)  A(param,2)  F(let,7)  H(let,2)  N(let,4)  Z(let,3)  Q(let,1)  W(let,3)  J(let,2)  G(let,1)  te(let,1)
+
+## fns["2126:11"]  L2126-L2134  (k, C, A, F) { for (let H of t) H === F || !H.alive || 
+  k(param,1)  C(param,2)  A(param,1)  F(param,1)  H(let,8)
+
+## fns["2135:13"]  L2135-L2143  (k) { let C = n.player; !C || k.passive || !k.alive ||
+  k(param,10)  C(let,3)
+
+## fns["2144:14"]  L2144-L2152  (k, C, A) { let F = null; for (let H = 0; H < x.length; H++) if 
+  k(param,2)  C(param,1)  A(param,0)  F(let,8)  H(let,4)
+
+## fns["2153:14"]  L2153-L2158  (k) { for (i.push(k); i.length > Bi.maxWrecks;) { let C = i.shift(); 
+  k(param,1)  C(let,2)
+
+## fns["2159:12"]  L2159-L2163  (k) { k._deactivate(); let C = t.indexOf(k); (C >= 0 && t.splice(C
+  k(param,3)  C(let,5)
+
+## fns["2211:2"]  L2211-L2256  function M(k) { let C = n.player, A = 0; for (let F = 0; F < x.length; F++) 
+  k(param,2)  C(let,10)  A(let,3)  F(let,3)  H(let,20)  N(let,4)  Z(let,7)  Q(let,1)  W(let,2)
+
+## fns["2262:2"]  L2262-L2295  function z(k) { if (!T) { T = !0; try { _ = n.render && 
+  k(param,3)  C(let,8)  A(let,2)  F(let,2)  H(let,2)  N(let,2)  Z(let,2)  Q(let,3)  N(let,4)  Z(let,2)
+
+## fns["2301:11"]  L2301-L2317  (k, C, A = {}) { let F = k === 'gull' ? d : k === 'hound' ? m : null; if (
+  k(param,3)  C(param,1)  A(param,1)  F(let,2)  H(let,9)  N(let,2)  N(let,2)
+
+## fns["2318:13"]  L2318-L2341  (k, C, A = 300) { let F = null; for (let H = 0; H < t.length; H++) { 
+  k(param,4)  C(param,4)  A(param,2)  F(let,6)  H(let,3)  N(let,6)  Z(let,3)  Q(let,3)  W(let,3)  J(let,4)
+
+## fns["2342:16"]  L2342-L2346  () { let k = 0; for (let C of t) C.alive && k++; return k; }
+  k(let,2)  C(let,1)
+
+## fns["2347:11"]  L2347-L2353  () { for (let k of d) k.active && k._deactivate(); for (let k of m) k.acti
+  k(let,1)  k(let,2)  k(let,2)
+
+## fns["2354:11"]  L2354-L2365  (k, C = 40) { for (let A of t) !A.alive || A.passive || 
+  k(param,3)  C(param,2)  A(let,10)
+
+## fns["2366:12"]  L2366-L2376  (k) { if (k <= 0) return; (k > 0.05 && (k = 0.05), (f.t += k), (L -= k)); 
+  k(param,9)  C(let,5)  A(let,3)  A(let,1)
+
+## fns["2388:31"]  L2388-L2393  (k) => { if (L > 0) return; L = 0.3; let C = (k && (k.origin || k.muzzle
+  k(param,3)  C(let,2)
+
+## fns["2394:29"]  L2394-L2396  (k) => { k && k.pos && U.alert(k.pos, 30); }), n.events.on('game:state', (k)
+  k(param,3)
+
+## fns["2397:30"]  L2397-L2399  (k) => { k && k.state === 'title' && U.clear(); }), U ); } var rc = new T
+  k(param,2)
+
+## fns["2408:0"]  L2408-L2434  function jD(n, e, t, i) { (rc.copy(e).sub(n), ac.copy(i).sub(t), lc.copy(n).sub(t)); l
+  n(param,2)  e(param,1)  t(param,2)  i(param,1)  s(let,6)  o(let,6)  r(let,3)  a(let,9)  l(let,10)  c(let,2)  u(let,2)  f(let,2)  h(let,4)  p(let,5)  d(let,2)
+
+## fns["2436:0"]  L2436-L2492  async function KD(n) { let e = await W5(n); n.enemies = e; let t = (l, c, u) => new 
+  n(param,6)  e(let,17)  t(let,20)  i(let,4)  s(let,5)  o(let,5)  r(let,6)  a(let,1)  l(let,2)  c(let,1)  l(let,2)  c(let,2)  u(let,2)  u(let,2)
+
+## fns["2439:10"]  L2439-L2439  (l, c, u) => new THREE.Vector3(l, c, u), i = n.params.eshow || 'both', s = [3, 1.4
+  l(param,1)  c(param,1)  u(param,1)
+
+## fns["2488:10"]  L2488-L2490  (l) { a || e.update(l); }, }; } export { W5, ib }; 
+  l(param,1)

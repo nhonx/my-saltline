@@ -1,83 +1,83 @@
 // @ts-nocheck
 import * as THREE from 'three';
-import { Dz, vE, xh } from './combat.js';
+import { EXPLOSIVE_SPAWNS, EXPLOSIVE_PRESETS, Vec3 } from './combat.js';
 import { ig } from './geometry.js';
 
-function yE(n) {
-  let e = new THREE.Group();
-  ((e.name = 'explosives'), n.scene.add(e));
-  let t = [],
-    i = new Map(),
-    s = n.rng && n.rng.fork ? n.rng.fork() : Math.random,
-    o = new THREE.Box3(),
-    r = new THREE.Box3(),
-    a = new xh(),
-    l = new xh(),
-    c = new xh(0, 1, 0);
-  function u(v) {
-    let y = null;
+function createExplosives(ctx) {
+  let root = new THREE.Group();
+  ((root.name = 'explosives'), ctx.scene.add(root));
+  let items = [],
+    itemByBox = new Map(),
+    random = ctx.rng && ctx.rng.fork ? ctx.rng.fork() : Math.random,
+    worldBounds = new THREE.Box3(),
+    colliderBounds = new THREE.Box3(),
+    tmpVec = new Vec3(),
+    blastPos = new Vec3(),
+    upAxis = new Vec3(0, 1, 0);
+  function spawnItem(def) {
+    let obj = null;
     try {
-      y = n.props.build(v.name, { ...(v.opts || {}), ...(v.name === 'barrel' ? { color: 'red' } : {}) });
-    } catch (M) {
-      return (console.warn('[explosives] build failed: ' + M), null);
+      obj = ctx.props.build(def.name, { ...(def.opts || {}), ...(def.name === 'barrel' ? { color: 'red' } : {}) });
+    } catch (err) {
+      return (console.warn('[explosives] build failed: ' + err), null);
     }
-    (y.position.set(v.x, v.y || 0, v.z),
-      (y.rotation.y = v.yaw || 0),
-      e.add(y),
-      y.updateMatrixWorld(!0),
-      o.makeEmpty());
-    let b = y.userData.colliders || [];
-    for (let M of b)
-      (r.min.fromArray(M.min), r.max.fromArray(M.max), r.applyMatrix4(y.matrixWorld), o.union(r));
-    if (o.isEmpty()) {
-      let M = y.userData.size || [0.6, 0.9, 0.6];
-      (o.min.set(v.x - M[0] / 2, v.y || 0, v.z - M[2] / 2),
-        o.max.set(v.x + M[0] / 2, (v.y || 0) + M[1], v.z + M[2] / 2));
+    (obj.position.set(def.x, def.y || 0, def.z),
+      (obj.rotation.y = def.yaw || 0),
+      root.add(obj),
+      obj.updateMatrixWorld(!0),
+      worldBounds.makeEmpty());
+    let colliders = obj.userData.colliders || [];
+    for (let collider of colliders)
+      (colliderBounds.min.fromArray(collider.min), colliderBounds.max.fromArray(collider.max), colliderBounds.applyMatrix4(obj.matrixWorld), worldBounds.union(colliderBounds));
+    if (worldBounds.isEmpty()) {
+      let size = obj.userData.size || [0.6, 0.9, 0.6];
+      (worldBounds.min.set(def.x - size[0] / 2, def.y || 0, def.z - size[2] / 2),
+        worldBounds.max.set(def.x + size[0] / 2, (def.y || 0) + size[1], def.z + size[2] / 2));
     }
-    let g = vE[v.name] || vE.barrel,
-      E = {
-        def: v,
-        obj: y,
+    let spec = EXPLOSIVE_PRESETS[def.name] || EXPLOSIVE_PRESETS.barrel,
+      item = {
+        def: def,
+        obj: obj,
         inst: null,
-        kind: v.name,
-        spec: g,
-        min: o.min.clone(),
-        max: o.max.clone(),
-        pos: o.getCenter(new xh()),
-        hp: g.hp,
+        kind: def.name,
+        spec: spec,
+        min: worldBounds.min.clone(),
+        max: worldBounds.max.clone(),
+        pos: worldBounds.getCenter(new Vec3()),
+        hp: spec.hp,
         fuse: -1,
         alive: !0,
         box: null,
-        leak: new xh(),
-        leakDir: new xh(0, 1, 0),
+        leak: new Vec3(),
+        leakDir: new Vec3(0, 1, 0),
         tick: 0,
       };
-    return (t.push(E), f(E), E);
+    return (items.push(item), registerCollider(item), item);
   }
-  function f(v) {
-    v.box ||
-      ((v.box = n.physics.addBox(v.min, v.max, { surface: 'metal', tag: 'explosive' })), i.set(v.box, v));
+  function registerCollider(item) {
+    item.box ||
+      ((item.box = ctx.physics.addBox(item.min, item.max, { surface: 'metal', tag: 'explosive' })), itemByBox.set(item.box, item));
   }
-  for (let v of (n.level && n.level.explosives) || []) u(v);
+  for (let v of (ctx.level && ctx.level.explosives) || []) spawnItem(v);
   try {
-    let v = n.physics.nav,
-      y = n.level && n.level.playerStart && n.level.playerStart.pos,
-      b = (M, _) =>
-        v.isWalkable(M, _) &&
-        v.isWalkable(M + 0.3, _) &&
-        v.isWalkable(M - 0.3, _) &&
-        v.isWalkable(M, _ + 0.3) &&
-        v.isWalkable(M, _ - 0.3),
-      g = (M, _) =>
+    let nav = ctx.physics.nav,
+      playerStartPos = ctx.level && ctx.level.playerStart && ctx.level.playerStart.pos,
+      isOpenCell = (M, _) =>
+        nav.isWalkable(M, _) &&
+        nav.isWalkable(M + 0.3, _) &&
+        nav.isWalkable(M - 0.3, _) &&
+        nav.isWalkable(M, _ + 0.3) &&
+        nav.isWalkable(M, _ - 0.3),
+      isNearWall = (M, _) =>
         M < 28 &&
         M > -37 &&
         Math.abs(_) < 27 &&
-        (!v.isWalkable(M + 0.6, _) ||
-          !v.isWalkable(M - 0.6, _) ||
-          !v.isWalkable(M, _ + 0.6) ||
-          !v.isWalkable(M, _ - 0.6)),
-      E = 0;
-    for (let [M, _] of Dz) {
+        (!nav.isWalkable(M + 0.6, _) ||
+          !nav.isWalkable(M - 0.6, _) ||
+          !nav.isWalkable(M, _ + 0.6) ||
+          !nav.isWalkable(M, _ - 0.6)),
+      placed = 0;
+    for (let [M, _] of EXPLOSIVE_SPAWNS) {
       let T = null,
         w = 1e9;
       for (let I = -3; I <= 3; I += 0.5)
@@ -85,188 +85,188 @@ function yE(n) {
           let U = M + L,
             k = _ + I,
             C = L * L + I * I;
-          if (C >= w || !b(U, k) || !g(U, k) || (y && Math.hypot(U - y.x, k - y.z) < 7)) continue;
+          if (C >= w || !isOpenCell(U, k) || !isNearWall(U, k) || (playerStartPos && Math.hypot(U - playerStartPos.x, k - playerStartPos.z) < 7)) continue;
           let A = !1;
-          for (let F of t)
+          for (let F of items)
             if (Math.hypot(F.pos.x - U, F.pos.z - k) < 1.1) {
               A = !0;
               break;
             }
-          for (let F of (n.level && n.level.objectives) || [])
+          for (let F of (ctx.level && ctx.level.objectives) || [])
             F.pos && Math.hypot(F.pos.x - U, F.pos.z - k) < 2.2 && (A = !0);
           A || ((T = [U, k]), (w = C));
         }
       if (!T) continue;
       let [S, R] = T;
-      v.isWalkable(S + 0.6, R)
-        ? v.isWalkable(S - 0.6, R)
-          ? v.isWalkable(S, R + 0.6)
+      nav.isWalkable(S + 0.6, R)
+        ? nav.isWalkable(S - 0.6, R)
+          ? nav.isWalkable(S, R + 0.6)
             ? (R -= 0.2)
             : (R += 0.2)
           : (S -= 0.2)
         : (S += 0.2);
       let z =
-        n.level &&
-        n.level.interiorBoxes &&
-        n.level.interiorBoxes[0] &&
-        S > n.level.interiorBoxes[0].min.x &&
-        S < n.level.interiorBoxes[0].max.x &&
-        R > n.level.interiorBoxes[0].min.z &&
-        R < n.level.interiorBoxes[0].max.z
+        ctx.level &&
+        ctx.level.interiorBoxes &&
+        ctx.level.interiorBoxes[0] &&
+        S > ctx.level.interiorBoxes[0].min.x &&
+        S < ctx.level.interiorBoxes[0].max.x &&
+        R > ctx.level.interiorBoxes[0].min.z &&
+        R < ctx.level.interiorBoxes[0].max.z
           ? 0.03
           : 0;
-      (u({ name: 'barrel', x: S, y: z, z: R, yaw: s() * 6.28, opts: { seed: 100 + (E % 2) } }), E++);
+      (spawnItem({ name: 'barrel', x: S, y: z, z: R, yaw: random() * 6.28, opts: { seed: 100 + (placed % 2) } }), placed++);
     }
-  } catch (v) {
-    console.warn('[explosives] extra barrels skipped: ' + ((v && v.message) || v));
+  } catch (err) {
+    console.warn('[explosives] extra barrels skipped: ' + ((err && err.message) || err));
   }
-  let h = new THREE.Matrix4().makeScale(0, 0, 0);
+  let hiddenMatrix = new THREE.Matrix4().makeScale(0, 0, 0);
   try {
-    let v = new Map();
-    for (let y of t) {
-      if ((y.obj.updateMatrixWorld(!0), y.kind !== 'barrel')) {
-        let b = ig(y.obj);
-        (e.remove(y.obj), e.add(b), (y.obj = b));
+    let instanceGroups = new Map();
+    for (let item of items) {
+      if ((item.obj.updateMatrixWorld(!0), item.kind !== 'barrel')) {
+        let merged = ig(item.obj);
+        (root.remove(item.obj), root.add(merged), (item.obj = merged));
         continue;
       }
-      ((y.inst = []),
-        y.obj.traverse((b) => {
+      ((item.inst = []),
+        item.obj.traverse((b) => {
           if (!b.isMesh || Array.isArray(b.material)) return;
           let g = b.geometry.uuid + '|' + b.material.uuid,
-            E = v.get(g);
+            E = instanceGroups.get(g);
           (E ||
-            v.set(
+            instanceGroups.set(
               g,
               (E = { geo: b.geometry, mat: b.material, cast: b.castShadow, recv: b.receiveShadow, list: [] }),
             ),
-            E.list.push({ it: y, m: b.matrixWorld.clone() }));
+            E.list.push({ it: item, m: b.matrixWorld.clone() }));
         }),
-        e.remove(y.obj));
+        root.remove(item.obj));
     }
-    for (let y of v.values()) {
-      let b = new THREE.InstancedMesh(y.geo, y.mat, y.list.length);
-      ((b.castShadow = y.cast),
-        (b.receiveShadow = y.recv),
-        (b.frustumCulled = !1),
-        y.list.forEach((g, E) => {
-          (b.setMatrixAt(E, g.m), g.it.inst.push({ im: b, i: E, m: g.m }));
+    for (let group of instanceGroups.values()) {
+      let instancedMesh = new THREE.InstancedMesh(group.geo, group.mat, group.list.length);
+      ((instancedMesh.castShadow = group.cast),
+        (instancedMesh.receiveShadow = group.recv),
+        (instancedMesh.frustumCulled = !1),
+        group.list.forEach((g, E) => {
+          (instancedMesh.setMatrixAt(E, g.m), g.it.inst.push({ im: instancedMesh, i: E, m: g.m }));
         }),
-        (b.instanceMatrix.needsUpdate = !0),
-        e.add(b));
+        (instancedMesh.instanceMatrix.needsUpdate = !0),
+        root.add(instancedMesh));
     }
-  } catch (v) {
-    console.error('[explosives] instancing failed, barrels stay as plain meshes: ' + ((v && v.stack) || v));
-    for (let y of t) y.inst && ((y.inst = null), y.obj.parent || e.add(y.obj));
+  } catch (err) {
+    console.error('[explosives] instancing failed, barrels stay as plain meshes: ' + ((err && err.stack) || err));
+    for (let y of items) y.inst && ((y.inst = null), y.obj.parent || root.add(y.obj));
   }
-  function p(v, y) {
-    if (!v.inst) {
-      v.obj.visible = y;
+  function setItemVisible(item, visible) {
+    if (!item.inst) {
+      item.obj.visible = visible;
       return;
     }
-    for (let b of v.inst) (b.im.setMatrixAt(b.i, y ? b.m : h), (b.im.instanceMatrix.needsUpdate = !0));
+    for (let instance of item.inst) (instance.im.setMatrixAt(instance.i, visible ? instance.m : hiddenMatrix), (instance.im.instanceMatrix.needsUpdate = !0));
   }
-  function d(v, y, b, g) {
-    if (v.alive) {
-      if (((v.hp -= y), v.hp <= 0)) {
-        v.fuse = v.fuse < 0 ? 0.06 : Math.min(v.fuse, 0.06);
+  function damageItem(item, damage, hitPoint, hitDir) {
+    if (item.alive) {
+      if (((item.hp -= damage), item.hp <= 0)) {
+        item.fuse = item.fuse < 0 ? 0.06 : Math.min(item.fuse, 0.06);
         return;
       }
-      v.fuse < 0 &&
-        ((v.fuse = v.spec.fuse),
-        b
-          ? (v.leak.copy(b), v.leakDir.set(b.x - v.pos.x, 0.35, b.z - v.pos.z).normalize())
-          : (v.leak.copy(v.pos), (v.leak.y = v.max.y), v.leakDir.copy(c)),
-        n.events.emit('explosive:lit', { pos: v.pos, kind: v.kind }));
+      item.fuse < 0 &&
+        ((item.fuse = item.spec.fuse),
+        hitPoint
+          ? (item.leak.copy(hitPoint), item.leakDir.set(hitPoint.x - item.pos.x, 0.35, hitPoint.z - item.pos.z).normalize())
+          : (item.leak.copy(item.pos), (item.leak.y = item.max.y), item.leakDir.copy(upAxis)),
+        ctx.events.emit('explosive:lit', { pos: item.pos, kind: item.kind }));
     }
   }
-  (n.events.on('impact', (v) => {
-    let y = v && v.box && i.get(v.box);
-    y && d(y, v.from === 'player' ? (n.weapon && n.weapon.damage) || 26 : 9, v.point, v.dir);
+  (ctx.events.on('impact', (v) => {
+    let y = v && v.box && itemByBox.get(v.box);
+    y && damageItem(y, v.from === 'player' ? (ctx.weapon && ctx.weapon.damage) || 26 : 9, v.point, v.dir);
   }),
-    n.events.on('explosion', (v) => {
+    ctx.events.on('explosion', (v) => {
       if (!v || !v.pos) return;
       let y = 2.2 + (v.size || 1) * 1.6;
-      for (let b of t) {
+      for (let b of items) {
         if (!b.alive) continue;
         let g = b.pos.distanceTo(v.pos);
         if (g > y || g < 0.05) continue;
-        let E = 0.14 + s() * 0.3 + g * 0.03;
+        let E = 0.14 + random() * 0.3 + g * 0.03;
         b.fuse = b.fuse < 0 ? E : Math.min(b.fuse, E);
       }
     }));
-  function m(v) {
-    ((v.alive = !1),
-      (v.fuse = -1),
-      p(v, !1),
-      v.box && (n.physics.removeBox(v.box), i.delete(v.box), (v.box = null)));
-    let y = v.spec;
-    l.copy(v.pos);
+  function detonate(item) {
+    ((item.alive = !1),
+      (item.fuse = -1),
+      setItemVisible(item, !1),
+      item.box && (ctx.physics.removeBox(item.box), itemByBox.delete(item.box), (item.box = null)));
+    let spec = item.spec;
+    blastPos.copy(item.pos);
     try {
-      n.fx.explosion(l, y.size);
-    } catch (g) {
-      console.error('[explosives] fx.explosion threw', g);
+      ctx.fx.explosion(blastPos, spec.size);
+    } catch (err) {
+      console.error('[explosives] fx.explosion threw', err);
     }
     try {
-      n.fx.debris(l, {
+      ctx.fx.debris(blastPos, {
         count: 14,
-        color: v.kind === 'barrel' ? 3804938 : 3159098,
+        color: item.kind === 'barrel' ? 3804938 : 3159098,
         size: 0.09,
         speed: 9,
         spread: 1.4,
       });
     } catch {}
     try {
-      n.combat.explode(l, y.radius, y.damage, 'explosive');
-    } catch (g) {
-      console.error('[explosives] combat.explode threw', g);
+      ctx.combat.explode(blastPos, spec.radius, spec.damage, 'explosive');
+    } catch (err) {
+      console.error('[explosives] combat.explode threw', err);
     }
-    let b = n.player;
-    if (b && b.addShake) {
-      let g = Math.max(0, 1 - b.pos.distanceTo(l) / 28);
-      g > 0 && b.addShake(0.15 + 0.9 * g * g);
+    let player = ctx.player;
+    if (player && player.addShake) {
+      let shakeAmount = Math.max(0, 1 - player.pos.distanceTo(blastPos) / 28);
+      shakeAmount > 0 && player.addShake(0.15 + 0.9 * shakeAmount * shakeAmount);
     }
     try {
-      n.enemies.alert && n.enemies.alert(l, 60);
+      ctx.enemies.alert && ctx.enemies.alert(blastPos, 60);
     } catch {}
-    n.events.emit('explosive:blast', { pos: l, kind: v.kind });
+    ctx.events.emit('explosive:blast', { pos: blastPos, kind: item.kind });
   }
   return {
-    items: t,
-    root: e,
+    items: items,
+    root: root,
     count() {
-      let v = 0;
-      for (let y of t) y.alive && v++;
-      return v;
+      let alive = 0;
+      for (let item of items) item.alive && alive++;
+      return alive;
     },
     reset() {
-      for (let v of t) ((v.alive = !0), (v.hp = v.spec.hp), (v.fuse = -1), p(v, !0), f(v));
+      for (let item of items) ((item.alive = !0), (item.hp = item.spec.hp), (item.fuse = -1), setItemVisible(item, !0), registerCollider(item));
     },
-    debugBlast(v = 0, y = !0) {
-      let b = t.filter((E) => E.alive),
-        g = b[v % Math.max(1, b.length)];
-      return (g && (y ? m(g) : d(g, 1, null, null)), g ? g.pos.clone() : null);
+    debugBlast(index = 0, detonateNow = !0) {
+      let alive = items.filter((E) => E.alive),
+        target = alive[index % Math.max(1, alive.length)];
+      return (target && (detonateNow ? detonate(target) : damageItem(target, 1, null, null)), target ? target.pos.clone() : null);
     },
-    update(v) {
-      for (let y = 0; y < t.length; y++) {
-        let b = t[y];
-        if (!(!b.alive || b.fuse < 0)) {
-          if (((b.fuse -= v), b.fuse <= 0)) {
-            m(b);
+    update(dt) {
+      for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        if (!(!item.alive || item.fuse < 0)) {
+          if (((item.fuse -= dt), item.fuse <= 0)) {
+            detonate(item);
             continue;
           }
-          if (((b.tick -= v), b.tick <= 0)) {
-            b.tick = 0.07;
+          if (((item.tick -= dt), item.tick <= 0)) {
+            item.tick = 0.07;
             try {
-              (n.fx.sparks(b.leak, b.leakDir, 3),
-                n.fx.smoke(b.leak, {
+              (ctx.fx.sparks(item.leak, item.leakDir, 3),
+                ctx.fx.smoke(item.leak, {
                   size: 0.3,
                   life: 0.9,
                   rise: 1.4,
                   count: 1,
                   color: 1381653,
-                  vel: a.copy(b.leakDir).multiplyScalar(1.5),
+                  vel: tmpVec.copy(item.leakDir).multiplyScalar(1.5),
                 }),
-                n.render && n.render.lightPool && n.render.lightPool.flash(b.leak, 16742944, 5, 4, 0.09));
+                ctx.render && ctx.render.lightPool && ctx.render.lightPool.flash(item.leak, 16742944, 5, 4, 0.09));
             } catch {}
           }
         }
@@ -275,6 +275,6 @@ function yE(n) {
   };
 }
 
-var Zy = {};
+var explosivesModule = {};
 
-export { Zy, yE };
+export { explosivesModule, createExplosives };

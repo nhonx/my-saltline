@@ -1,0 +1,5 @@
+# core.js  top-level minified bindings (use "globals")
+  ar  const  decl@L21  refs=0
+
+## fns["21:18"]  L21-L23  (n, e) => { for (const t in e) Object.defineProperty(n, t, { get: e[t], enumerable: true
+  n(param,1)  e(param,2)  t(const,2)

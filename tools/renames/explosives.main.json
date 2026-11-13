@@ -1,0 +1,59 @@
+{
+  "globals": {
+    "yE": "createExplosives",
+    "Zy": "explosivesModule",
+    "xh": "Vec3",
+    "vE": "EXPLOSIVE_PRESETS",
+    "Dz": "EXPLOSIVE_SPAWNS"
+  },
+  "fns": {
+    "6:0": {
+      "n": "ctx",
+      "e": "root",
+      "t": "items",
+      "i": "itemByBox",
+      "s": "random",
+      "o": "worldBounds",
+      "r": "colliderBounds",
+      "a": "tmpVec",
+      "l": "blastPos",
+      "c": "upAxis",
+      "u": "spawnItem",
+      "f": "registerCollider",
+      "h": "hiddenMatrix",
+      "p": "setItemVisible",
+      "d": "damageItem",
+      "m": "detonate",
+      "v@63": "nav",
+      "v@120": "err",
+      "v@125": "instanceGroups",
+      "v@157": "err",
+      "y@64": "playerStartPos",
+      "b@65": "isOpenCell",
+      "g@71": "isNearWall",
+      "E@79": "placed",
+      "y@126": "item",
+      "b@128": "merged",
+      "y@146": "group",
+      "b@147": "instancedMesh"
+    },
+    "17:2": {
+      "v": "def",
+      "y": "obj",
+      "b": "colliders",
+      "g": "spec",
+      "E": "item",
+      "M@21": "err",
+      "M@30": "collider",
+      "M@33": "size"
+    },
+    "57:2": { "v": "item" },
+    "161:2": { "v": "item", "y": "visible", "b": "instance" },
+    "168:2": { "v": "item", "y": "damage", "b": "hitPoint", "g": "hitDir" },
+    "197:2": { "v": "item", "y": "spec", "b": "player", "g": "err", "g@225": "shakeAmount" },
+    "236:9": { "v": "alive", "y": "item" },
+    "241:9": { "v": "item" },
+    "244:14": { "v": "index", "y": "detonateNow", "b": "alive", "g": "target" },
+    "249:10": { "v": "dt", "y": "i", "b": "item" }
+  }
+}

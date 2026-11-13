@@ -1,0 +1,575 @@
+# hands.js  top-level minified bindings (use "globals")
+  Ia  import  decl@L3  refs=1
+  Ro  import  decl@L3  refs=1
+  ar  import  decl@L3  refs=1
+  Us  var  decl@L5  refs=16
+  ja  var  decl@L6  refs=9
+  Cu  var  decl@L7  refs=5
+  er  var  decl@L8  refs=5
+  Un  var  decl@L10  refs=12
+  Eh  var  decl@L11  refs=5
+  t0  var  decl@L12  refs=36
+  jz  var  decl@L63  refs=1
+  kE  var  decl@L64  refs=2
+  PE  var  decl@L65  refs=2
+  Kz  var  decl@L66  refs=1
+  Jz  function  decl@L68  refs=1
+  l0  var  decl@L81  refs=38
+  T1  var  decl@L91  refs=4
+  Qz  var  decl@L96  refs=1
+  eD  var  decl@L102  refs=1
+  xs  var  decl@L108  refs=12
+  d0  function  decl@L116  refs=29
+  tn  function  decl@L126  refs=4
+  ly  function  decl@L131  refs=2
+  LE  function  decl@L143  refs=1
+  jl  var  decl@L149  refs=6
+  di  var  decl@L156  refs=10
+  Za  function  decl@L188  refs=8
+  IE  var  decl@L197  refs=2
+  zE  var  decl@L198  refs=2
+  w1  var  decl@L199  refs=5
+  _h  function  decl@L201  refs=5
+  tr  function  decl@L214  refs=5
+  Sh  function  decl@L218  refs=4
+  ra  function  decl@L232  refs=5
+  vs  function  decl@L237  refs=9
+  mn  function  decl@L241  refs=7
+  Th  function  decl@L254  refs=3
+  tD  function  decl@L273  refs=1
+  h5  function  decl@L298  refs=3
+  Mh  var  decl@L307  refs=6
+  E1  var  decl@L308  refs=5
+  S1  var  decl@L309  refs=5
+  DE  var  decl@L310  refs=2
+  wh  function  decl@L312  refs=4
+  Kl  function  decl@L343  refs=3
+  Jl  function  decl@L352  refs=4
+  Ns  var  decl@L435  refs=16
+  ay  var  decl@L436  refs=3
+  f5  function  decl@L438  refs=4
+  FE  function  decl@L449  refs=1
+  cy  function  decl@L527  refs=2
+  ec  var  decl@L577  refs=8
+  Ja  var  decl@L578  refs=9
+  py  var  decl@L579  refs=3
+  x5  var  decl@L580  refs=4
+  HE  var  decl@L581  refs=2
+  vy  var  decl@L582  refs=3
+  yy  var  decl@L583  refs=3
+  nD  var  decl@L585  refs=1
+  iD  var  decl@L586  refs=1
+  sD  var  decl@L587  refs=1
+  oD  var  decl@L588  refs=1
+  rD  var  decl@L589  refs=1
+  Ah  var  decl@L590  refs=6
+  zu  var  decl@L591  refs=7
+  aD  var  decl@L592  refs=1
+  lD  var  decl@L593  refs=1
+  cD  var  decl@L594  refs=1
+  my  function  decl@L596  refs=3
+  ku  function  decl@L601  refs=7
+  vo  function  decl@L624  refs=14
+  uy  var  decl@L639  refs=3
+  NE  var  decl@L641  refs=2
+  OE  var  decl@L642  refs=2
+  Dr  var  decl@L644  refs=11
+  Ka  var  decl@L645  refs=9
+  Lr  var  decl@L646  refs=11
+  P1  var  decl@L648  refs=4
+  uD  function  decl@L650  refs=1
+  ir  var  decl@L828  refs=12
+  VE  var  decl@L829  refs=2
+  by  var  decl@L830  refs=3
+  p5  var  decl@L831  refs=4
+  m5  var  decl@L832  refs=4
+  aa  var  decl@L833  refs=10
+  pi  var  decl@L834  refs=22
+  v5  var  decl@L835  refs=4
+  C1  var  decl@L836  refs=5
+  k1  var  decl@L853  refs=5
+  WE  function  decl@L855  refs=2
+  Iu  var  decl@L904  refs=7
+  zr  var  decl@L908  refs=11
+  UE  var  decl@L909  refs=2
+  gy  var  decl@L910  refs=3
+  xy  var  decl@L911  refs=3
+  Rh  function  decl@L913  refs=6
+  GE  var  decl@L935  refs=2
+  Fr  function  decl@L941  refs=6
+  fy  function  decl@L951  refs=3
+  hy  var  decl@L957  refs=3
+  BE  var  decl@L967  refs=2
+  fD  function  decl@L982  refs=1
+  hD  var  decl@L1087  refs=1
+  nr  var  decl@L1093  refs=12
+  Ql  var  decl@L1094  refs=8
+  g5  var  decl@L1095  refs=4
+  Pu  var  decl@L1120  refs=7
+  A1  var  decl@L1121  refs=5
+  dD  function  decl@L1123  refs=1
+  R1  var  decl@L1133  refs=5
+  pD  function  decl@L1135  refs=1
+  Qa  var  decl@L1163  refs=9
+  dy  function  decl@L1165  refs=3
+  mD  function  decl@L1196  refs=1
+  d5  var  decl@L1278  refs=4
+  My  function  decl@L1280  refs=2
+  qE  function  decl@L1498  refs=1
+  D1  var  decl@L1510  refs=5
+  _y  var  decl@L1511  refs=3
+  ZE  var  decl@L1512  refs=2
+  mi  var  decl@L1513  refs=22
+  Ch  function  decl@L1515  refs=6
+  z1  function  decl@L1523  refs=5
+  XE  var  decl@L1527  refs=2
+  nn  var  decl@L1528  refs=17
+  tc  function  decl@L1530  refs=4
+  YE  var  decl@L1599  refs=2
+  el  var  decl@L1600  refs=9
+  gD  var  decl@L1601  refs=1
+  y5  var  decl@L1602  refs=4
+  b5  var  decl@L1603  refs=4
+  I1  var  decl@L1604  refs=5
+  jE  var  decl@L1619  refs=2
+  wy  var  decl@L1620  refs=3
+  KE  var  decl@L1640  refs=2
+  $E  var  decl@L1796  refs=2
+  xD  var  decl@L1797  refs=1
+  M5  function  decl@L1799  refs=3
+  vD  var  decl@L1810  refs=1
+  Ey  function  decl@L1821  refs=2
+  JE  function  decl@L1827  refs=1
+  zy  var  decl@L1832  refs=2
+  Ay  var  decl@L1870  refs=2
+  kh  var  decl@L1885  refs=4
+  ys  var  decl@L1886  refs=17
+  L1  var  decl@L1887  refs=5
+  Ty  var  decl@L1888  refs=3
+  yD  var  decl@L1889  refs=1
+  Du  var  decl@L1890  refs=7
+  bD  var  decl@L1891  refs=1
+  nc  var  decl@L1892  refs=8
+  _5  var  decl@L1902  refs=4
+  w5  var  decl@L1903  refs=4
+  En  var  decl@L1905  refs=27
+  Ui  var  decl@L1909  refs=20
+  Sy  var  decl@L1910  refs=3
+  MD  var  decl@L1912  refs=1
+  QE  function  decl@L2031  refs=1
+  U0  var  decl@L2082  refs=32
+  la  var  decl@L2083  refs=10
+  iS  var  decl@L2084  refs=2
+  nl  var  decl@L2085  refs=9
+  Lu  var  decl@L2086  refs=7
+  ic  var  decl@L2087  refs=8
+  Iy  var  decl@L2088  refs=3
+  sS  var  decl@L2089  refs=2
+  S5  var  decl@L2090  refs=3
+  oS  var  decl@L2091  refs=2
+  _D  var  decl@L2092  refs=1
+  wD  var  decl@L2093  refs=1
+  rS  var  decl@L2094  refs=2
+  Lh  function  decl@L2096  refs=4
+  Ry  var  decl@L2104  refs=3
+  aS  function  decl@L2106  refs=2
+  eS  var  decl@L2125  refs=2
+  lS  function  decl@L2127  refs=2
+  F1  var  decl@L2131  refs=5
+  tS  var  decl@L2132  refs=2
+  nS  var  decl@L2133  refs=2
+  Nr  var  decl@L2134  refs=11
+  tl  var  decl@L2135  refs=9
+  Ph  var  decl@L2136  refs=6
+  yo  var  decl@L2137  refs=14
+  sr  var  decl@L2138  refs=12
+  zh  var  decl@L2139  refs=6
+  N1  var  decl@L2140  refs=5
+  Fu  var  decl@L2141  refs=7
+  bs  var  decl@L2142  refs=17
+  ni  var  decl@L2143  refs=23
+  E5  var  decl@L2144  refs=4
+  Cy  var  decl@L2145  refs=3
+  ky  var  decl@L2146  refs=3
+  Dh  var  decl@L2147  refs=6
+  ED  var  decl@L2148  refs=1
+  Py  var  decl@L2149  refs=3
+  SD  var  decl@L2150  refs=1
+  Ih  var  decl@L2151  refs=6
+  Fh  function  decl@L2153  refs=4
+  TD  function  decl@L2454  refs=1
+
+## fns["68:0"]  L68-L73  function Jz(n, e, t = new ja()) { let i = new Us(-n[0], -n[1], -n[2]).normalize(), s
+  n(param,3)  e(param,3)  t(param,1)  i(let,3)  s(let,2)  o(let,1)
+
+## fns["87:11"]  L87-L87  (n, e) => 5 + n * 3 + e, helper: (n, e) => 20 + n * 3 + e, count: 35, }, T1 = 
+  n(param,1)  e(param,1)
+
+## fns["88:12"]  L88-L88  (n, e) => 20 + n * 3 + e, count: 35, }, T1 = ['upperArm', 'forearm', 'forearmTwist
+  n(param,1)  e(param,1)
+
+## fns["116:0"]  L116-L124  function d0(n = {}, e = null) { let t = new Float32Array(Un); e && t.set(e); for (le
+  n(param,2)  e(param,2)  t(let,3)  i(let,5)  s(let,2)  o(let,4)
+
+## fns["126:0"]  L126-L129  function tn(n, e, t, i) { for (let s = 0; s < Un; s++) n[s] = e[s] + (t[s] - e[s]) * i; 
+  n(param,2)  e(param,2)  t(param,1)  i(param,1)  s(let,6)
+
+## fns["131:0"]  L131-L141  function ly(n) { let e = 0; for (let t = 0; t < Un; t++) { let i = xs.min[t], 
+  n(param,6)  e(let,5)  t(let,10)  i(let,3)  s(let,3)
+
+## fns["143:0"]  L143-L147  function LE(n) { let e = 0; for (let t = 0; t < Un; t++) e = Math.max(e, xs.min[t] - n
+  n(param,2)  e(let,3)  t(let,6)
+
+## fns["188:0"]  L188-L195  function Za(n) { if (typeof n == 'string') { let e = di[n]; if (!e) throw new Er
+  n(param,4)  e(let,2)
+
+## fns["201:0"]  L201-L212  function _h(n, e, t, i) { let s = t0[n], o = n * 4; return e > 0 ? i.setFromAx
+  n(param,3)  e(param,2)  t(param,5)  i(param,3)  s(let,4)  o(let,3)
+
+## fns["218:0"]  L218-L230  function Sh(n, e, t) { let i = t0[e], s = t.q, o = t.j, r = e * 3, a = e
+  n(param,3)  e(param,6)  t(param,2)  i(let,4)  s(let,6)  o(let,3)  r(let,6)  a(let,3)  l(let,6)
+
+## fns["232:0"]  L232-L235  function ra(n, e) { for (let t = 0; t < 5; t++) Sh(n, t, e); return e; } function vs(
+  n(param,1)  e(param,2)  t(let,3)
+
+## fns["237:0"]  L237-L239  function vs(n, e, t) { return { type: 'capsule', a: [n[0], n[1], n[2]], b: [e[0], e[1], 
+  n(param,3)  e(param,3)  t(param,1)
+
+## fns["241:0"]  L241-L252  function mn(n, e, t = null, i = 0) { let s = t ? (t.isQuaternion ? t.clone() : new ja(t[
+  n(param,3)  e(param,3)  t(param,7)  i(param,1)  s(let,5)  o(let,9)
+
+## fns["254:0"]  L254-L271  function Th(n, e) { let t = new Us(), i = new Us(), s = new ja(); return ( 
+  n(param,1)  e(param,4)  t(let,1)  i(let,1)  s(let,2)
+
+## fns["260:10"]  L260-L268  (o) => o.type === 'capsule' ? vs(new Us(...o.a).applyMatrix4(e).toArray(), n
+  o(param,11)
+
+## fns["273:0"]  L273-L296  function tD(n, e, t, i) { if (n.type === 'capsule') { let p = n.a, d = n.b, 
+  n(param,10)  e(param,2)  t(param,2)  i(param,2)  s(let,9)  o(let,3)  r(let,4)  a(let,3)  l(let,3)  c(let,3)  u(let,2)  f(let,2)  h(let,2)  p(let,6)  d(let,3)  m(let,4)  x(let,4)  v(let,4)  y(let,2)  b(let,2)  g(let,2)  E(let,7)
+
+## fns["298:0"]  L298-L305  function h5(n, e, t, i) { let s = 1e9; for (let o = 0; o < n.length; o++) { let r 
+  n(param,2)  e(param,1)  t(param,1)  i(param,1)  s(let,3)  o(let,3)  r(let,2)
+
+## fns["312:0"]  L312-L341  function wh(n, e, t, i = null, s = null) { Sh(n, e, Mh); let o = t0[e], r = Mh.j, 
+  n(param,1)  e(param,6)  t(param,1)  i(param,2)  s(param,2)  o(let,3)  r(let,2)  a(let,2)  l(let,12)  c(let,3)  u(let,6)  f(let,3)  h(let,2)  p(let,2)  d(let,1)  m(let,1)  x(let,4)  v(let,2)  y(let,3)  b(let,3)  g(let,3)  E(let,3)  M(let,5)  _(let,2)
+
+## fns["343:0"]  L343-L350  function Kl(n, e, t = {}) { ((n = Za(n)), (t.depth = -1e9), (t.digit = 0), (t.phalanx = 
+  n(param,3)  e(param,1)  t(param,8)  i(let,4)  s(let,2)  o(let,5)
+
+## fns["352:0"]  L352-L433  function Jl(n, e = {}) { let t = Za(e.from || 'open'), i = Za(e.to || 'fist'), s
+  n(param,2)  e(param,11)  t(let,5)  i(let,2)  s(let,1)  o(let,4)  r(let,2)  a(let,8)  l(let,9)  c(let,4)  u(let,2)  f(let,4)  c(let,4)  u(let,4)  f(let,8)  h(let,5)  p(let,4)  d(let,2)  m(let,3)  x(let,8)  v(let,3)  y(let,3)  b(let,3)  g(let,2)  E(let,4)  E(let,2)  M(let,3)  _(let,2)  E(let,4)  v(let,5)  y(let,7)  b(let,8)  g(let,6)  E(let,9)
+
+## fns["386:10"]  L386-L392  (v, y) => { for (let b = 0; b < 3; b++) { let g = b > y ? Math.min(1, l[
+  v(param,1)  y(param,1)  b(let,10)  g(let,2)
+
+## fns["394:10"]  L394-L399  (v) => { let y = wh(a, c, n, r, u), b = -1; for (let g = v + 1; 
+  v(param,1)  y(let,2)  b(let,2)  g(let,6)
+
+## fns["400:10"]  L400-L403  () => { let v = wh(a, c, n, r, u); ((p[0] = v[0]), (p[1] = v[1]), (p[2] = 
+  v(let,3)
+
+## fns["438:0"]  L438-L447  function f5(n, e, t, i) { Sh(n, e, Mh); let s = t0[e], o = e * 4; return ( i
+  n(param,1)  e(param,4)  t(param,2)  i(param,2)  s(let,3)  o(let,2)
+
+## fns["449:0"]  L449-L525  function FE(n, e, t, i = {}) { let s = i.couple ?? 0.6, o = i.at ?? 0.5, r = e *
+  n(param,24)  e(param,5)  t(param,3)  i(param,3)  s(let,2)  o(let,4)  r(let,22)  a(let,2)  l(let,4)  c(let,8)  u(let,12)  f(let,2)  h(let,4)  p(let,4)  d(let,4)  m(let,3)  x(let,5)  v(let,2)  y(let,3)  b(let,2)  g(let,2)  E(let,2)  M(let,4)  _(let,4)  T(let,1)  _(let,9)  T(let,5)  w(let,2)  S(let,4)  _(let,6)  T(let,5)  w(let,2)  S(let,1)
+
+## fns["461:8"]  L461-L464  () => { for (let v of [r, r + 1, r + 3]) n[v] = Math.min(xs.max[v], Math.max(xs.min[
+  v(let,4)
+
+## fns["509:12"]  L509-L512  (_) => _[0][0] * (_[1][1] * _[2][2] - _[1][2] * _[2][1]) - _[0][1] * (_[1]
+  _(param,15)
+
+## fns["517:20"]  L517-L517  (w, S) => w.map((R, z) => (z === _ ? b[S] : R))); n[a[_]] += Math.max(-0.35, Math.mi
+  w(param,1)  S(param,1)
+
+## fns["517:36"]  L517-L517  (R, z) => (z === _ ? b[S] : R))); n[a[_]] += Math.max(-0.35, Math.min(0.35, g(T) / E
+  R(param,1)  z(param,1)
+
+## fns["527:0"]  L527-L575  function cy(n, e = null, t = {}) { ((n = Za(n)), ra(n, E1), (t.depth = -1e9), (t.a = 0),
+  n(param,3)  e(param,2)  t(param,12)  i(let,4)  s(let,1)  o(let,10)  r(let,9)  a(let,3)  l(let,2)  c(let,3)  u(let,3)  f(let,3)  h(let,7)  p(let,12)  d(let,5)  m(let,9)  x(let,3)  v(let,4)  y(let,4)  b(let,4)  g(let,8)  E(let,2)  M(let,2)  h(let,2)
+
+## fns["530:8"]  L530-L537  (o, r, a) => { let l = t0[o], c = i[o * 4 + r], u = i[o * 4 + r + 1]
+  o(param,3)  r(param,6)  a(param,1)  l(let,5)  c(let,1)  u(let,1)  f(let,2)  h(let,1)
+
+## fns["596:0"]  L596-L599  function my(n) { let e = aD.makeRotationFromQuaternion(n).elements; return [e[0], e[1]
+  n(param,1)  e(let,9)
+
+## fns["601:0"]  L601-L622  function ku(n, e, t, i, s, o, r, a = {}) { let l = (o - r) / s; zu.push({ type: vy
+  n(param,1)  e(param,1)  t(param,6)  i(param,2)  s(param,4)  o(param,3)  r(param,3)  a(param,6)  l(let,3)
+
+## fns["619:28"]  L619-L619  (c, u) => c - my(i)[6 + u] * s * 0.5), br: s * 0.5 + Math.max(o, r) * (a.wide || 1), 
+  c(param,1)  u(param,1)
+
+## fns["624:0"]  L624-L637  function vo(n, e, t, i, s = null, o = {}) { zu.push({ type: yy, bone: n, gro
+  n(param,1)  e(param,1)  t(param,4)  i(param,4)  s(param,1)  o(param,2)
+
+## fns["639:9"]  L639-L639  (n) => new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), n); var NE = n
+  n(param,1)
+
+## fns["644:9"]  L644-L644  (n, e) => OE.j[n * 4 + e], Ka = (n, e) => OE.q[n * 3 + e], Lr = (n, e, t) => new T
+  n(param,1)  e(param,1)
+
+## fns["645:7"]  L645-L645  (n, e) => OE.q[n * 3 + e], Lr = (n, e, t) => new THREE.Vector3(t === 0 ? 1 : 0, t ==
+  n(param,1)  e(param,1)
+
+## fns["646:7"]  L646-L647  (n, e, t) => new THREE.Vector3(t === 0 ? 1 : 0, t === 1 ? 1 : 0, t === 2 ? 1 : 0).appl
+  n(param,1)  e(param,1)  t(param,3)
+
+## fns["650:0"]  L650-L824  function uD() { let n = l0.hand; for (let e = 1; e < 5; e++) { let t = t0[e], 
+  n(let,6)  e(let,9)  t(let,10)  i(let,4)  s(let,2)  o(let,1)  r(let,1)  a(let,16)  l(let,3)  c(let,1)  u(let,1)  a(let,2)  l(let,2)  c(let,6)  u(let,1)  f(let,1)  h(let,5)  p(let,1)  d(let,1)  m(let,2)  e(let,18)  t(let,5)  i(let,8)  s(let,3)  o(let,1)  r(let,17)  a(let,2)  l(let,1)  c(let,1)  e(let,7)  t(let,5)  i(let,2)  s(let,5)  o(let,2)  r(let,3)  a(let,2)  l(let,1)  c(let,3)  u(let,1)  e(let,6)  t(let,3)  i(let,3)  s(let,2)  e(let,6)  t(let,5)  i(let,1)  s(let,2)  o(let,3)  r(let,1)  a(let,1)
+
+## fns["665:37"]  L665-L665  (l) => l * (e === 4 ? 0.9 : 1)), null, { k: 0.006 }, )); } (vo(n
+  l(param,1)
+
+## fns["838:11"]  L838-L851  (n, e) => { ((VE[e] = n.type), (by[e] = n.group), (p5[e] = n.bone), (v5[e] =
+  n(param,30)  e(param,10)
+
+## fns["855:0"]  L855-L902  function WE(n, e, t, i) { let s = n * 3, o = n * 9, r = n * 8, a = e - m5[s]
+  n(param,4)  e(param,1)  t(param,1)  i(param,1)  s(let,3)  o(let,9)  r(let,19)  a(let,3)  l(let,3)  c(let,3)  u(let,3)  f(let,4)  h(let,3)  p(let,2)  d(let,4)  m(let,3)  x(let,3)  v(let,3)  y(let,2)  b(let,2)  g(let,2)  E(let,3)  M(let,3)  _(let,3)  T(let,3)  w(let,2)  S(let,2)  R(let,2)  E(let,4)  M(let,2)  _(let,2)  T(let,6)  w(let,8)  S(let,2)  R(let,3)  z(let,2)  I(let,2)
+
+## fns["904:9"]  L904-L907  (n, e, t) => { let i = t - Math.abs(n - e); return i <= 0 ? (n < e ? n : e) : (n <
+  n(param,5)  e(param,5)  t(param,2)  i(let,3)
+
+## fns["913:0"]  L913-L933  function Rh(n, e, t, i = !1) { xy++; for (let r = 0; r < HE; r++) zr[r] = 1e9; for (
+  n(param,2)  e(param,2)  t(param,2)  i(param,2)  s(let,3)  o(let,1)  r(let,10)  a(let,4)  l(let,2)  c(let,2)  u(let,2)  f(let,4)  h(let,4)  p(let,2)  r(let,3)
+
+## fns["937:11"]  L937-L939  (n, e) => { n.bone === l0.hand && n.group !== Ja && GE.push(e); }); function Fr(n, e, t
+  n(param,2)  e(param,1)
+
+## fns["941:0"]  L941-L949  function Fr(n, e, t) { let i = 1e9, s = 1e9; for (let o of GE) { let r = WE(o,
+  n(param,1)  e(param,1)  t(param,1)  i(let,3)  s(let,3)  o(let,4)  r(let,2)
+
+## fns["951:0"]  L951-L955  function fy(n, e, t) { let i = [n]; for (; i[i.length - 1] < e;) i.push(i[i.length - 1
+  n(param,1)  e(param,1)  t(param,1)  i(let,8)
+
+## fns["982:0"]  L982-L1085  function fD(n, e, t, i) { let s = n.length, o = e.length, r = t.length, a = 
+  n(param,6)  e(param,6)  t(param,6)  i(param,3)  s(let,8)  o(let,4)  r(let,2)  a(let,8)  l(let,11)  c(let,15)  u(let,2)  f(let,6)  h(let,16)  p(let,5)  d(let,3)  m(let,1)  x(let,5)  v(let,7)  y(let,5)  b(let,3)  g(let,4)  E(let,8)  M(let,3)  _(let,12)  T(let,3)  w(let,3)  S(let,16)  R(let,6)  w(let,14)  S(let,6)  R(let,2)  z(let,6)  I(let,5)  L(let,9)  U(let,2)  k(let,2)  C(let,2)  A(let,4)  F(let,6)  H(let,4)  N(let,4)  Z(let,3)  Q(let,3)  W(let,6)  J(let,3)  H(let,6)
+
+## fns["993:8"]  L993-L1002  (w) => { let S = f[w]; if (S !== S) { let R = (w / c) | 0, z
+  w(param,4)  S(let,7)  R(let,2)  z(let,2)  I(let,2)
+
+## fns["1003:15"]  L1003-L1003  (w) => w[0] * a + w[1] * l + w[2] * c), x = 0, v = 0, y = 0; for (; n[x + 1]
+  w(param,3)
+
+## fns["1048:12"]  L1048-L1051  (H, N, Z, Q) => { let W = (L >> H) & 1; return W !== ((L >> N) & 1) || W !== (
+  H(param,1)  N(param,1)  Z(param,1)  Q(param,1)  W(let,3)
+
+## fns["1061:8"]  L1061-L1076  (w, S, R, z, I) => { if (w < 0 || S < 0 || R < 0 || z < 0) return; if (I) { 
+  w(param,7)  S(param,9)  R(param,7)  z(param,9)  I(param,1)  L(let,1)  U(let,1)  k(let,1)
+
+## fns["1087:9"]  L1087-L1092  (n) => { if (n >= 1) return 0; if (n <= 0) return 1; let e = 1 - n; return
+  n(param,3)  e(let,3)
+
+## fns["1098:10"]  L1098-L1100  (e, t) => { g5[e * nr + t] = g5[t * nr + e] = 1; }; for (let e = 0; e < nr; e++) g
+  e(param,2)  t(param,2)
+
+## fns["1120:26"]  L1120-L1120  (n) => t0[n].base[0]), A1 = [1, 2, 3, 4].map((n) => t0[n].base[2]); function dD(n) { 
+  n(param,1)
+
+## fns["1121:24"]  L1121-L1121  (n) => t0[n].base[2]); function dD(n) { if (n <= Pu[0]) return [Math.max(0.3, 1 + (n - 
+  n(param,1)
+
+## fns["1123:0"]  L1123-L1131  function dD(n) { if (n <= Pu[0]) return [Math.max(0.3, 1 + (n - Pu[0]) / 0.016), A1[0]];
+  n(param,5)  e(let,10)  t(let,2)
+
+## fns["1135:0"]  L1135-L1161  function pD(n, e, t, i) { let s = 1e9; for (let o = 0; o < 3; o++) { let r = Dr(n,
+  n(param,7)  e(param,2)  t(param,2)  i(param,2)  s(let,3)  o(let,10)  r(let,9)  a(let,3)  l(let,4)  c(let,4)  u(let,4)  f(let,1)  h(let,6)  p(let,3)  d(let,3)  m(let,3)  x(let,3)  v(let,3)  y(let,3)  b(let,2)
+
+## fns["1163:9"]  L1163-L1163  (n, e, t) => ((t = Math.min(1, Math.max(0, (t - n) / (e - n)))), t * t * (3 - 2 * t)); fu
+  n(param,2)  e(param,1)  t(param,5)
+
+## fns["1165:0"]  L1165-L1194  function dy(n, e, t) { let i = (n - 0.066) / (Ah.end - 0.066), s = 0.0042 * Math.exp
+  n(param,10)  e(param,8)  t(param,2)  i(let,1)  s(let,3)  o(let,3)  r(let,2)  a(let,2)  l(let,2)  c(let,1)  u(let,1)
+
+## fns["1196:0"]  L1196-L1276  function mD(n) { let t = [], i = [0], s = [ [0.053, 0.0238, 0], [0.0
+  n(param,9)  t(let,8)  i(let,4)  s(let,1)  o(let,3)  r(let,4)  a(let,5)  l(let,1)  c(let,4)  u(let,3)  f(let,4)  h(let,1)  p(let,4)  p(let,4)  d(let,4)  m(let,2)  x(let,3)  v(let,2)  y(let,1)  p(let,6)  d(let,3)  m(let,6)  x(let,2)  v(let,2)  y(let,1)  b(let,3)  g(let,2)  p(let,11)  d(let,3)  m(let,6)  x(let,7)  y(let,3)  b(let,1)  g(let,1)  E(let,6)  M(let,3)  _(let,3)  T(let,6)  w(let,6)  S(let,1)  p(let,3)  p(let,3)  p(let,1)
+
+## fns["1216:8"]  L1216-L1224  (p, d) => { let [m, x] = t[p]; if (x >= 0) { let y = Qa(0.0262, 0.0356
+  p(param,1)  d(param,5)  m(let,4)  x(let,4)  v(let,2)  y(let,2)
+
+## fns["1225:8"]  L1225-L1235  (p, d, m, x, v) => { (n.pos.push(p[0], p[1], p[2]), n.nrm.push(d[0], d[1], d
+  p(param,6)  d(param,3)  m(param,4)  x(param,2)  v(param,1)  y(let,2)  b(let,2)  g(let,4)
+
+## fns["1249:18"]  L1249-L1249  (R) => R / S)), t[p][1] < 0 ? dy(t[p][0], m, i) : (i[0] = 0), u(x, w, t[p]
+  R(param,1)
+
+## fns["1280:0"]  L1280-L1496  function My(n = {}) { if (d5 && !n.force) return d5; let e = performance.now(); xy =
+  n(param,6)  e(let,1)  t(let,2)  i(let,1)  s(let,1)  o(let,1)  r(let,5)  a(let,5)  l(let,6)  c(let,1)  u(let,1)  f(let,1)  h(let,19)  p(let,14)  d(let,16)  m(let,35)  x(let,15)  v(let,12)  y(let,22)  b(let,7)  g(let,1)  E(let,1)  M(let,6)  _(let,6)  T(let,6)  w(let,4)  S(let,2)  R(let,3)  z(let,4)  I(let,4)  L(let,4)  R(let,1)  R(let,5)  z(let,3)  I(let,3)  L(let,3)  S(let,6)  S(let,4)  R(let,4)  z(let,6)  I(let,6)  S(let,4)  M(let,16)  _(let,5)  T(let,2)  w(let,3)  S(let,3)  R(let,5)  z(let,2)  I(let,2)  L(let,2)  U(let,2)  k(let,2)  C(let,2)  A(let,10)  F(let,4)  H(let,3)  N(let,3)  Z(let,2)  A(let,4)  F(let,4)  H(let,2)  M(let,3)  _(let,2)  T(let,4)  w(let,2)  S(let,2)  R(let,2)  z(let,7)  I(let,2)  L(let,1)  U(let,1)  k(let,7)  k(let,4)  C(let,3)  A(let,9)  k(let,2)  C(let,4)  k(let,4)  w(let,4)  S(let,4)  R(let,5)  z(let,5)  I(let,2)  M(let,13)  _(let,7)  T(let,7)  w(let,7)  S(let,4)  R(let,4)  z(let,4)  I(let,4)  L(let,5)  U(let,5)  k(let,5)  C(let,3)  F(let,5)  H(let,2)  N(let,3)  Z(let,3)  Q(let,2)  W(let,3)  J(let,1)  G(let,7)  G(let,5)  te(let,3)  oe(let,9)  G(let,4)  G(let,7)  te(let,3)  oe(let,2)  M(let,4)  _(let,8)
+
+## fns["1296:31"]  L1296-L1296  (M) => (M < -0.022 ? i : M < 0.004 ? s : o)), { pos: h, idx: p } = fD(c, u, f, [0, 0, 
+  M(param,2)
+
+## fns["1438:12"]  L1438-L1441  (S) => { for (; M[S] !== S;) S = M[S] = M[M[S]]; return S; }; for (let
+  S(param,6)
+
+## fns["1498:0"]  L1498-L1508  function qE(n) { let e = Float32Array.from(n.position), t = Float32Array.from(n.norm
+  n(param,4)  e(let,4)  t(let,3)  i(let,6)  s(let,6)  o(let,1)  s(let,6)
+
+## fns["1513:7"]  L1513-L1513  (n, e, t) => new D1(n, e, t); function Ch(n, e, t) { let i = e.clone().normalize(), 
+  n(param,1)  e(param,1)  t(param,1)
+
+## fns["1515:0"]  L1515-L1521  function Ch(n, e, t) { let i = e.clone().normalize(), s = t.clone().negate(); s.ad
+  n(param,1)  e(param,1)  t(param,1)  i(let,4)  s(let,4)  o(let,1)
+
+## fns["1523:0"]  L1523-L1525  function z1(n, e, t, i, s, o, r, a) { return mn(n.toArray(), [s, o, r], new _y().setFrom
+  n(param,1)  e(param,1)  t(param,1)  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(param,1)
+
+## fns["1530:0"]  L1530-L1597  function tc(n) { let e = mi(Math.cos(n.tilt), 0, Math.sin(n.tilt)), t = mi(Math.sin(
+  n(param,46)  e(let,9)  t(let,3)  i(let,2)  s(let,2)  o(let,2)  r(let,8)  a(let,8)  l(let,4)  c(let,5)  u(let,1)  f(let,3)  h(let,4)  p(let,3)  d(let,3)  m(let,2)  x(let,4)  v(let,2)  y(let,2)  b(let,2)
+
+## fns["1574:8"]  L1574-L1574  (y, b) => m.clone().addScaledVector(d, y).addScaledVector(p, b); (h.push( z1( 
+  y(param,1)  b(param,1)
+
+## fns["1799:0"]  L1799-L1808  function M5(n, e, t, i, s) { let o = nn[n]; if (!o) throw new Error('weapon_hands: unk
+  n(param,2)  e(param,1)  t(param,1)  i(param,2)  s(param,2)  o(let,3)
+
+## fns["1821:0"]  L1821-L1825  function Ey() { let n = { fist: Jl([], { ...vD, palm: Fr }) }; for (let e in nn) n[e] 
+  n(let,2)  e(let,3)
+
+## fns["1827:0"]  L1827-L1830  function JE(n = Ey()) { for (let e in n) di[e] = n[e]; return di; } var zy = {}; ar(
+  n(param,2)  e(let,2)
+
+## fns["1887:14"]  L1887-L1887  (n) => [n.len[0], n.len[0] + n.len[1], n.total]), Ty = P1.web, yD = Ty.c.map((n, e) =>
+  n(param,4)
+
+## fns["1889:16"]  L1889-L1889  (n, e) => n - Ty.ab[e] * 0.009), Du = Ty.ab.map((n) => n * 0.018), bD = Du[0] * Du[0] 
+  n(param,1)  e(param,1)
+
+## fns["1890:17"]  L1890-L1890  (n) => n * 0.018), bD = Du[0] * Du[0] + Du[1] * Du[1] + Du[2] * Du[2], nc = P1.guard.m
+  n(param,1)
+
+## fns["1892:20"]  L1892-L1901  (n) => [ n.c[0], n.c[1], n.c[2], Math.cos(n.yaw), Math.sin(n.yaw), 
+  n(param,8)
+
+## fns["1905:9"]  L1905-L1908  (n) => { let e = (+n).toPrecision(6).replace(/\.?0+$/, ''); return /[.e]/.test(e) 
+  n(param,1)  e(let,3)
+
+## fns["1909:7"]  L1909-L1909  (n) => `vec3(${n.map(En).join(', ')})`, Sy = (n) => `(F < 0.5 ? ${En(L1[0][n])} : F 
+  n(param,1)
+
+## fns["1910:7"]  L1910-L1911  (n) => `(F < 0.5 ? ${En(L1[0][n])} : F < 1.5 ? ${En(L1[1][n])} : F < 2.5 ? ${En(L1[2][
+  n(param,5)
+
+## fns["1955:2"]  L1955-L1956  (n) => ` gv = rs.xyz - ${Ui(n.slice(0, 3))}; gL = vec2(gv.x * ${En(n[3])} - gv.z * 
+  n(param,8)
+
+## fns["1961:2"]  L1961-L1962  (n) => ` gp = rs.xz - vec2(${En(nc[n][0])}, ${En(nc[n][2] + 0.0045)}); gb = vec2(${
+  n(param,6)
+
+## fns["2031:0"]  L2031-L2078  function QE(n) { let e = new n.MeshStandardMaterial({ color: 16777215, roughness: 0.8, m
+  n(param,1)  e(let,4)
+
+## fns["2035:25"]  L2035-L2074  (t) => { ((t.uniforms.uArmWet = kh), (t.vertexShader = t.vertexShader 
+  t(param,5)
+
+## fns["2093:7"]  L2093-L2093  (n, e) => cy(n, Fr, e), rS = (n, e = {}) => Jl(n, e.palm === void 0 ? { ...e, palm: Fr }
+  n(param,1)  e(param,1)
+
+## fns["2094:7"]  L2094-L2094  (n, e = {}) => Jl(n, e.palm === void 0 ? { ...e, palm: Fr } : e); function Lh(n) { retu
+  n(param,1)  e(param,3)
+
+## fns["2096:0"]  L2096-L2102  function Lh(n) { return n.map((e) => e.type === 'capsule' ? vs([-e.a[0], e.a[1
+  n(param,1)
+
+## fns["2097:15"]  L2097-L2100  (e) => e.type === 'capsule' ? vs([-e.a[0], e.a[1], e.a[2]], [-e.b[0], e.b[1], e.
+  e(param,17)
+
+## fns["2106:0"]  L2106-L2123  function aS(n = 'right') { if (Ry[n]) return Ry[n]; let e = n === 'left' ? qE(My()) : 
+  n(param,4)  e(let,9)  t(let,11)
+
+## fns["2151:7"]  L2151-L2151  (n, e) => (n.isVector3 ? e.copy(n) : e.set(n[0], n[1], n[2])); function Fh(n, e = {}) { 
+  n(param,5)  e(param,2)
+
+## fns["2153:0"]  L2153-L2452  function Fh(n, e = {}) { let t = e.side === 'left' ? 'left' : 'right', i = t === 'le
+  n(param,0)  e(param,4)  t(let,6)  i(let,13)  s(let,12)  o(let,4)  r(let,8)  a(let,5)  l(let,4)  c(let,5)  u(let,3)  f(let,6)  h(let,2)  p(let,2)  d(let,2)  m(let,2)  x(let,8)  v(let,8)  y(let,11)  b(let,5)  g(let,6)  E(let,4)  M(function,7)  _(function,3)  T(let,11)  w(let,2)  S(let,4)  R(let,4)  z(let,2)  I(let,14)  L(function,3)  U(let,3)  k(let,8)  C(let,8)  A(let,7)  F(let,9)  H(let,6)  N(let,3)  Z(let,1)  Q(let,4)
+
+## fns["2158:17"]  L2158-L2161  (A) => { let F = new THREE.Bone(); return ((F.name = A), F); }), r = o
+  A(param,1)  F(let,2)
+
+## fns["2193:10"]  L2193-L2193  (A) => (i < 0 && ((A.y = -A.y), (A.z = -A.z)), A), v = new Float32Array(Un), y = n
+  A(param,5)
+
+## fns["2199:2"]  L2199-L2218  function M() { for (let A = 0; A < Un; A++) y[A] = v[A]; for (let A = 0; A < 4; A+
+  A(let,8)  F(let,9)  H(let,4)  N(let,2)  Z(let,3)  Q(let,1)  W(let,2)  A(let,7)  F(let,4)  A(let,4)  A(let,4)
+
+## fns["2219:2"]  L2219-L2221  function _(A) { for (let F = 0; F < Un; F++) v[F] = A[F]; } let T = { reach:
+  A(param,1)  F(let,4)
+
+## fns["2237:2"]  L2237-L2316  function L(A, F, H, N, Z, Q) { (Ih(A, Nr), (Nr.x *= i), Ih(F, tl), (
+  A(param,1)  F(param,1)  H(param,1)  N(param,2)  Z(param,2)  Q(param,1)  W(let,13)  J(let,4)  G(let,2)  te(let,4)  oe(let,2)  ee(let,3)  le(let,1)  xe(let,8)  j(let,3)  O(let,1)  q(let,2)  ue(let,3)  de(let,3)  $(let,3)  se(let,6)
+
+## fns["2335:36"]  L2335-L2335  (A, F) => [A, o[F]])), triCount: k.geometry.userData.triCount, setLayer(A) { 
+  A(param,1)  F(param,1)
+
+## fns["2337:12"]  L2337-L2339  (A) { return (s.traverse((F) => F.layers.set(A)), C); }, setVisible(A) { 
+  A(param,1)
+
+## fns["2338:25"]  L2338-L2338  (F) => F.layers.set(A)), C); }, setVisible(A) { return ((s.visible = !!A), C
+  F(param,1)
+
+## fns["2340:14"]  L2340-L2342  (A) { return ((s.visible = !!A), C); }, setFingers(A, F = 1) { return 
+  A(param,1)
+
+## fns["2343:14"]  L2343-L2345  (A, F = 1) { return ((A = Za(A)), F >= 1 ? _(A) : tn(v, v, A, F), M(), C); }, 
+  A(param,4)  F(param,2)
+
+## fns["2346:16"]  L2346-L2348  (A, F, H) { return (tn(v, Za(A), Za(F), H), M(), C); }, setFinger(A, F, H = 
+  A(param,1)  F(param,1)  H(param,1)
+
+## fns["2349:13"]  L2349-L2353  (A, F, H = 1) { typeof A == 'string' && (A = Eh.indexOf(A)); for (let N = 0; N
+  A(param,5)  F(param,1)  H(param,1)  N(let,5)
+
+## fns["2354:14"]  L2354-L2356  (A) { return ((A = A < 0 ? 0 : A > 1 ? 1 : A), A !== E && ((E = A), M()), C); },
+  A(param,6)
+
+## fns["2363:9"]  L2363-L2365  (A, F, H, N = null, Z = null) { return L(A, F, H, N, Z && Z.lean ? Z.lean : 0, !0); 
+  A(param,1)  F(param,1)  H(param,1)  N(param,1)  Z(param,3)
+
+## fns["2366:15"]  L2366-L2368  (A, F, H = null, N = null) { return (F.decompose(tS, ni, ED), L(A, tS, E5.copy(ni), 
+  A(param,1)  F(param,1)  H(param,1)  N(param,3)
+
+## fns["2369:12"]  L2369-L2388  (A, F, H, N = null) { let Z = Ih(A, new U0()), Q = Ih(F, new U0()), 
+  A(param,1)  F(param,1)  H(param,1)  N(param,1)  Z(let,2)  Q(let,2)  W(let,1)  J(let,3)  G(let,4)  te(let,1)  oe(let,2)  ee(let,3)  le(let,2)  xe(let,3)  j(let,3)  O(let,1)  q(let,2)
+
+## fns["2389:11"]  L2389-L2401  (A, F = {}) { let H = A; if (F.space === 'parent' || F.space === 'world') { 
+  A(param,2)  F(param,5)  H(let,4)  N(let,2)  Z(let,2)
+
+## fns["2402:10"]  L2402-L2412  (A, F, H, N, Z) { return i > 0 ? M5(A, F, H, N, Z) : (nS.set(-F.x, F
+  A(param,2)  F(param,4)  H(param,5)  N(param,5)  Z(param,6)
+
+## fns["2413:13"]  L2413-L2416  (A, F, H) { let N = nn[A].frame; return (F.copy(N.p), H.copy(N.q), i < 0 && ((
+  A(param,1)  F(param,4)  H(param,5)  N(let,2)
+
+## fns["2417:15"]  L2417-L2419  (A, F) { return Kl(y, i < 0 ? Lh(A) : A, F); }, selfPenetration(A) { r
+  A(param,2)  F(param,1)
+
+## fns["2420:19"]  L2420-L2422  (A) { return cy(y, Fr, A); }, impulse(A = 1) { for (let F = 0; F < 5; 
+  A(param,1)
+
+## fns["2423:11"]  L2423-L2426  (A = 1) { for (let F = 0; F < 5; F++) g[F] += A * (1.6 + 0.3 * F); ((I.vx += A
+  A(param,3)  F(let,4)
+
+## fns["2427:10"]  L2427-L2446  (A) { if (!(A > 0)) return; A > 0.05 && (A = 0.05); let F = !1; fo
+  A(param,9)  F(let,2)  H(let,2)  N(let,2)  Z(let,11)
+
+## fns["2454:0"]  L2454-L2619  async function TD(n) { let e = Fh(n, { side: 'right' }), t = Fh(n, { side: 'left' })
+  n(param,9)  e(let,18)  t(let,15)  i(let,6)  s(let,49)  o(let,2)  r(let,8)  a(let,1)  l(let,1)  c(let,1)  u(let,6)  f(let,6)  h(let,6)  p(let,2)  d(let,4)  m(let,4)  x(let,4)  v(function,1)  y(function,2)  b(function,3)  g(let,4)  E(let,2)
+
+## fns["2490:2"]  L2490-L2507  function v() { let M = s.view === 'fp'; for (let _ of [e, t]) ((M ? n.camera
+  M(let,3)  _(let,1)  T(let,3)  w(let,1)  S(let,1)  _(let,4)
+
+## fns["2508:2"]  L2508-L2553  function y() { let M = s.view === 'fp'; if (s.blend) { let _ = s.blend[2] !=
+  M(let,3)  _(let,6)  T(let,4)  _(let,4)  T(let,4)  _(let,2)
+
+## fns["2554:2"]  L2554-L2588  function b(M, _) { if ((M.hview && (s.view = M.hview), M.hpose != null)) { let w
+  M(param,23)  _(param,1)  T(let,6)  w(let,3)  w(let,7)  w(let,3)  w(let,6)
+
+## fns["2590:25"]  L2590-L2602  (M) => { (M && (M.hview || M.hpose != null || M.hblend !
+  M(param,11)
+
+## fns["2603:50"]  L2603-L2603  (M) => b(M, !1) })); let g = b(n.params || {}, !0), E = g.cam ? g.cam.split(',').map
+  M(param,1)
+
+## fns["2614:12"]  L2614-L2616  (M) { ((s.t += M), (s.trig === 'anim' || (s.blend && s.blend[2] == null)) && y(), 
+  M(param,3)

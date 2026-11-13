@@ -1,0 +1,204 @@
+# game.js  top-level minified bindings (use "globals")
+  hT  import  decl@L3  refs=1
+  Hn  import  decl@L4  refs=4
+  Is  import  decl@L4  refs=2
+  j0  import  decl@L4  refs=6
+  ou  import  decl@L4  refs=3
+  xi  var  decl@L6  refs=22
+  lb  var  decl@L27  refs=3
+  cs  var  decl@L98  refs=18
+  dT  var  decl@L115  refs=2
+  Vu  var  decl@L116  refs=7
+  pT  function  decl@L129  refs=1
+
+## fns["101:11"]  L101-L101  (n) => Math.min(5 + 2 * n, 30), houndShare: (n) => Math.min(0.45, 0.2 + 0.03 * n), 
+  n(param,1)
+
+## fns["102:16"]  L102-L102  (n) => Math.min(0.45, 0.2 + 0.03 * n), stagger: (n) => Math.max(0.35, 0.9 - 0.04 * n),
+  n(param,1)
+
+## fns["103:13"]  L103-L103  (n) => Math.max(0.35, 0.9 - 0.04 * n), hp: (n) => Math.min(2.5, 1 + 0.07 * (n - 1)), 
+  n(param,1)
+
+## fns["104:8"]  L104-L104  (n) => Math.min(2.5, 1 + 0.07 * (n - 1)), dmg: (n) => Math.min(2, 1 + 0.05 * (n - 1)),
+  n(param,1)
+
+## fns["105:9"]  L105-L105  (n) => Math.min(2, 1 + 0.05 * (n - 1)), cool: (n) => Math.max(0.6, 1 - 0.03 * (n - 1))
+  n(param,1)
+
+## fns["106:10"]  L106-L106  (n) => Math.max(0.6, 1 - 0.03 * (n - 1)), extraAlive: (n) => Math.min(5, Math.floor(n 
+  n(param,1)
+
+## fns["107:16"]  L107-L107  (n) => Math.min(5, Math.floor(n / 2)), resupply: 90, reserveCap: 240, heal: 35
+  n(param,1)
+
+## fns["129:0"]  L129-L906  function pT(n) { let e = (n.render && n.render.post) || {}, t = typeof e.saturation 
+  n(param,82)  e(let,20)  t(let,2)  i(let,40)  s(let,15)  o(let,63)  r(let,63)  a(let,23)  l(let,31)  c(let,5)  u(let,2)  f(let,7)  h(function,5)  p(let,10)  d(let,1)  m(function,3)  x(function,1)  v(function,1)  y(function,1)  b(function,1)  g(let,144)  E(let,8)  M(let,3)  _(let,3)  T(let,3)  w(let,5)  S(let,0)  R(let,5)  z(let,2)  I(let,4)  L(let,10)  U(let,4)  k(let,1)  C(let,25)  A(function,7)  F(let,18)  H(function,1)  N(function,2)  Z(function,1)  Q(function,1)  W(function,5)  J(function,2)  G(function,6)  te(function,2)  oe(function,3)  ee(function,5)  le(function,5)  xe(function,4)  j(function,1)  O(function,4)  q(function,2)  ue(function,1)  de(function,1)  $(function,1)  se(function,3)  fe(function,1)  me(function,1)  ge(function,1)  ce(function,2)  P(function,1)  D(let,3)  B(function,3)  X(function,1)  re(function,1)
+
+## fns["136:8"]  L136-L142  (Y, he, ...V) => { try { if (Y && typeof Y[he] == 'function') return Y[he](.
+  Y(param,3)  he(param,3)  V(param,1)  ne(catch,1)
+
+## fns["144:16"]  L144-L146  (Y) { h(Y); }, deploy() { (a(n.audio, 'resume'), r.requestLock
+  Y(param,1)
+
+## fns["164:10"]  L164-L164  (Y) => JSON.parse(JSON.stringify(Y)), u = () => (n.enemies && n.enemies.TUNE) || null,
+  Y(param,1)
+
+## fns["167:2"]  L167-L184  function h(Y) { let he = lb[Y] || lb.hard, V = u(); V && !f.enemies && (f.en
+  Y(param,3)  he(let,5)  V(let,6)  ne(let,4)
+
+## fns["171:13"]  L171-L178  (ye, Te, Re) => { if (!(!ye || !Te)) { for (let Ue in Te) (typeof 
+  ye(param,3)  Te(param,7)  Re(param,4)  Ue(let,4)  Ue(let,6)
+
+## fns["186:8"]  L186-L186  (Y) => Math.round(Y).toLocaleString('en-US'); function m() { p() && o.setTally && o.
+  Y(param,1)
+
+## fns["190:2"]  L190-L227  function x() { let Y = ++g.wave, he = u(); if ((h(C.difficulty), he)) { 
+  Y(let,9)  he(let,12)  V(let,5)  ne(let,2)  ye(let,3)  Te(let,2)  Re(let,2)  Ue(let,1)  Ve(let,1)  ze(let,3)  ze(let,2)  ze(let,2)  Ge(let,3)  _e(let,2)
+
+## fns["202:49"]  L202-L202  (Ne) => Ne * _e)), (he.hound.cooldown = he.hound.cooldown.map((Ne) => Ne * _e))); 
+  Ne(param,1)
+
+## fns["203:51"]  L203-L203  (Ne) => Ne * _e))); } xi.maxAlive += cs.extraAlive(Y); let V = cs.count(Y), 
+  Ne(param,1)
+
+## fns["214:16"]  L214-L219  (ze, Ge) => { let _e = O(ze); ((Te += _e.x - i.pos.x), (Re += _e.z - i
+  ze(param,2)  Ge(param,1)  _e(let,3)
+
+## fns["228:2"]  L228-L243  function v() { ((g.waveOn = !1), (g.wavesCleared = g.wave), (g.breakT = cs
+  Y(let,4)
+
+## fns["244:2"]  L244-L254  function y(Y) { g.waveOn ? !g.queue.length && se() === 0 && v() : ((g.brea
+  Y(param,2)
+
+## fns["255:30"]  L255-L259  (Y) => { !p() || C.state !== 'playing' || (g.kills++, (g.score += (cs.kill
+  Y(param,2)
+
+## fns["260:2"]  L260-L274  function b() { let Y = 0; try { Y = +localStorage.getItem(cs.bestKey) || 0; 
+  Y(let,5)  he(let,3)  V(let,2)
+
+## fns["318:21"]  L318-L318  (Y) => h(Y), start(Y = {}) { G({ skipIntro: !!Y.skipIntro, 
+  Y(param,1)
+
+## fns["319:11"]  L319-L325  (Y = {}) { G({ skipIntro: !!Y.skipIntro, quick: !!Y.quick, 
+  Y(param,3)
+
+## fns["333:14"]  L333-L336  () { let Y = g.relays.find((he) => !he.cut); Y && ce(Y); }, }; 
+  Y(let,2)
+
+## fns["334:30"]  L334-L334  (he) => !he.cut); Y && ce(Y); }, }; function A(Y) { let he = C.sta
+  he(param,1)
+
+## fns["338:2"]  L338-L341  function A(Y) { let he = C.state; Y !== he && ((C.state = Y), (E = 0), n.events.em
+  Y(param,3)  he(let,2)
+
+## fns["343:2"]  L343-L357  function H() { let Y = (s && s.cinematicPath) || []; if ( ((F.pos = Y.map((V
+  Y(let,2)  he(let,2)  V(let,4)  V(let,8)
+
+## fns["346:22"]  L346-L346  (V) => new THREE.Vector3(...V.pos))), (F.look = Y.map((V) => new THREE.Vector3(...V.
+  V(param,1)
+
+## fns["347:22"]  L347-L347  (V) => new THREE.Vector3(...V.look))), F.pos.length < 2) ) { let V = (s &&
+  V(param,1)
+
+## fns["358:2"]  L358-L373  function N(Y, he, V) { let ne = Y.length - 1, ye = Hn(he, 0, 1) * ne, Te =
+  Y(param,5)  he(param,1)  V(param,1)  ne(let,3)  ye(let,2)  Te(let,5)  Re(let,4)  Ue(let,3)  Ve(let,3)  ze(let,3)  Ge(let,3)  _e(let,2)  Ne(let,1)  ke(let,3)
+
+## fns["369:11"]  L369-L371  (je, Ze, qe, Oe) => 0.5 * (2 * Ze + (-je + qe) * Re + (2 * je - 5 * Ze + 4
+  je(param,3)  Ze(param,3)  qe(param,3)  Oe(param,2)
+
+## fns["374:2"]  L374-L395  function Z(Y) { let he = Math.max(26, F.len / xi.titleSpeed); ((F.t += Y), F.t >= 
+  Y(param,1)  he(let,4)  V(let,4)  ne(let,2)  ye(let,6)  Te(let,6)
+
+## fns["396:2"]  L396-L442  function Q() { if ( (a(n.enemies, 'clear'), a(n.fx, 'clear'), a(n.co
+  Y(let,1)
+
+## fns["422:26"]  L422-L428  (Y, he) => { let V = (/([a-z0-9])$/i.exec(String(Y.id || '')) || [ 0, 
+  Y(param,4)  he(param,2)  V(let,1)
+
+## fns["443:2"]  L443-L450  function W(Y, he) { try { let V = Y && Y.object && Y.object.userData; V &&
+  Y(param,3)  he(param,1)  V(catch,1)  V(let,3)
+
+## fns["451:2"]  L451-L466  function J() { if (!o.setMarkers) return; let Y = g.relays .filter((he) => !
+  Y(let,2)
+
+## fns["454:14"]  L454-L454  (he) => !he.cut) .map((he) => ({ id: he.id, short: he.short, 
+  he(param,1)
+
+## fns["455:11"]  L455-L461  (he) => ({ id: he.id, short: he.short, label: he.o.label || 'Relay
+  he(param,5)
+
+## fns["467:2"]  L467-L492  function G({ skipIntro: Y = !1, quick: he = !1, keepRetries: V = !1, mode: ne = null } = {
+  Y(param,1)  he(param,4)  V(param,2)  ne(param,1)
+
+## fns["501:2"]  L501-L510  function oe() { if (p()) return g.waveOn ? 'Hold the berth' : g.wave ? 'Catch your bre
+  Y(let,2)
+
+## fns["511:2"]  L511-L523  function ee(Y) { let he = r.describeMode ? r.describeMode() : ''; if ((l.setLookMo
+  Y(param,1)  he(let,4)
+
+## fns["525:30"]  L525-L531  (Y) => { if (Y.locked) { ((R = !0), ee(!1)); return; } (
+  Y(param,1)
+
+## fns["535:32"]  L535-L541  (Y) => { C.state !== 'title' || l.panelOpen || (Y.code !== 'Enter' &
+  Y(param,4)
+
+## fns["554:2"]  L554-L564  function xe(Y) { C.state === 'paused' && (l.show('none'), a(n.audio, 'setP
+  Y(param,0)
+
+## fns["565:2"]  L565-L570  function j(Y) { let he = Y === 'gull' ? 'air' : 'ground', V = (s && s.enemySpawn
+  Y(param,1)  he(let,1)  V(let,2)  ne(let,2)
+
+## fns["568:20"]  L568-L568  (ye) => ye.type === he); return ne.length ? ne : V; } function O(Y, { minDist: he 
+  ye(param,1)
+
+## fns["571:2"]  L571-L606  function O(Y, { minDist: he = xi.spawnFar, from: V = i.pos, preferHidden: ne = !0 } = {}) 
+  Y(param,4)  he(param,3)  V(param,4)  ne(param,1)  ye(let,1)  Te(let,4)  Re(let,2)  Ue(let,9)  Ve(let,2)  Ve(let,2)  ze(let,2)  Ge(let,4)  Ve(let,5)  ze(let,3)  Ge(let,5)  _e(let,2)  Ne(let,2)
+
+## fns["607:2"]  L607-L615  function q(Y, he, V) { let ne = null; try { ne = n.enemies.spawn(Y, he, V); 
+  Y(param,1)  he(param,1)  V(param,1)  ne(let,2)  ye(catch,1)
+
+## fns["616:2"]  L616-L621  function ue() { let Y = (s.playerStart && s.playerStart.pos) || i.pos; for (let he
+  Y(let,1)  he(let,3)  V(let,2)
+
+## fns["622:2"]  L622-L638  function de(Y) { let he = xi.waves[Math.min(Y, xi.waves.length - 1)], V = []; 
+  Y(param,1)  he(let,2)  V(let,4)  ne(let,2)  ye(let,2)  Te(let,1)  Re(let,3)  Re(let,2)
+
+## fns["629:15"]  L629-L634  (Re, Ue) => { let Ve = O(Re); ((ne += Ve.x - i.pos.x), (ye += Ve.z - i
+  Re(param,2)  Ue(param,1)  Ve(let,3)
+
+## fns["639:2"]  L639-L670  function $(Y) { let he = se(); for (let V = 0; V < g.queue.length; V++) { le
+  Y(param,1)  he(let,2)  V(let,2)  V(let,4)  ne(let,7)
+
+## fns["673:83"]  L673-L673  (Y) => Y.alive).length; } catch { return 0; } } function fe(Y) { let
+  Y(param,1)
+
+## fns["678:2"]  L678-L685  function fe(Y) { let he = (n.enemies && n.enemies.list) || []; for (let V = 0; V <
+  Y(param,1)  he(let,2)  V(let,3)  ne(let,5)
+
+## fns["696:2"]  L696-L712  function me() { let Y = null, he = xi.interactRange; for (let V of g.relays)
+  Y(let,2)  he(let,2)  V(let,5)  ne(let,2)  ye(let,2)  Te(let,4)
+
+## fns["713:2"]  L713-L744  function ge(Y) { let he = i.alive ? me() : null; for (let ne of g.relays) ne
+  Y(param,3)  he(let,5)  V(let,6)  ne(let,1)  ye(let,2)  ne(let,17)
+
+## fns["745:2"]  L745-L762  function ce(Y) { ((Y.cut = !0), (Y.cutting = !1), (Y.t = 1), g.cut++, W(Y.o, 'cut')); 
+  Y(param,5)  he(let,3)
+
+## fns["773:2"]  L773-L792  function P() { ((i.invulnerable = !0), (i.enabled = !1), r.setGameplay && 
+  Y(let,4)  he(let,3)  V(let,1)  ne(let,1)
+
+## fns["794:2"]  L794-L809  function B(Y) { if (r.device !== 'pad') { r.assist = 1; return; } 
+  Y(param,2)  he(let,2)  V(let,2)
+
+## fns["810:30"]  L810-L813  (Y) => { r.rumble && r.rumble(Y && Y.weapon === 'pistol' ? 0.35 : 0.18, Y && Y.w
+  Y(param,4)
+
+## fns["814:30"]  L814-L816  (Y) => { r.rumble && r.rumble(Math.min(1, 0.45 + (Y.amount || 0) / 30), 0.3, 160); 
+  Y(param,1)
+
+## fns["817:29"]  L817-L822  (Y) => { if (!Y || !Y.pos) return; let he = i.pos.distanceTo(Y.pos), V
+  Y(param,4)  he(let,1)  V(let,4)
+
+## fns["837:2"]  L837-L894  function re(Y) { switch (((E += Y), X(), C.state)) { case 'title': retur
+  Y(param,17)  he(let,3)  V(let,3)

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as THREE from 'three';
 import { Hn, Ia, Is, Ro, T0, Z0, ar, j0, u0 } from './core.js';
-import { Zy } from './explosives.js';
+import { explosivesModule } from './explosives.js';
 import { Ei, Tr, bn } from './geometry.js';
 import {
   FE,
@@ -31,7 +31,7 @@ import {
   xs,
 } from './hands.js';
 
-ar(Zy, { create: () => I5, showcase: () => BD });
+ar(explosivesModule, { create: () => I5, showcase: () => BD });
 
 var Qo = {
   model: [8, 8, 440, 112],

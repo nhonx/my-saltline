@@ -1,0 +1,77 @@
+# hud.js  top-level minified bindings (use "globals")
+  sb  var  decl@L4  refs=3
+  ob  var  decl@L5  refs=3
+  JD  var  decl@L6  refs=1
+  QD  var  decl@L7  refs=1
+  rb  var  decl@L8  refs=3
+  si  function  decl@L10  refs=23
+  sT  function  decl@L15  refs=1
+
+## fns["10:0"]  L10-L13  function si(n, e, t) { let i = document.createElement(n); return (e && (i.className = 
+  n(param,1)  e(param,2)  t(param,2)  i(let,3)
+
+## fns["15:0"]  L15-L484  function sT(n) { let e = document.getElementById('ui'), t = si('div', 'hud'); t.se
+  n(param,19)  e(let,2)  t(let,5)  i(let,3)  s(let,3)  o(let,4)  r(let,2)  a(let,2)  l(let,2)  c(let,7)  u(let,2)  f(let,6)  h(let,2)  p(let,1)  d(let,4)  m(let,7)  x(let,3)  v(let,4)  y(let,3)  b(let,2)  g(let,5)  E(let,6)  M(let,1)  _(let,2)  T(let,1)  w(let,2)  S(let,4)  R(let,5)  z(let,1)  I(let,3)  L(let,8)  U(let,1)  k(let,1)  C(let,2)  A(let,1)  F(let,2)  H(let,1)  N(let,3)  Z(let,8)  Q(let,2)  W(let,3)  J(let,3)  G(let,3)  te(let,3)  oe(let,47)  ee(let,3)  le(let,5)  xe(let,4)  j(let,3)  O(let,6)  q(let,8)  ue(let,4)  de(let,3)  $(let,3)  se(let,5)  fe(let,4)  me(let,8)  ge(let,5)  ce(let,21)  P(let,5)  D(let,2)  B(function,3)  X(let,6)  re(function,1)  Y(function,1)  he(let,2)  V(let,2)  he(let,4)  V(let,3)  ne(let,6)  ye(let,2)  Te(let,1)
+
+## fns["144:2"]  L144-L151  function B() { ((G = innerWidth), (te = innerHeight), (J = i.clientWidth |
+  he(let,2)
+
+## fns["153:35"]  L153-L162  (he) => { (X.hitmarker(he && he.killed ? 'kill' : he && (he.weak || he.part === 'wea
+  he(param,8)
+
+## fns["163:32"]  L163-L166  (he) => { let V = String((he && (he.type || (he.enemy && he.enemy.type))) || 'machin
+  he(param,4)  V(let,1)
+
+## fns["167:30"]  L167-L178  (he) => { if (!he || !he.fromPos) return; let V = g[0]; for (let ne of g
+  he(param,3)  V(let,6)  ne(let,4)
+
+## fns["181:8"]  L181-L183  (he) { ((he = !!he), he !== W && ((W = he), t.classList.toggle('on', he), he && B())
+  he(param,6)
+
+## fns["184:16"]  L184-L195  (he) { ((he = he || ''), he !== le && ((le = he), (xe = 
+  he(param,5)
+
+## fns["196:12"]  L196-L199  (he) { let V = he != null; (f.classList.toggle('tally', V), (p.textContent = V
+  he(param,2)  V(let,2)
+
+## fns["200:13"]  L200-L215  (he, V) { if (!(he === oe.done && V === oe.total)) { if (V !== oe.total) { 
+  he(param,5)  V(param,7)  ne(let,2)  ye(let,2)
+
+## fns["203:21"]  L203-L203  (ne) => ne.remove()), (d = [])); for (let ne = 0; ne < V; ne++) { le
+  ne(param,1)
+
+## fns["211:20"]  L211-L211  (ne, ye) => ne.classList.toggle('cut', ye < he)), (h.textContent = `${he}/${V}`)
+  ne(param,1)  ye(param,1)
+
+## fns["216:14"]  L216-L237  (he) { for (let V of ge) (V.cEl.remove(), V.wEl.remove()); ge = (he || []).map
+  he(param,1)  V(let,2)
+
+## fns["218:26"]  L218-L236  (V) => { let ne = si('div', 'h-cm ' + (V.kind || 'relay'), `<i></i><b>${V.short ||
+  V(param,5)  ne(let,3)  ye(let,3)
+
+## fns["238:13"]  L238-L256  (he, V = 0) { let ne = !!he; if ( (ne !== oe.promptOn && ((o
+  he(param,2)  V(param,1)  ne(let,5)  ye(let,5)  Te(let,3)  Re(let,4)
+
+## fns["257:9"]  L257-L259  (he, V = 4.5) { he && O.push({ text: he, secs: V }); }, clearRadio() { 
+  he(param,2)  V(param,1)
+
+## fns["263:8"]  L263-L265  (he, V = 3) { ((m.textContent = he), (se = V), m.classList.remove('on'), m.offsetWid
+  he(param,1)  V(param,1)
+
+## fns["266:11"]  L266-L268  (he, V = 3) { ((S.textContent = he || ''), (fe = he ? V : 0), S.classList.toggle('on
+  he(param,3)  V(param,1)
+
+## fns["269:8"]  L269-L275  (he) { let V = si('div', 'h-fl', he); w.appendChild(V); let ne = { el: V
+  he(param,1)  V(let,2)  ne(let,2)
+
+## fns["276:13"]  L276-L289  (he = 'hit') { y.className = 'h-hit ' + he; let V = he === 'weak' || he === 'k
+  he(param,4)  V(let,1)
+
+## fns["290:9"]  L290-L301  () { ((O.length = 0), (q = null), Z.classList.remove('on')); for (let he of me
+  he(let,1)  he(let,1)
+
+## fns["304:2"]  L304-L464  function re(he) { if ((Y(he), !W)) return; let V = n.player, ne = n.weapon |
+  he(param,6)  V(let,13)  ne(let,21)  ye(let,5)  Te(let,2)  Re(let,5)  Ue(let,3)  Ve(let,3)  ze(let,3)  Ge(let,4)  _e(let,4)  Ne(let,7)  ke(let,5)  je(let,4)  Ze(let,4)  qe(let,4)  Oe(let,4)  mt(let,3)  $e(let,4)  Ke(let,7)  $e(let,3)  $e(let,14)  Ke(let,1)  Bt(let,3)  Gt(let,3)  $e(let,4)  Ke(let,4)  $e(let,4)  Ke(let,2)  $e(let,4)  $e(let,1)  Ke(let,1)  Bt(let,8)  $e(let,3)  Ke(let,20)  Bt(let,2)  Gt(let,2)  vi(let,5)  q0(let,3)  yi(let,4)  sn(let,3)  P0(let,3)  $t(let,6)  Sn(let,2)  bi(let,2)  oi(let,2)  xn(let,3)  oi(let,2)
+
+## fns["465:2"]  L465-L482  function Y(he) { if (!q) { if (!O.length) return; ((q = O.shift()), 
+  he(param,2)  V(let,3)  ne(let,3)

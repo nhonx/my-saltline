@@ -1,0 +1,352 @@
+# fx.js  top-level minified bindings (use "globals")
+  T0  import  decl@L3  refs=15
+  Z0  import  decl@L3  refs=6
+  ar  import  decl@L3  refs=1
+  Ei  import  decl@L4  refs=3
+  Wv  var  decl@L6  refs=2
+  Nv  function  decl@L10  refs=3
+  Do  var  decl@L49  refs=13
+  uh  var  decl@L53  refs=5
+  Wg  var  decl@L54  refs=3
+  qw  function  decl@L56  refs=1
+  c1  var  decl@L138  refs=4
+  Uv  var  decl@L139  refs=2
+  mo  var  decl@L140  refs=13
+  Bv  var  decl@L141  refs=2
+  Gl  var  decl@L142  refs=7
+  HP  var  decl@L143  refs=1
+  Hv  var  decl@L144  refs=2
+  Gg  var  decl@L145  refs=3
+  fh  var  decl@L146  refs=5
+  qg  var  decl@L147  refs=3
+  Xw  function  decl@L149  refs=1
+  pu  var  decl@L239  refs=7
+  Fv  var  decl@L240  refs=3
+  Oa  var  decl@L241  refs=8
+  Yw  function  decl@L250  refs=1
+  OP  var  decl@L647  refs=1
+  Jw  var  decl@L699  refs=2
+  VP  var  decl@L722  refs=1
+  WP  var  decl@L758  refs=1
+  $w  var  decl@L769  refs=2
+  Vv  function  decl@L771  refs=2
+  hh  var  decl@L904  refs=5
+  dh  var  decl@L905  refs=5
+  GP  var  decl@L906  refs=1
+  u1  var  decl@L907  refs=2
+  Yg  var  decl@L1095  refs=1
+  qP  var  decl@L1221  refs=1
+  Ds  var  decl@L1222  refs=16
+  Zo  var  decl@L1223  refs=12
+  $g  var  decl@L1224  refs=4
+  Zg  var  decl@L1225  refs=4
+  Zw  var  decl@L1226  refs=2
+  XP  function  decl@L1228  refs=1
+  jg  var  decl@L1253  refs=1
+  Ov  var  decl@L1365  refs=3
+  YP  var  decl@L1366  refs=1
+  jw  var  decl@L1367  refs=2
+  Kw  var  decl@L1368  refs=2
+  Xg  var  decl@L1369  refs=4
+  $P  function  decl@L1371  refs=1
+  Kg  var  decl@L1392  refs=1
+  ZP  var  decl@L1543  refs=1
+  Qw  var  decl@L1551  refs=2
+  Jg  var  decl@L1552  refs=1
+  e6  var  decl@L1691  refs=2
+  t6  var  decl@L1692  refs=2
+  Et  var  decl@L1693  refs=68
+  lt  var  decl@L1694  refs=87
+  Ut  var  decl@L1695  refs=53
+  jt  var  decl@L1696  refs=45
+  Qg  var  decl@L1697  refs=4
+  st  var  decl@L1698  refs=91
+  Ls  var  decl@L1699  refs=16
+  jo  var  decl@L1700  refs=12
+  Ri  var  decl@L1701  refs=21
+  jP  var  decl@L1702  refs=1
+  e5  var  decl@L1703  refs=4
+  Lo  var  decl@L1704  refs=13
+  ph  function  decl@L1706  refs=6
+  go  function  decl@L1719  refs=14
+  f1  function  decl@L1730  refs=2
+  KP  function  decl@L3056  refs=1
+
+## fns["10:0"]  L10-L47  function Nv(n) { let i = new Float32Array(4096), s = n >>> 0, o = () => { 
+  n(param,1)  i(let,5)  s(let,6)  o(let,2)  r(let,2)  l(let,3)
+
+## fns["13:8"]  L13-L17  () => { ((s |= 0), (s = (s + 1831565813) | 0)); let l = Math.imul(s ^ (s >>> 1
+  l(let,8)
+
+## fns["19:10"]  L19-L34  (l, c) => { let u = Math.floor(l), f = Math.floor(c), h = l - u, p =
+  l(param,2)  c(param,2)  u(let,3)  f(let,3)  h(let,6)  p(let,5)  d(let,2)  m(let,2)  x(let,2)  v(let,2)  y(let,4)  b(let,2)  g(let,2)  E(let,1)
+
+## fns["37:9"]  L37-L44  (l, c, u = 4) => { let f = 0, h = 0.5, p = 0; for (let d = 0; 
+  l(param,3)  c(param,3)  u(param,1)  f(let,2)  h(let,3)  p(let,2)  d(let,2)
+
+## fns["49:9"]  L49-L52  (n, e, t) => { let i = (t - n) / (e - n); return ((i = i < 0 ? 0 : i > 1 ? 1 : i),
+  n(param,2)  e(param,1)  t(param,1)  i(let,7)
+
+## fns["56:0"]  L56-L136  function qw(n = 128) { let e = n * uh, t = n * Wg, i = new Uint8Array(e * t * 4)
+  n(param,26)  e(let,3)  t(let,2)  i(let,5)  s(let,8)  o(let,5)  r(let,2)  a(let,2)  l(let,8)  c(let,8)  u(let,1)  f(let,1)  h(let,8)  p(let,7)  d(let,8)  m(let,8)  x(let,1)  v(let,1)  y(let,1)  b(let,1)  g(let,1)  E(let,1)  M(let,2)  _(let,4)  T(let,4)  w(let,2)  S(let,4)  R(let,2)  d(let,4)  m(let,4)  x(let,8)  v(let,5)  y(let,2)  b(let,4)  g(let,3)  E(let,3)  M(let,3)  _(let,5)  T(let,2)  w(let,1)  S(let,1)  R(let,5)  z(let,5)  I(let,1)  L(let,1)  U(let,4)  k(let,2)  C(let,1)  _(let,8)  T(let,2)  w(let,1)  S(let,2)  R(let,1)  z(let,2)  I(let,1)
+
+## fns["149:0"]  L149-L237  function Xw(n = 128) { let e = n * c1, t = n * Uv, i = new Uint8Array(e * t * 4)
+  n(param,8)  e(let,3)  t(let,2)  i(let,5)  s(let,11)  o(let,1)  r(let,8)  a(let,14)  l(let,1)  c(let,1)  u(let,4)  f(let,4)  h(let,14)  p(let,13)  d(let,14)  m(let,1)  x(let,11)  v(let,1)  y(let,4)  b(let,2)  g(let,2)  E(let,2)  M(let,2)  b(let,1)  g(let,1)  E(let,3)  M(let,3)  _(let,1)  T(let,2)  w(let,1)  b(let,4)  g(let,2)  b(let,1)  g(let,1)  E(let,5)  M(let,5)  _(let,2)  b(let,1)  b(let,3)
+
+## fns["154:19"]  L154-L165  () => { let a = 7 + Math.floor(s.rnd() * 4), l = []; for (let c = 0; c
+  a(let,2)  l(let,2)  c(let,3)
+
+## fns["250:0"]  L250-L645  function Yw(n = 256) { let e = n * pu, t = n * Fv, i = document.createElement('c
+  n(param,8)  e(let,15)  t(let,10)  i(let,4)  s(let,4)  o(let,4)  r(let,111)  a(let,16)  l(let,12)  c(let,3)  f(let,66)  h(let,22)  p(let,7)  d(let,5)  m(let,6)  x(let,9)  v(let,3)  y(let,2)  b(let,4)  g(let,1)  E(let,4)  M(let,1)  _(let,6)  T(let,2)  w(let,4)  S(let,2)  R(let,7)  z(let,1)  I(let,1)  L(let,7)  U(let,1)  k(let,1)  C(let,3)  A(let,3)  F(let,3)  H(let,4)  M(let,1)  M(let,1)  M(let,1)  M(let,1)  M(let,1)  M(let,1)
+
+## fns["263:10"]  L263-L267  (M, _) => { let T = l.createRadialGradient(0, 0, 0, 0, 0, _); for (let [w, S] 
+  M(param,1)  _(param,2)  T(let,2)  w(let,1)  S(let,3)
+
+## fns["271:8"]  L271-L281  (M, _, T, w = 22, S = 1) => { M.beginPath(); for (let R = 0; R < w; R++) { 
+  M(param,4)  _(param,1)  T(param,1)  w(param,2)  S(param,1)  R(let,4)  z(let,2)  I(let,2)  L(let,2)  U(let,2)
+
+## fns["282:8"]  L282-L291  (M, _, T, w, S, R, z) => { M.beginPath(); let I = T, L = _; M.mo
+  M(param,8)  _(param,1)  T(param,3)  w(param,1)  S(param,1)  R(param,1)  z(param,1)  I(let,5)  L(let,5)  U(let,2)  k(let,3)
+
+## fns["292:8"]  L292-L299  (M, _) => { let T = ((M % pu) + 0.5) * n, w = (Math.floor(M / pu) + 0.5) * n
+  M(param,2)  _(param,1)  T(let,2)  w(let,2)  S(let,3)  R(let,5)
+
+## fns["300:8"]  L300-L304  (M, _, T, w) => { let S = M.createRadialGradient(0, 0, _, 0, 0, T); for (let [
+  M(param,1)  _(param,1)  T(param,1)  w(param,1)  S(let,2)  R(let,1)  z(let,1)
+
+## fns["306:9"]  L306-L417  (_) => { ((r.fillStyle = x(r, _ * 0.1, _ * 0.6, [ [0, 'rgba(14,13,12,0.4)'],
+  _(param,10)  T(let,1)  w(let,5)  S(let,1)  R(let,1)  z(let,2)  I(let,1)  L(let,10)  U(let,2)  k(let,3)  C(let,6)  A(let,2)  F(let,4)  H(let,3)  k(let,2)  C(let,4)  A(let,2)  F(let,2)  k(let,2)  C(let,2)  A(let,2)  k(let,2)  C(let,1)
+
+## fns["321:12"]  L321-L354  (k, C, A, F, H, N) => { for (let J of [r, a]) (J.save(), J.translate(k, C), J.ro
+  k(param,1)  C(param,1)  A(param,3)  F(param,1)  H(param,1)  N(param,3)  Z(let,2)  Q(let,3)  W(let,9)  J(let,2)  J(let,3)
+
+## fns["325:18"]  L325-L335  (J, G) => { J.beginPath(); for (let te = 0; te < N; te++) { 
+  J(param,4)  G(param,1)  te(let,5)  oe(let,2)  ee(let,2)  le(let,2)  xe(let,2)
+
+## fns["419:9"]  L419-L501  (_) => { ((r.fillStyle = x(r, _ * 0.2, _ * 0.9, [ [0, 'rgba(186,180,168,0.22
+  _(param,9)  T(let,1)  w(let,10)  S(let,3)  R(let,2)  z(let,3)  I(let,2)  L(let,2)  U(let,2)  I(let,2)  L(let,2)  U(let,2)  I(let,2)  L(let,1)  I(let,2)  I(let,2)  L(let,2)  U(let,3)
+
+## fns["437:14"]  L437-L447  (I, L, U, k) => { I.beginPath(); for (let C = 0; C < S; C++) { l
+  I(param,4)  L(param,1)  U(param,2)  k(param,2)  C(let,5)  A(let,4)  F(let,4)
+
+## fns["503:9"]  L503-L532  (_) => { (p(r, _ * 0.27, 0.7, 11, 1.45), (r.fillStyle = 'rgba(206,182,140,0.85)'), r
+  _(param,8)  T(let,2)  w(let,3)  S(let,2)  R(let,2)
+
+## fns["534:9"]  L534-L563  (_) => { ((r.fillStyle = x(r, 0, _ * 0.98, [ [0, 'rgba(6,5,5,0.92)'], 
+  _(param,8)  T(let,2)  w(let,2)  S(let,2)  T(let,2)  w(let,6)  S(let,4)  R(let,2)
+
+## fns["565:9"]  L565-L579  (_) => { for (let T = 0; T < 14; T++) { let w = f() * h, S = f() *
+  _(param,7)  T(let,2)  w(let,2)  S(let,2)  R(let,1)  z(let,2)  I(let,2)  L(let,3)
+
+## fns["581:9"]  L581-L604  (_) => { ((r.fillStyle = x(r, 0, _ * 0.5, [ [0, 'rgba(235,240,242,0.55)'], 
+  _(param,9)  T(let,3)  w(let,1)  S(let,3)  R(let,2)  T(let,3)  w(let,1)
+
+## fns["610:8"]  L610-L614  (M) => { let _ = M % pu, T = Math.floor(M / pu); return [(_ + b) / pu,
+  M(param,2)  _(let,2)  T(let,2)
+
+## fns["771:0"]  L771-L902  function Vv( n, e, { lit: t, tex: i, cols: s, rows: o, renderOrder: r, sun: a, sunDi
+  n(param,3)  e(param,3)  t(param,4)  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(param,1)  l(param,1)  c(param,1)  u(param,1)  f(let,6)  h(let,4)  p(let,2)  d(let,2)  m(let,2)  x(let,2)  v(let,10)  y(let,3)  b(let,9)  g(let,5)  E(let,5)  M(let,5)  _(let,5)  T(let,6)  w(let,1)
+
+## fns["782:10"]  L782-L785  (S) => { let R = new THREE.InstancedBufferAttribute(new Float32Array(e * 4), 4); 
+  S(param,1)  R(let,3)
+
+## fns["831:24"]  L831-L847  (S, R, z) => { let I = S.getRenderTarget(), L; I ? (L = I.height) : (S
+  S(param,2)  R(param,0)  z(param,4)  I(let,2)  L(let,3)  U(let,1)  k(let,7)  C(let,5)
+
+## fns["863:10"]  L863-L887  (S, R, z, I, L, U, k, C, A, F, H, N, Z, Q, W, J) { let G = T.n; if (G >= e
+  S(param,1)  R(param,1)  z(param,1)  I(param,1)  L(param,1)  U(param,1)  k(param,1)  C(param,1)  A(param,1)  F(param,1)  H(param,1)  N(param,1)  Z(param,1)  Q(param,1)  W(param,1)  J(param,1)  G(let,3)  te(let,16)
+
+## fns["892:13"]  L892-L899  () => { let S = T.n; if (((f.instanceCount = S), (b.visible = S > 0), !!S)) 
+  S(let,4)  R(let,3)  z(let,3)
+
+## fns["908:15"]  L908-L946  (e, t) { ((this.cap = e), (this.sorted = t), (this.n = 0), (this.freeTop = e)); 
+  e(param,11)  t(param,1)  i(let,28)  s(let,4)
+
+## fns["947:9"]  L947-L950  () { ((this.n = 0), (this.freeTop = this.cap)); for (let e = 0; e < this.cap; 
+  e(let,4)
+
+## fns["951:8"]  L951-L990  (e, t, i, s, o, r, a, l, c) { if (this.freeTop === 0) return -1; let u = this.
+  e(param,1)  t(param,1)  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(param,1)  l(param,1)  c(param,1)  u(let,34)
+
+## fns["991:10"]  L991-L1093  (e, t, i, s, o) { let { px: r, py: a, pz: l, vx: c, vy: u, vz: f, age: h, life: p, o
+  e(param,10)  t(param,1)  i(param,3)  s(param,3)  o(param,4)  r(let,4)  a(let,7)  l(let,4)  c(let,7)  u(let,10)  f(let,7)  h(let,5)  p(let,2)  d(let,8)  m(let,1)  x(let,1)  v(let,1)  y(let,1)  b(let,5)  g(let,1)  E(let,3)  M(let,25)  _(let,7)  T(let,6)  w(let,1)  S(let,1)  R(let,3)  z(let,3)  I(let,3)  L(let,4)  U(let,4)  k(let,4)  C(let,3)  A(let,2)  F(let,2)  H(let,2)  N(let,2)  Z(let,3)  Z(let,3)  Z(let,4)  Q(let,3)  Z(let,3)  E(let,2)  M(let,4)  _(let,2)  T(let,1)  w(let,6)  E(let,3)  M(let,52)  _(let,2)  T(let,2)  w(let,2)  _(let,3)  T(let,3)  w(let,4)  S(let,4)  R(let,3)  z(let,3)
+
+## fns["1096:15"]  L1096-L1114  (e = 48) { ((this.cap = e), (this.n = 0)); let t = () => new Float32Array(e); 
+  e(param,3)  t(let,14)
+
+## fns["1118:7"]  L1118-L1144  (e, t, i, s, o, r, a) { let l = this.n; l >= this.cap ? (l = 0) : this.n++; 
+  e(param,6)  t(param,3)  i(param,1)  s(param,1)  o(param,1)  r(param,2)  a(param,1)  l(let,18)  c(let,3)  u(let,3)  f(let,3)  h(let,5)
+
+## fns["1145:10"]  L1145-L1219  (e, t, i, s) { let o = this.n; for (let r = 0; r < o; r++) { let a = t
+  e(param,2)  t(param,3)  i(param,2)  s(param,1)  o(let,6)  r(let,30)  a(let,2)  l(let,5)  c(let,2)  u(let,6)  f(let,4)  h(let,3)  p(let,6)  d(let,4)  m(let,4)  x(let,4)  v(let,3)  y(let,2)  b(let,2)  g(let,2)  E(let,3)  M(let,3)  _(let,3)  T(let,2)
+
+## fns["1228:0"]  L1228-L1251  function XP() { let n = new THREE.BoxGeometry(1, 1, 1, 2, 1, 2), e = n.attributes.po
+  n(let,5)  e(let,8)  t(let,5)  i(let,5)  s(let,2)  o(let,9)  r(let,2)  a(let,6)  l(let,4)  c(let,3)  u(let,4)  h(let,2)
+
+## fns["1254:15"]  L1254-L1287  (e, t = 256) { ((this.G = e), (this.cap = t), (this.next = 0), (this.live = 0)); 
+  e(param,1)  t(param,6)  i(let,2)  s(let,8)  o(let,17)  r(let,3)
+
+## fns["1288:9"]  L1288-L1292  () { (this.state.fill(0), Ds.makeScale(0, 0, 0)); for (let e = 0; e < this.cap
+  e(let,3)
+
+## fns["1293:7"]  L1293-L1320  (e, t, i, s, o, r, a, l, c, u, f, h, p, d) { let m = this.next; ((this.next = 
+  e(param,1)  t(param,1)  i(param,1)  s(param,1)  o(param,1)  r(param,1)  a(param,1)  l(param,1)  c(param,1)  u(param,1)  f(param,1)  h(param,1)  p(param,1)  d(param,1)  m(let,22)  x(let,2)  v(let,2)  y(let,2)  b(let,3)  g(let,3)
+
+## fns["1321:10"]  L1321-L1363  (e) { let t = this.state, i = this.mesh.instanceMatrix.array, s = 0,
+  e(param,6)  t(let,3)  i(let,2)  s(let,3)  o(let,3)  r(let,45)  a(let,3)  l(let,4)  c(let,3)  u(let,2)
+
+## fns["1371:0"]  L1371-L1390  function $P() { let t = [ [0, 0], [0.006076, 0], [0.0062, 0.0012], 
+  t(let,1)  i(let,2)
+
+## fns["1386:12"]  L1386-L1386  (s) => new THREE.Vector2(s[0], s[1] - 0.052 / 2)), 10, ); return (i.computeVer
+  s(param,2)
+
+## fns["1393:13"]  L1393-L1431  (e, t = 60) { ((this.G = e), (this.cap = t), (this.next = 0)); let i; try { 
+  e(param,2)  t(param,7)  i(let,6)  s(let,7)  o(let,16)  r(let,3)
+
+## fns["1432:7"]  L1432-L1436  () { (this.state.fill(0), Ds.makeScale(0, 0, 0)); for (let e = 0; e < this.cap; e+
+  e(let,3)
+
+## fns["1437:10"]  L1437-L1444  (e) { let t = this.G.physics; if (((this.floor[e] = 0), (this.surface[e] = 'concre
+  e(param,8)  t(let,3)  i(let,3)
+
+## fns["1445:5"]  L1445-L1468  (e, t) { let i = this.next; ((this.next = (i + 1) % this.cap), (this.px[i] =
+  e(param,3)  t(param,3)  i(let,19)
+
+## fns["1469:8"]  L1469-L1540  (e) { let t = this.state, i = this.mesh.instanceMatrix.array, s = 0, 
+  e(param,8)  t(let,4)  i(let,2)  s(let,2)  o(let,3)  r(let,68)  a(let,2)  l(let,4)  c(let,4)  u(let,4)  f(let,4)  h(let,4)  p(let,4)  d(let,4)  m(let,4)  x(let,4)  v(let,2)  y(let,2)  b(let,2)  g(let,2)  E(let,4)  M(let,2)  _(let,3)
+
+## fns["1553:15"]  L1553-L1606  (e, t = 160) { ((this.cap = t), (this.next = 0), (this.count = 0)); let i = (t
+  e(param,0)  t(param,8)  i(let,6)  s(let,6)  o(let,7)  r(let,4)  a(let,7)  l(let,2)  l(let,4)  c(let,6)  u(let,6)
+
+## fns["1605:48"]  L1605-L1605  (c) => i.uv(c)); } clear() { (this.col.array.fill(0), this.pos.array
+  c(param,1)
+
+## fns["1615:7"]  L1615-L1688  (e, t, i, s, o = 1, r = 1) { let a = this.uvs[i] || this.uvs.bullet_concrete, 
+  e(param,3)  t(param,3)  i(param,3)  s(param,1)  o(param,3)  r(param,2)  a(let,2)  l(let,8)  c(let,6)  u(let,6)  f(let,9)  h(let,9)  p(let,9)  d(let,3)  m(let,10)  x(let,10)  v(let,10)  y(let,3)  b(let,3)  g(let,2)  E(let,2)  M(let,2)  _(let,2)  T(let,6)  w(let,6)  S(let,4)  R(let,4)  z(let,4)  I(let,4)  L(let,4)  U(let,4)  k(let,3)  C(let,4)  A(let,4)  F(let,4)  H(let,12)  N(let,3)  Z(let,8)  Q(let,8)  W(let,29)  J(let,4)  G(let,2)  te(let,1)  oe(let,4)  J(let,6)  J(let,5)
+
+## fns["1694:7"]  L1694-L1694  (n, e) => n + (e - n) * Math.random(), Ut = new THREE.Vector3(), jt = new THREE.Vector
+  n(param,2)  e(param,1)
+
+## fns["1706:0"]  L1706-L1717  function ph(n, e, t, i) { return ( n == null ? ((Lo[0] = e), (Lo[1] = t), (Lo[
+  n(param,10)  e(param,1)  t(param,1)  i(param,1)
+
+## fns["1719:0"]  L1719-L1728  function go(n, e, t) { let i = Et() * 2 - 1, s = Et() * 2 - 1, o = Et() * 2 - 1,
+  n(param,4)  e(param,1)  t(param,5)  i(let,2)  s(let,2)  o(let,2)  r(let,1)  a(let,3)  l(let,2)
+
+## fns["1730:0"]  L1730-L3054  async function f1(n) { let e = n.scene || (n.render && n.render.scene), t = new THRE
+  n(param,31)  e(let,1)  t(let,3)  i(let,1)  s(let,1)  o(let,1)  r(let,6)  a(let,7)  l(let,53)  c(let,143)  u(let,4)  f(let,5)  h(let,4)  p(let,9)  d(let,4)  m(let,9)  x(let,4)  v(let,2)  y(let,2)  b(let,5)  g(function,11)  E(function,8)  M(function,18)  _(function,3)  T(function,6)  w(function,13)  S(function,4)  R(function,8)  z(function,1)  I(function,1)  L(function,3)  U(function,1)  k(function,4)  C(let,1)  A(function,2)  F(function,1)  H(function,1)  N(function,1)  Z(let,3)  Q(function,1)  W(let,7)  J(let,1)  G(function,2)  te(function,1)  oe(function,1)  ee(let,2)  le(function,1)  xe(function,1)  j(let,2)  O(let,8)
+
+## fns["1768:8"]  L1768-L1771  (j, O, q, ue, de) => { let $ = y(); $ && $.flash(j, O, q, ue, de); }; fu
+  j(param,1)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(let,2)
+
+## fns["1772:2"]  L1772-L1783  function g(j, O) { let q = n.physics; if (!q || !q.raycast) return 1; (Ls.copy
+  j(param,1)  O(param,2)  q(let,3)  ue(let,3)
+
+## fns["1784:2"]  L1784-L1795  function E(j) { let O = n.physics; if (!O || !O.raycast) return 0; (Ls.copy(j)
+  j(param,1)  O(let,3)  q(let,4)
+
+## fns["1796:2"]  L1796-L1816  function M(j, O, q, ue, de, $, se, fe, me, ge, ce, P, D, B, X, re, Y, he) { let V = l.
+  j(param,1)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(param,1)  se(param,1)  fe(param,1)  me(param,1)  ge(param,1)  ce(param,1)  P(param,1)  D(param,1)  B(param,1)  X(param,1)  re(param,1)  Y(param,1)  he(param,2)  V(let,17)
+
+## fns["1817:2"]  L1817-L1834  function _(j, O, q, ue, de, $, se, fe, me, ge, ce, P) { let D = c.emit(j, O, q, ue, de
+  j(param,1)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(param,1)  se(param,1)  fe(param,2)  me(param,1)  ge(param,1)  ce(param,1)  P(param,1)  D(let,14)
+
+## fns["1835:2"]  L1835-L1854  function T(j, O, q, ue, de, $, se, fe, me, ge, ce, P) { for (let D = 0; D < q; D++) { 
+  j(param,3)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(param,1)  se(param,1)  fe(param,1)  me(param,1)  ge(param,1)  ce(param,1)  P(param,1)  D(let,2)  B(let,3)
+
+## fns["1855:2"]  L1855-L1867  function w(j, O, q, ue, de, $, se, fe, me, ge) { let ce = c.emit(j, O, q, 0, 0, 0, ue,
+  j(param,1)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(param,1)  se(param,1)  fe(param,1)  me(param,1)  ge(param,1)  ce(let,9)
+
+## fns["1868:2"]  L1868-L1882  function S(j, O, q, ue, de, $, se, fe, me) { let ge = c.emit(j, O, q, 0, 0, 0, ue, de,
+  j(param,1)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(param,1)  se(param,1)  fe(param,1)  me(param,1)  ge(let,11)
+
+## fns["1883:2"]  L1883-L1905  function R(j, O, q, ue, de, $, se, fe, me, ge, ce, P, D, B, X, re) { for (let Y = 0; Y
+  j(param,3)  O(param,1)  q(param,1)  ue(param,1)  de(param,1)  $(param,1)  se(param,1)  fe(param,1)  me(param,1)  ge(param,1)  ce(param,1)  P(param,1)  D(param,1)  B(param,1)  X(param,1)  re(param,1)  Y(let,2)  he(let,3)  V(let,3)
+
+## fns["1906:2"]  L1906-L1912  function z(j, O, q = 12) { (jt.copy(O || Ri), jt.lengthSq() < 1e-6 && jt.copy(Ri
+  j(param,4)  O(param,1)  q(param,1)
+
+## fns["1913:2"]  L1913-L1942  function I(j, O = {}) { let q = O.size || 1, ue = O.life || 2.5, de = O.ri
+  j(param,4)  O(param,8)  q(let,5)  ue(let,1)  de(let,1)  $(let,3)  se(let,6)  fe(let,1)  me(let,1)  ge(let,2)
+
+## fns["1943:2"]  L1943-L1993  function L(j, O, q = 1, ue = 0.5, de = 0.48, $ = 0.45) { (Ut.copy(O || Ri), Ut.lengthS
+  j(param,7)  O(param,1)  q(param,5)  ue(param,2)  de(param,2)  $(param,2)  se(let,3)  fe(let,2)  fe(let,3)  me(let,3)  ge(let,3)
+
+## fns["1994:2"]  L1994-L2030  function U(j, O = {}) { let q; if (O.color !== void 0) q = ph(O.color, 0.4, 0.4, 0
+  j(param,2)  O(param,11)  q(let,6)  ue(let,1)  de(let,1)  $(let,1)  se(let,6)  fe(let,2)  me(let,5)
+
+## fns["2031:2"]  L2031-L2115  function k(j, O = 1) { let q = g(j, Ri), ue = j.y; for (let ge = 0; ge < 5; 
+  j(param,12)  O(param,14)  q(let,11)  ue(let,6)  de(let,1)  $(let,1)  se(let,1)  fe(let,1)  me(let,2)  ge(let,2)  ce(let,3)  P(let,13)  ge(let,2)  ge(let,2)  ce(let,2)  P(let,6)
+
+## fns["2117:2"]  L2117-L2370  function A(j, O, q, ue, de) { (Ut.copy(O || Ri), Ut.lengthSq() < 1e-6 && Ut.copy
+  j(param,1)  O(param,1)  q(param,6)  ue(param,3)  de(param,1)  $(let,68)  fe(let,5)  me(let,2)  ge(let,7)  ce(let,7)  P(let,7)  D(let,2)  B(let,3)  X(let,2)  D(let,1)  B(let,2)  B(let,2)  D(let,2)  B(let,3)  X(let,10)  D(let,1)  B(let,3)  X(let,2)  re(let,2)  Y(let,2)  he(let,3)  V(let,3)  D(let,1)  D(let,1)  B(let,2)
+
+## fns["2371:2"]  L2371-L2411  function F(j, O, q = {}) { let ue = ph(q.color, 1, 0.8, 0.46), de = q.intensity 
+  j(param,6)  O(param,2)  q(param,5)  ue(let,3)  de(let,3)  $(let,3)  se(let,2)  fe(let,1)  me(let,1)  ge(let,3)  ce(let,3)  P(let,2)
+
+## fns["2412:2"]  L2412-L2505  function H(j, O, q = {}) { let ue = q.scale || 1; (jt.copy(O || Ri), jt.lengthSq()
+  j(param,4)  O(param,1)  q(param,2)  ue(let,27)  de(let,3)  $(let,7)  se(let,7)  fe(let,7)  me(let,4)  ge(let,5)  ce(let,5)  P(let,8)  D(let,2)  B(let,3)
+
+## fns["2506:2"]  L2506-L2508  function N(j, O) { h.add(j, O); } let Z = { pos: new THREE.Vector3(), size: 1 }; 
+  j(param,1)  O(param,1)
+
+## fns["2510:2"]  L2510-L2706  function Q(j, O = 1) { let q = Math.max(0.4, Math.min(O, 4)), ue = j.x, de
+  j(param,6)  O(param,2)  q(let,44)  ue(let,14)  de(let,7)  $(let,14)  se(let,6)  fe(let,5)  me(let,4)  ge(let,4)  ce(let,6)  P(let,1)  D(let,1)  B(let,1)  X(let,2)  re(let,2)  Y(let,3)  he(let,4)  V(let,2)  ne(let,3)  ye(let,2)  X(let,2)  re(let,3)  Y(let,11)  X(let,2)  re(let,3)  Y(let,3)  X(let,4)  re(let,5)  Y(let,3)  he(let,3)  V(let,3)  ne(let,4)  X(let,2)  re(let,3)  Y(let,11)  X(let,3)  re(let,3)  Y(let,3)  he(let,17)
+
+## fns["2725:18"]  L2725-L2727  (q) => { O.pos.copy(q); }), W.push(O)); } let J = { active: !1, po
+  q(param,1)
+
+## fns["2731:2"]  L2731-L2760  function G(j, O, q, ue, de, $, se) { let fe = null; for (let me = 0; me < W.length
+  j(param,2)  O(param,2)  q(param,2)  ue(param,2)  de(param,1)  $(param,1)  se(param,2)  fe(let,19)  me(let,3)  me(let,4)
+
+## fns["2761:2"]  L2761-L2763  function te(j, O = 'steam', q = {}) { return G(j.x, j.y, j.z, O, q.ttl || 1 / 0, q.sca
+  j(param,3)  O(param,1)  q(param,2)
+
+## fns["2764:2"]  L2764-L2964  function oe(j) { for (let O = 0; O < W.length; O++) { let q = W[O]; if (!q
+  j(param,8)  O(let,3)  q(let,49)  ue(let,9)  de(let,8)  $(let,9)  se(let,18)  fe(let,2)  me(let,10)  fe(let,6)  me(let,2)  ge(let,9)  fe(let,3)  me(let,3)  ge(let,10)  fe(let,13)  fe(let,11)  fe(let,3)  me(let,3)  fe(let,3)
+
+## fns["2965:24"]  L2965-L2967  (j) => { !j || !j.point || A(j.point, j.normal, j.surface, j.dir, j.enemy); }); le
+  j(param,7)
+
+## fns["2968:11"]  L2968-L2974  (j, O) => { try { return !!(n.ground && n.ground.isPuddle && n.ground.isPuddle(j
+  j(param,1)  O(param,1)
+
+## fns["2975:30"]  L2975-L2980  (j) => { let O = (j && j.pos) || (n.player && n.player.pos); O && ((j && j.s
+  j(param,6)  O(let,6)
+
+## fns["2981:31"]  L2981-L3012  (j) => { let O = n.player && n.player.pos; if (O) { if ((jo.set(O.x, M
+  j(param,4)  O(let,6)  q(let,1)  ue(let,2)  de(let,4)
+
+## fns["3013:2"]  L3013-L3025  function le(j) { (j > 0 || (j = 0), (m += j), oe(j)); let O = n.camera ? n.camera.
+  j(param,9)  O(let,2)
+
+## fns["3026:2"]  L3026-L3030  function xe() { (l.clear(), c.clear(), u.clear(), f.clear(), h.clear(), p.clear()); 
+  j(let,2)
+
+## fns["3045:9"]  L3045-L3047  (j, O, q = 'bullet_concrete', ue) { (Ut.copy(O || Ri), p.add(j, Ut, q, ue)); }, 
+  j(param,1)  O(param,1)  q(param,1)  ue(param,1)
+
+## fns["3056:0"]  L3056-L3207  function KP(n) { let e = n.fx, t = n.params.fxshow || 'all', i = new THREE.Group
+  n(param,13)  e(let,17)  t(let,17)  i(let,2)  s(let,3)  o(let,16)  r(let,1)  a(let,1)  l(let,3)  c(let,1)  u(let,9)  f(let,5)  h(let,11)  p(let,0)  d(let,17)  m(let,22)  x(let,1)  v(let,1)  y(let,1)  b(let,1)  g(let,3)  E(let,3)  M(let,3)  _(let,4)  T(let,2)  w(let,1)  S(let,1)  R(let,1)  z(let,1)  I(function,1)  L(let,1)  U(let,4)  k(let,4)  C(function,2)  A(let,3)  F(let,3)  H(let,2)
+
+## fns["3060:8"]  L3060-L3063  (N, Z, Q, W, J) => { let G = new THREE.Mesh(N, n.mats.get(Z)); return (G.posit
+  N(param,1)  Z(param,1)  Q(param,1)  W(param,1)  J(param,1)  G(let,5)
+
+## fns["3071:10"]  L3071-L3071  (N, Z, Q) => new THREE.Vector3(N, Z, Q), r = o(-6.5, 1.5, 7), a = o(6.5, 1.4, 7), 
+  N(param,1)  Z(param,1)  Q(param,1)
+
+## fns["3107:2"]  L3107-L3139  function I(N) { let Z = y++ % 2 ? a : r; if (((d.enemy = null), (d.from = 'player'
+  N(param,9)  Z(let,6)  Q(let,4)
+
+## fns["3143:2"]  L3143-L3176  function C(N) { if ( ((x += N), L === 'muzzle' && (e.muzzleFlash(U
+  N(param,5)  Z(let,1)
+
+## fns["3179:13"]  L3179-L3181  (N) => { A || F(N); }; let H = window.__setShot; return ( H && (window
+  N(param,1)
+
+## fns["3185:26"]  L3185-L3193  (N) => { if (N && N.fxage !== void 0) { (e.clear(), h.set(0, 0.25, 3.5),
+  N(param,5)  Z(let,1)  Q(let,2)
+
+## fns["3197:12"]  L3197-L3204  (N) { if (!T) { T = !0; let Z = +(n.params.fxt || 0); 
+  N(param,1)  Z(let,1)  Q(let,2)

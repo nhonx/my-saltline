@@ -1,0 +1,195 @@
+# render.js  top-level minified bindings (use "globals")
+  Ia  import  decl@L3  refs=2
+  Ro  import  decl@L3  refs=5
+  T0  import  decl@L3  refs=9
+  Z0  import  decl@L3  refs=11
+  ar  import  decl@L3  refs=1
+  jr  import  decl@L3  refs=2
+  zi  import  decl@L3  refs=2
+  Ei  import  decl@L4  refs=3
+  ns  import  decl@L4  refs=6
+  ot  import  decl@L4  refs=4
+  rv  var  decl@L6  refs=2
+  tv  var  decl@L10  refs=2
+  nv  var  decl@L16  refs=2
+  qM  function  decl@L28  refs=1
+  H9  var  decl@L45  refs=1
+  O9  var  decl@L134  refs=1
+  V9  function  decl@L138  refs=1
+  XM  function  decl@L153  refs=1
+  YM  function  decl@L178  refs=1
+  $M  var  decl@L189  refs=2
+  e1  var  decl@L190  refs=5
+  ZM  function  decl@L192  refs=1
+  jM  function  decl@L237  refs=1
+  KM  function  decl@L306  refs=1
+  JM  var  decl@L310  refs=1
+  iv  var  decl@L312  refs=2
+  sg  var  decl@L313  refs=4
+  e_  var  decl@L314  refs=2
+  W9  var  decl@L315  refs=1
+  ao  var  decl@L316  refs=14
+  sv  var  decl@L322  refs=3
+  G9  var  decl@L326  refs=1
+  q9  var  decl@L329  refs=1
+  X9  var  decl@L338  refs=1
+  Y9  var  decl@L371  refs=1
+  QM  var  decl@L428  refs=2
+  $9  var  decl@L442  refs=1
+  Z9  var  decl@L475  refs=1
+  j9  var  decl@L497  refs=1
+  K9  var  decl@L517  refs=1
+  J9  var  decl@L527  refs=1
+  Q9  var  decl@L541  refs=1
+  ek  var  decl@L568  refs=1
+  tk  var  decl@L588  refs=1
+  nk  var  decl@L695  refs=1
+  t_  function  decl@L727  refs=1
+  n_  var  decl@L1296  refs=2
+  i_  var  decl@L1297  refs=2
+  ov  function  decl@L1299  refs=2
+  ik  function  decl@L1883  refs=1
+
+## fns["28:0"]  L28-L43  function qM() { let e = new Uint8Array(262144), t = 2654435769, i = () => ((t ^=
+  e(let,5)  t(let,9)  i(let,3)  s(let,8)  o(let,6)
+
+## fns["138:0"]  L138-L151  function V9(n) { return { tNoise: { value: n }, uTime: { value: 0 }, uEnv: {
+  n(param,1)
+
+## fns["153:0"]  L153-L176  function XM(n) { let e = new THREE.ShaderMaterial({ name: 'saltline-sky', si
+  n(param,1)  e(let,2)  t(let,2)  i(let,7)
+
+## fns["178:0"]  L178-L187  function YM(n, e) { let t = new THREE.PMREMGenerator(n), i = e.material.clone(); (
+  n(param,1)  e(param,3)  t(let,2)  i(let,4)  s(let,2)  o(let,2)  r(let,1)
+
+## fns["192:0"]  L192-L235  function ZM(n, e, t, i, s) { let o = Z0.dir.clone().normalize(), r = e.clone().add(t
+  n(param,7)  e(param,2)  t(param,2)  i(param,1)  s(param,1)  o(let,1)  r(let,3)  a(let,3)  l(let,2)  c(let,3)  u(let,3)  f(let,3)  h(let,3)  p(let,5)  d(let,3)  m(let,2)  x(let,13)  v(let,4)
+
+## fns["208:8"]  L208-L211  (y, b, g) => { for (let E = 0; E < 8; E++) (l.set(E & 1 ? b.x : y.x, E & 2 ?
+  y(param,3)  b(param,3)  g(param,1)  E(let,5)
+
+## fns["212:11"]  L212-L219  (y) => { ((c = Math.min(c, y.x)), (u = Math.max(u, y.x)), (f = Math.min(f,
+  y(param,6)
+
+## fns["220:12"]  L220-L222  (y) => { p = Math.min(p, -y.z); })); let x = n.shadow.camera, v = 1; ret
+  y(param,1)
+
+## fns["237:0"]  L237-L304  function jM(n, { taps: e = 16, searchTaps: t = 8 } = {}) { let i = THREE.ShaderChunk.sha
+  n(param,3)  e(param,3)  t(param,2)  i(let,1)  s(let,5)  o(let,4)  r(let,4)  a(let,3)  l(let,1)
+
+## fns["727:0"]  L727-L1294  function t_(n, e, { noiseTex: t }) { let i = new THREE.BufferGeometry(); (i.setAttribu
+  n(param,8)  e(param,4)  t(param,1)  i(let,3)  s(let,4)  o(let,2)  r(let,3)  a(let,15)  l(function,19)  c(let,12)  u(let,5)  f(let,9)  h(let,11)  p(let,16)  d(let,5)  m(let,1)  x(let,42)  v(let,3)  y(let,97)  b(let,8)  g(let,7)  E(let,3)  M(let,2)  _(let,23)  T(let,10)  w(let,2)  S(let,4)  R(let,7)  z(let,5)  I(let,6)  L(let,6)  U(let,2)  k(let,2)  C(let,4)  A(let,4)  F(let,8)  H(let,2)  N(let,2)  Z(let,2)  Q(let,2)  W(let,3)  J(let,2)  G(let,1)  te(let,5)  oe(let,3)  ee(let,3)  le(function,2)  xe(function,1)  j(function,1)  O(function,1)  q(function,1)  ue(let,5)  de(function,1)  $(let,3)  se(function,1)  fe(let,2)  me(let,2)  me(let,2)
+
+## fns["738:8"]  L738-L752  (me, ge, ce, P = {}) => { let D = new THREE.ShaderMaterial({ name: 'post-' +
+  me(param,2)  ge(param,1)  ce(param,1)  P(param,1)  D(let,2)
+
+## fns["753:2"]  L753-L755  function l(me, ge) { ((s.material = me), n.setRenderTarget(ge), n.render(s, o)); } 
+  me(param,1)  ge(param,1)
+
+## fns["760:8"]  L760-L772  (me = c, ge = f, ce = {}) => { let P = new THREE.WebGLRenderTarget(4, 4, { t
+  me(param,1)  ge(param,2)  ce(param,1)  P(let,2)
+
+## fns["1009:2"]  L1009-L1014  function le() { let me = Math.max(6, d().volSteps | 0), ge = d().name === 'test'
+  me(let,2)  ge(let,2)
+
+## fns["1015:2"]  L1015-L1045  function xe(me, ge) { if ( ((me = Math.max(8, me | 0)), (ge = Math.max(8, 
+  me(param,10)  ge(param,10)  ce(let,4)  P(let,4)  D(let,5)  D(let,1)  D(let,4)
+
+## fns["1046:2"]  L1046-L1067  function j() { if (!y.depthCopy) { let me = new THREE.DepthTexture(_.w, _.h); 
+  me(let,4)
+
+## fns["1068:2"]  L1068-L1070  function O(me) { y.depthCopy && ((w.uniforms.tDepth.value = me), l(w, y.depthCopy)); 
+  me(param,1)
+
+## fns["1071:2"]  L1071-L1238  function q({ hdr: me, camera: ge, sun: ce, dt: P, post: D, exposure: B, time: X, fast: re,
+  me(param,2)  ge(param,13)  ce(param,8)  P(param,4)  D(param,7)  B(param,1)  X(param,2)  re(param,1)  Y(param,1)  he(let,8)  V(let,2)  ne(let,3)  ye(let,3)  Te(let,3)  Re(let,4)  Ue(let,3)  Ve(let,3)  ze(let,2)  Ge(let,2)  _e(let,4)  Ne(let,1)  ke(let,1)  je(let,2)  Ze(let,2)  qe(let,2)  Oe(let,4)  Oe(let,18)  Oe(let,8)  mt(let,1)  $e(let,1)  Ke(let,2)  Oe(let,2)  mt(let,2)  $e(let,2)  Ke(let,4)  Bt(let,2)  Gt(let,5)  Gt(let,7)  Oe(let,5)  Oe(let,7)  Oe(let,13)  mt(let,3)  $e(let,3)  Ke(let,3)  Bt(let,3)
+
+## fns["1239:11"]  L1239-L1239  (me) => (me > 0 ? (me < 1 ? me : 1) : 0); function de() { for (let ge of r) ge.dispo
+  me(param,3)
+
+## fns["1240:2"]  L1240-L1260  function de() { for (let ge of r) ge.dispose(); let me = [ y.scene, y.
+  me(let,2)  ge(let,1)  ge(let,1)
+
+## fns["1262:2"]  L1262-L1275  function se() { try { n.readRenderTargetPixels(y.adapt[g], 0, 0, 1, 1, $); 
+  me(let,2)  ge(let,1)
+
+## fns["1299:0"]  L1299-L1881  async function ov(n) { let e = n.params || {}, t = document.getElementById('view'), 
+  n(param,30)  e(let,12)  t(let,3)  i(let,72)  s(let,4)  o(let,8)  r(let,28)  a(let,24)  l(let,12)  c(let,2)  u(let,8)  f(let,20)  h(let,1)  p(let,3)  d(let,4)  m(let,1)  x(let,5)  v(let,2)  y(let,4)  b(let,10)  g(let,8)  E(let,17)  M(let,15)  _(let,1)  T(let,2)  w(let,11)  S(let,38)  R(function,1)  z(let,2)  I(let,2)  L(let,1)  U(let,3)  k(let,5)  C(let,3)  A(function,2)  F(function,2)  H(let,8)  N(let,1)  Z(function,2)  Q(let,27)  W(let,12)  J(function,2)  G(catch,3)  G(let,3)  te(let,8)  oe(let,2)  ee(catch,3)  G(catch,3)  G(catch,3)  G(let,2)  te(let,4)  G(catch,1)
+
+## fns["1321:26"]  L1321-L1342  (G, te, oe, ee) => { let le = '', xe = ''; try { ((le = G.getShaderSou
+  G(param,4)  te(param,1)  oe(param,1)  ee(param,2)  le(let,5)  xe(let,2)  j(let,4)
+
+## fns["1384:11"]  L1384-L1394  (G, te = 16763008, oe = 30, ee = 10, le = 0.06) { let xe = x.find((j) =>
+  G(param,1)  te(param,1)  oe(param,2)  ee(param,1)  le(param,2)  xe(let,6)
+
+## fns["1386:17"]  L1386-L1386  (j) => !j.userData.busy) || x.filter((j) => !j.userData.persistent).sort((j, O) 
+  j(param,1)
+
+## fns["1387:19"]  L1387-L1387  (j) => !j.userData.persistent).sort((j, O) => j.userData.ttl - O.userData.ttl)[0]; 
+  j(param,1)
+
+## fns["1387:55"]  L1387-L1387  (j, O) => j.userData.ttl - O.userData.ttl)[0]; xe && (xe.position.copy(G
+  j(param,1)  O(param,1)
+
+## fns["1395:13"]  L1395-L1408  () { let G = x.find((te) => !te.userData.busy); return G ? ((G.u
+  G(let,8)
+
+## fns["1396:23"]  L1396-L1396  (te) => !te.userData.busy); return G ? ((G.userData.busy = !0), 
+  te(param,1)
+
+## fns["1409:12"]  L1409-L1419  (G) { for (let te of x) { let oe = te.userData; oe.busy && 
+  G(param,1)  te(let,3)  oe(let,8)
+
+## fns["1462:27"]  L1462-L1468  (G) => { ((w.t = 0), (w.power = Math.min(1, (G && G.intensity) || 0.6))); let 
+  G(param,2)  te(let,2)
+
+## fns["1478:2"]  L1478-L1516  function R(G) { if (!S.enabled || !M || G > 1500) return; if (((S.settle -= G / 1e
+  G(param,4)  te(let,7)  oe(let,12)  ee(let,5)
+
+## fns["1519:8"]  L1519-L1521  (G, te) => { I[G] || ((I[G] = 1), console.error(te)); }, U = { calls: 0, tri
+  G(param,2)  te(param,1)
+
+## fns["1549:10"]  L1549-L1560  () => { let G = Q.interiorEnv && n.level && n.level.interiorBoxes && n.level.interiorB
+  G(let,7)
+
+## fns["1561:2"]  L1561-L1607  function Z(G) { (i.toneMapping !== THREE.NoToneMapping && (i.toneMapping = THREE.NoTon
+  G(param,1)  te(let,2)  oe(let,1)  ee(let,7)  le(let,2)
+
+## fns["1640:22"]  L1640-L1642  (G) { E && (E.autoExposure = !!G); }, get depthTexture() { if 
+  G(param,1)
+
+## fns["1652:16"]  L1652-L1654  (G) { z.push(G); }, renderWorld(G, te) { let oe = i.getRenderT
+  G(param,1)
+
+## fns["1655:17"]  L1655-L1674  (G, te) { let oe = i.getRenderTarget(), ee = i.shadowMap.needsUpdate, 
+  G(param,4)  te(param,1)  oe(let,1)  ee(let,1)  le(let,1)  xe(let,1)  j(let,1)
+
+## fns["1675:24"]  L1675-L1694  () { i.shadowMap.needsUpdate = !0; try { J(); } catch (G
+  G(let,1)  G(catch,3)
+
+## fns["1695:16"]  L1695-L1702  (G) { n.quality = G; let te = p(); f.shadow.mapSize.x !== te && 
+  G(param,2)  te(let,3)  oe(let,2)
+
+## fns["1703:12"]  L1703-L1726  () { let G = Math.max(2, t.clientWidth || window.innerWidth), te = Math.
+  G(let,6)  te(let,6)  oe(let,8)  ee(let,4)  le(let,5)  xe(let,2)  j(let,2)  O(let,5)  q(let,5)
+
+## fns["1727:11"]  L1727-L1763  (G) { let te = performance.now(); (C && R(te - C), (C = te), k++, i.info.r
+  G(param,3)  te(let,2)  oe(let,1)  ee(catch,3)  ee(let,1)  le(catch,3)
+
+## fns["1764:11"]  L1764-L1778  () { let G = i.info; return { calls: U.calls, tris: U.
+  G(let,4)
+
+## fns["1781:2"]  L1781-L1829  function J() { let G = n.level && n.level.interiorBoxes; if (!G || !G.length) retu
+  G(let,3)  te(let,7)  oe(let,1)  ee(let,1)  le(let,1)  xe(let,1)  j(let,3)  O(let,2)  q(let,2)
+
+## fns["1813:16"]  L1813-L1827  (q) => { let ue = q.material ? (Array.isArray(q.material) ? q.material : [q.material
+  q(param,4)  ue(let,2)  de(let,10)
+
+## fns["1883:0"]  L1883-L1970  function ik(n) { let e = new THREE.Group(); e.name = 'render-showcase'; let t = (f) 
+  n(param,10)  e(let,3)  t(let,9)  i(let,1)  s(let,1)  o(let,2)  r(let,2)  a(let,2)  l(let,1)  c(let,1)  f(let,2)  f(let,2)  f(let,1)  h(let,1)  p(let,1)  d(let,1)  m(let,1)  x(let,1)  v(let,2)  f(let,2)  f(let,2)  h(let,2)  p(let,2)  f(let,3)  f(let,4)  h(let,2)  f(let,1)  h(let,2)  p(let,1)  d(let,1)  m(let,1)  x(let,1)  v(let,3)  f(let,6)  h(let,4)  p(let,1)  d(let,4)
+
+## fns["1886:10"]  L1886-L1886  (f) => (e.add(f), f), i = new THREE.SphereGeometry(0.42, 48, 24); for (let f = 0; f 
+  f(param,2)
+
+## fns["1959:14"]  L1959-L1967  () => { let f = n.render.post, h = Math.round(n.camera.position.y * 1e3)
+  f(let,5)  h(let,5)
