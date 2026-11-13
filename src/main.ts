@@ -15,6 +15,7 @@ import {
 } from './engine/debug/bench';
 import { createCombatSystem } from './game/systems/combat';
 import { createPlayer } from './game/actors/player';
+import { initWeaponSelect } from './game/ui/weaponSelect';
 
 // Legacy recovered modules (incrementally migrating to src/engine & src/game)
 import { cv, lv } from './modules/mats.js';
@@ -207,6 +208,7 @@ async function boot() {
     await initModule('enemies', () => W5(ctx));
     await initModule('hud', () => sT(ctx));
     ctx.game = pT(ctx);
+    initWeaponSelect(ctx);
   }
 
   await setBootProgress('Waiting for first light', 0.92);

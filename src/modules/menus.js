@@ -24,6 +24,7 @@ var sL = `
     <div><dt>Aim</dt><dd>Right button</dd></div>
     <div><dt>Reload</dt><dd><kbd>R</kbd></dd></div>
     <div><dt>Swap weapon</dt><dd><kbd>Q</kbd>, wheel, or <kbd>1</kbd> <kbd>2</kbd></dd></div>
+    <div><dt>Weapon select</dt><dd><kbd>B</kbd></dd></div>
     <div><dt>Cut relay</dt><dd>Hold <kbd>E</kbd></dd></div>
     <div><dt>Jump</dt><dd><kbd>Space</kbd></dd></div>
     <div><dt>Sprint</dt><dd><kbd>Shift</kbd></dd></div>

@@ -1,5 +1,7 @@
 // @ts-nocheck
 import * as THREE from 'three';
+import { AK47_CONFIG, AK47_DEF, buildAk47Geometry } from '../game/weapons/ak47';
+import { DEAGLE_CONFIG, DEAGLE_DEF, DEAGLE_MAG_LEN, DEAGLE_RAKE, buildDesertEagleGeometry } from '../game/weapons/desertEagle';
 import { Hn, Ia, Is, Ro, T0, Z0, ar, j0, u0 } from './core.js';
 import { explosivesModule } from './explosives.js';
 import { Ei, Tr, bn } from './geometry.js';
@@ -86,9 +88,9 @@ function Fz() {
     r = 'rgba(158,160,158,0.92)',
     a = 'rgba(206,198,160,0.92)',
     l = 'rgba(196,52,36,0.95)';
-  (t('model', 'PAC-9', `700 104px ${o}`, r),
-    t('maker', 'LONGSHORE ARMS WORKS  \xB7  SALTLINE', `600 44px ${i}`, r),
-    t('cal', 'CAL 5.8\xD740   SN PA-004217', `500 38px ${s}`, r),
+  (t('model', 'AK-47', `700 104px ${o}`, r),
+    t('maker', 'IZHMASH  \xB7  7.62\xD739', `600 44px ${i}`, r),
+    t('cal', 'CAL 7.62\xD739   SN 1974-04217', `500 38px ${s}`, r),
     t('prop', 'PROPERTY OF PORT AUTHORITY \u2014 BERTH 4 ARMOURY', `600 40px ${i}`, r),
     t('sn', 'PA-004217', `500 40px ${s}`, r, 'center'),
     t('nm', 'BARREL NUT 54 N\xB7m  \xB7  DO NOT OIL THREADS', `600 34px ${i}`, r),
@@ -100,12 +102,12 @@ function Fz() {
     t('r' + (2 + h * 2), 'T' + (2 + h * 2), `600 40px ${s}`, 'rgba(150,152,150,0.88)', 'center');
   (t('optic', 'HX-2 REFLEX', `700 62px ${i}`, r, 'center'),
     t('light', '900 LM  IPX8', `600 56px ${i}`, r, 'center'),
-    t('p_model', 'PAC-4', `700 104px ${o}`, r),
-    t('p_name', 'BOSUN', `600 70px ${i}`, r),
-    t('p_cal', '9\xD719  PA-SVC', `500 38px ${s}`, r),
-    t('p_sn', 'SN PB-011902', `500 38px ${s}`, r),
+    t('p_model', 'DESERT EAGLE', `700 104px ${o}`, r),
+    t('p_name', '.50 AE', `600 70px ${i}`, r),
+    t('p_cal', '50 ACTION EXPRESS', `500 38px ${s}`, r),
+    t('p_sn', 'SN DE-050192', `500 38px ${s}`, r),
     t('p_rack', 'B4-11', `800 112px ${o}`, a, 'center'),
-    t('p_maker', 'LONGSHORE ARMS WORKS  \xB7  SALTLINE', `600 44px ${i}`, r),
+    t('p_maker', 'MAGNUM RESEARCH  \xB7  IMI', `600 44px ${i}`, r),
     t('p_prop', 'PROPERTY OF PORT AUTHORITY \u2014 BERTH 4', `600 40px ${i}`, r));
   {
     let [h, p] = Qo.warn;
@@ -1342,31 +1344,13 @@ var Zl = (n, e, t, i, s, o, r, a, l, c = 0.012) => {
       h = Math.max(a + t, 0, -t - l);
     return 1 - u5(0, c, Math.hypot(u, f, h));
   },
-  wn = {
-    name: 'PAC-9 Longshore',
-    muzzle: [0, 0, -0.531],
-    eject: [0.023, 0.004, -0.028],
-    sightY: 0.069,
-    lensF: 0.0285,
-    window: [
-      [-0.016, 0.057],
-      [0.016, 0.057],
-      [0.016, 0.0772],
-      [0.0122, 0.081],
-      [-0.0122, 0.081],
-      [-0.016, 0.0772],
-    ],
-    magPos: [0, -0.02, -0.0665],
-    boltTravel: 0.062,
-    railTop: 0.0435,
-    grip: [0, -0.1, 0.073],
-    handguard: [0, 0, -0.255],
-    handguardR: 0.021,
-    handlePos: [-0.026, 0.007, -0.078],
-    squeeze: 0.86,
-  };
+  wn = AK47_CONFIG;
 
 function TE() {
+  return buildAk47Geometry({ Mt, Q0, Nn, h0, m0, Eu, Su, $a, kn, b0, Fs, sy, Zl });
+}
+
+function _TE_UNUSED() {
   let n = [1, 1, 1],
     e = [1.16, 1.05, 0.98],
     t = [0.86, 0.93, 1.04],
@@ -2695,7 +2679,7 @@ function Zz(n) {
     (o(e, r + 1, r + 2, 3), o(t, r + 1, r + 2, 3), o(i, r + 1, r + 2, 3), o(s, r + 1, r + 2, 4));
 }
 
-var Tu = (n) => (n.index ? n.index.count : n.attributes.position.count) / 3;
+var Tu = (n) => (n && n.index ? n.index.count : n && n.attributes && n.attributes.position ? n.attributes.position.count : 0) / 3;
 
 var RE = THREE.Quaternion,
   _1 = (n) => (n < 0 ? 0 : n > 1 ? 1 : n),
@@ -3496,17 +3480,17 @@ function ID(n) {
       null,
       0.0018,
     ),
-    _ = Bu(n.gun, [-0.0034, e[1] + 0.012, e[2] - 0.092], [0.0034, e[1] + 0.043, e[2] - 0.058], 0.006),
+    _ = Bu(n.gun, [-0.0034, e[1] + 0.012, e[2] - 0.092], [0.0034, e[1] + 0.068, e[2] - 0.058], 0.006),
     T = _[Math.floor(_.length / 2)];
   r.triggerAt = [0, T.y, T.z0];
   let w = vs([-0.0031, T.y + 0.006, T.z0 + 0.0028], [0.0031, T.y - 0.01, T.z0 + 0.0028 - 0.003], 0.003);
   ((r.grip = [m, y, b, g, M]), (r.trigger = [w]));
-  let S = Bu(n.poly, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.002, t[2] + 0.03]),
+  let S = Bu(n.wood || n.poly, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.006, t[2] + 0.03]),
     R = S.slice(1),
     z = Math.min(...R.map((te) => te.z0)),
     I = Math.max(...R.map((te) => te.z1)),
     L = Math.max(...R.map((te) => te.x1)),
-    U = gi(n.poly, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.002, t[2] + 0.03]);
+    U = gi(n.wood || n.poly, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.006, t[2] + 0.03]);
   ((r.foreTop = new Pn(0, U.max[1], (z + I) / 2)),
     (r.foreDim = { hw: L, hd: (I - z) / 2, len: U.max[1] - U.min[1] }),
     (r.fore = [
@@ -3669,55 +3653,30 @@ function zD(n) {
 function wS(n) {
   let { G: e, mats: t, mk: i, S: s, rng: o } = n,
     r = new THREE.Group();
-  r.name = 'viewmodel-pac9';
+  r.name = 'viewmodel-ak47';
   let a = TE();
-  r.add(i(a.ano, t.ano), i(a.gun, t.steel), i(a.poly, t.poly), i(a.plain, t.plain));
+  r.add(
+    i(a.ano, t.ano),
+    i(a.gun, t.steel),
+    i(a.wood, t.wood),
+    i(a.poly, t.bakelite),
+    i(a.plain, t.plain),
+  );
   let l = i(a.bolt, t.steel);
   r.add(l);
   let c = new THREE.Group(),
     u = new Pn().fromArray(wn.magPos);
   c.position.copy(u);
   let f = i(a.round, t.brass);
-  (c.add(i(a.mag, t.tan), f), r.add(c));
+  (c.add(i(a.mag, t.steel), f), r.add(c));
   let h = null;
-  try {
-    ((h = M1([
-      ['model', -0.0168, -0.0315, 0.064, 0.0095, 'L'],
-      ['maker', -0.0168, -0.042, 0.064, 0.003, 'L'],
-      ['cal', -0.0168, -0.0465, 0.064, 0.0028, 'L'],
-      ['prop', -0.0168, -0.071, 0.066, 0.0026, 'L'],
-      ['auto', -0.0168, -0.027, -0.0335, 0.0036, 'L'],
-      ['semi', -0.0168, -0.0262, -0.049, 0.0036, 'L'],
-      ['safe', -0.0168, -0.0362, -0.062, 0.0036, 'L'],
-      ['rack', -0.0168, -0.004, -0.205, 0.02, 'L'],
-      ['warn', -0.0181, -0.01, 0.03, 0.0062, 'L'],
-      ['optic', -0.0195, 0.0735, 0.021, 0.0024, 'L'],
-      ['model', 0.0168, -0.0315, 0.068, 0.0095, 'R'],
-      ['warn', 0.0168, -0.066, 0.066, 0.0075, 'R'],
-      ['rack', 0.0168, -0.004, -0.205, 0.02, 'R'],
-      ['auto', 0.0168, -0.027, -0.0335, 0.0036, 'R'],
-      ['safe', 0.0168, -0.0362, -0.062, 0.0036, 'R'],
-      ['optic', 0.0195, 0.0735, 0.021, 0.0024, 'R'],
-      ['cal', 0.0181, 0.0245, -0.055, 0.0026, 'R'],
-      ['r2', 0, 0.04365, -0.0816, 0.003, 'T'],
-      ['r4', 0, 0.04365, -0.0616, 0.003, 'T'],
-      ['r6', 0, 0.04365, 0.0584, 0.003, 'T'],
-      ['r8', 0, 0.04365, 0.0784, 0.003, 'T'],
-      ['r10', 0, 0.04365, 0.0984, 0.003, 'T'],
-      ['r12', 0, 0.04365, 0.1184, 0.003, 'T'],
-    ])),
-      (h.castShadow = !1),
-      (h.receiveShadow = !0),
-      (h.frustumCulled = !1),
-      r.add(h));
-  } catch (B) {
-    console.warn('[weapon] markings skipped: ' + B);
+  if (wn.window) {
+    let p = ME(
+      wn.window.map((B) => [B[0] * 1.01, (B[1] - wn.sightY) * 1.01 + wn.sightY]),
+      wn.lensF + 0.0025,
+    );
+    ((p.frustumCulled = !1), r.add(p));
   }
-  let p = ME(
-    wn.window.map((B) => [B[0] * 1.01, (B[1] - wn.sightY) * 1.01 + wn.sightY]),
-    wn.lensF + 0.0025,
-  );
-  ((p.frustumCulled = !1), r.add(p));
   let d = l5();
   (d.position.fromArray(wn.muzzle), (d.visible = !1), r.add(d));
   let m = zD(a),
@@ -3816,32 +3775,8 @@ function wS(n) {
     eject: wn.eject,
     sight: [0, wn.sightY, -wn.lensF],
     info: { tris: Math.round(ce), meshes: P },
-    slot: { id: 'rifle', name: wn.name, ammo: 30, magSize: 30, reserve: 150 },
-    def: {
-      magSize: 30,
-      reserve: 150,
-      rpm: 720,
-      damage: 26,
-      range: 300,
-      auto: !0,
-      adsTime: 0.18,
-      inspect: !0,
-      flashLight: 45,
-      flashScale: 1,
-      smoke: !0,
-      spread: {
-        hip: 0.0125,
-        ads: 0.0012,
-        moveHip: 0.013,
-        moveAds: 0.004,
-        bloomHip: 0.0065,
-        bloomAds: 0.0022,
-        air: 0.022,
-        crouch: 0.002,
-        shot: 0.17,
-        decay: 1.5,
-      },
-    },
+    slot: { id: 'rifle', name: wn.name, ammo: AK47_DEF.magSize, magSize: AK47_DEF.magSize, reserve: AK47_DEF.reserve },
+    def: AK47_DEF,
     views: Uy,
     view: 0,
     get pose() {
@@ -4037,30 +3972,13 @@ function wS(n) {
 var Hu = 0.0128,
   sl = -0.012,
   Ki = 0.011,
-  No = 0.0165,
+  No = DEAGLE_CONFIG.sightY,
   ES = 0.0074,
   Oy = 0.0046,
-  Vy = 0.314,
+  Vy = DEAGLE_RAKE,
   SS = [-0.309, -0.951],
-  RS = 0.1185,
-  G0 = {
-    name: 'PAC-4 Bosun',
-    muzzle: [0, 0, -0.1075],
-    eject: [0.017, 0.007, -0.01],
-    sightY: No,
-    rearF: -0.0705,
-    frontF: 0.0885,
-    slideTravel: 0.04,
-    slideLock: 0.036,
-    rake: Vy,
-    magPos: [0, -0.013, 0.0387],
-    magLen: RS,
-    magAxis: [0, SS[1], -SS[0]],
-    stopPivot: [0, -0.0165, -0.004],
-    barrelPivot: [0, -0.01, 0],
-    gripFront: [-0.0335, -0.06],
-    gripBack: [-0.0925, -0.06],
-  },
+  RS = DEAGLE_MAG_LEN,
+  G0 = DEAGLE_CONFIG,
   TS = (n, e, t, i, s = 12) => {
     let o = new THREE.CircleGeometry(n, s);
     return (o.translate(e, t, i), o);
@@ -4084,6 +4002,10 @@ function AS(n = 0, e = Hu) {
 }
 
 function CS() {
+  return buildDesertEagleGeometry({ Mt, Q0, Nn, h0, m0, Eu, Su, $a, kn, b0, Fs, sy, Zl });
+}
+
+function _CS_UNUSED() {
   let n = [1, 1, 1],
     e = [1, 1, 1],
     t = [2.6, 2.6, 2.7],
@@ -4841,11 +4763,11 @@ function FD(n) {
     o = Math.tan(s),
     r = {},
     a = (() => {
-      let L = gi(n.frame, [-0.03, i - 0.02, e], [0.03, i + 0.01, t]);
+      let L = gi(n.grip || n.frame, [-0.03, i - 0.02, e], [0.03, i + 0.01, t]);
       return Math.min(-L.min[0], L.max[0]);
     })(),
-    l = gi(n.frame, [-0.02, i + 0.015, t - 0.004], [0.02, i + 0.048, t + 0.003]).min[1],
-    c = gi(n.frame, [-0.03, i - 0.14, e], [0.03, i, t + 0.03]).min[1],
+    l = gi(n.grip || n.frame, [-0.02, i + 0.015, t - 0.004], [0.02, i + 0.048, t + 0.003]).min[1],
+    c = gi(n.grip || n.frame, [-0.03, i - 0.14, e], [0.03, i, t + 0.03]).min[1],
     u = (l + c) / 2,
     f = (e + t) / 2 + (i - u) * o,
     h = (l - c) / 2 / Math.cos(s),
@@ -5037,16 +4959,17 @@ function ND(n) {
 function zS(n) {
   let { mats: e, mk: t, S: i, rng: s } = n,
     o = new THREE.Group();
-  o.name = 'viewmodel-pac4';
+  o.name = 'viewmodel-deagle';
   let r = CS();
-  o.add(t(r.frame, e.poly), t(r.steel, e.steel), t(r.plain, e.plain));
+  o.add(t(r.frame, e.chrome), t(r.grip, e.poly), t(r.steel, e.steel));
+  if (r.plain && r.plain.attributes.position) o.add(t(r.plain, e.plain));
   let a = new THREE.Group();
   (a.position.fromArray(G0.barrelPivot),
     r.barrel.translate(-G0.barrelPivot[0], -G0.barrelPivot[1], -G0.barrelPivot[2]),
-    a.add(t(r.barrel, e.steel)),
+    a.add(t(r.barrel, e.chrome)),
     o.add(a));
   let l = new THREE.Group();
-  (l.add(t(r.slide, e.slide), t(r.dots, e.dots)), o.add(l));
+  (l.add(t(r.slide, e.chrome), t(r.dots, e.dots)), o.add(l));
   let c = t(r.stop, e.steel);
   (c.position.fromArray(G0.stopPivot), o.add(c));
   let u = new THREE.Group(),
@@ -5057,23 +4980,6 @@ function zS(n) {
   (u.add(t(r.mag, e.steel), d), o.add(u));
   let m = null,
     x = null;
-  try {
-    ((m = M1([
-      ['p_model', -0.01295, 2e-4, 0.0465, 0.0072, 'L'],
-      ['p_name', -0.01295, 2e-4, 0.0215, 0.0044, 'L'],
-      ['p_maker', -0.01295, -0.0052, -0.013, 0.0019, 'L'],
-      ['p_cal', 0.01295, 2e-4, 0.047, 0.004, 'R'],
-    ])),
-      (x = M1([
-        ['p_prop', -0.01285, -0.0212, 0.059, 0.0022, 'L'],
-        ['p_sn', 0.01285, -0.0212, 0.062, 0.0026, 'R'],
-        ['p_rack', -0.01285, -0.03, -0.06, 0.0034, 'L'],
-      ])));
-    for (let ge of [m, x]) ((ge.castShadow = !1), (ge.receiveShadow = !0), (ge.frustumCulled = !1));
-    (l.add(m), o.add(x));
-  } catch (ge) {
-    console.warn('[weapon] pistol markings skipped: ' + ge);
-  }
   let v = l5();
   (v.position.fromArray(G0.muzzle), (v.visible = !1), o.add(v));
   let y = ND(r),
@@ -5163,32 +5069,8 @@ function zS(n) {
     eject: G0.eject,
     sight: [0, G0.sightY, -G0.rearF],
     info: { tris: Math.round(se), meshes: fe },
-    slot: { id: 'pistol', name: G0.name, ammo: 15, magSize: 15, reserve: 1 / 0 },
-    def: {
-      magSize: 15,
-      reserve: 1 / 0,
-      rpm: 420,
-      damage: 34,
-      range: 120,
-      auto: !1,
-      adsTime: 0.14,
-      inspect: !1,
-      flashLight: 30,
-      flashScale: 0.55,
-      smoke: !1,
-      spread: {
-        hip: 0.0105,
-        ads: 0.0017,
-        moveHip: 0.0065,
-        moveAds: 0.003,
-        bloomHip: 0.0085,
-        bloomAds: 0.003,
-        air: 0.018,
-        crouch: 0.002,
-        shot: 0.3,
-        decay: 2.8,
-      },
-    },
+    slot: { id: 'pistol', name: G0.name, ammo: DEAGLE_DEF.magSize, magSize: DEAGLE_DEF.magSize, reserve: DEAGLE_DEF.reserve },
+    def: DEAGLE_DEF,
     views: Xy,
     view: 0,
     get pose() {
@@ -5411,6 +5293,9 @@ async function I5(n) {
       steel: s('pac9_phosphate', [0.016, 0.016, 0.0165], 0.5, 0.7, 1),
       poly: s('pac9_polymer', [0.0125, 0.0128, 0.0135], 0.62, 0, 2),
       tan: s('pac9_polymer_tan', [0.105, 0.08, 0.05], 0.62, 0, 2),
+      wood: s('ak47_wood', [0.22, 0.095, 0.038], 0.54, 0.02, 2),
+      bakelite: s('ak47_bakelite', [0.28, 0.09, 0.038], 0.44, 0.04, 2),
+      chrome: s('deagle_chrome', [0.46, 0.47, 0.49], 0.24, 0.88, 1),
       slide: s('pac4_nitride', [0.008, 0.0083, 0.0092], 0.36, 0.55, 0),
       dots: new THREE.MeshStandardMaterial({
         color: new THREE.Color(0.3, 0.42, 0.3),

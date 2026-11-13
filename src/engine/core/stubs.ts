@@ -46,7 +46,7 @@ export const STUBS = {
     magSize: 30,
     reserve: 120,
     state: 'idle',
-    name: 'KR-7',
+    name: 'AK-47',
     ads: 0,
     spread: 0.01,
   }),

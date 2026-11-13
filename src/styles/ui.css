@@ -359,3 +359,155 @@ kbd { display: inline-block; font: 500 10px/1 var(--f-mono); color: var(--bone);
   .h-warn.on { animation: none; opacity: 1; }
   .h-cue.urgent { animation: none; }
 }
+
+/* ---- weapon selection overlay (B) ---- */
+.ws-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 11, 16, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.ws-overlay[hidden] { display: none; }
+.ws-modal {
+  width: min(680px, calc(100vw - 32px));
+  background: rgba(14, 18, 25, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 2px solid var(--amber, #e2a43c);
+  border-radius: 4px;
+  padding: 22px 24px 18px;
+  color: #eef2f7;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+.ws-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.ws-kicker {
+  font: 600 10px/1 var(--f-label, sans-serif);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--amber, #e2a43c);
+  margin-bottom: 6px;
+}
+.ws-title {
+  margin: 0;
+  font: 700 26px/1.05 var(--f-display, sans-serif);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ws-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--steel, #9aa5b5);
+  font: 600 11px/1 var(--f-mono, monospace);
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.ws-close:hover { color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+.ws-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (max-width: 560px) {
+  .ws-grid { grid-template-columns: 1fr; }
+}
+.ws-card {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 16px;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.ws-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(226, 164, 60, 0.65);
+  transform: translateY(-1px);
+}
+.ws-card.is-equipped {
+  border-color: var(--amber, #e2a43c);
+  background: rgba(226, 164, 60, 0.1);
+}
+.ws-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.ws-key {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  font: 700 11px/1 var(--f-mono, monospace);
+}
+.ws-role {
+  font: 600 10px/1 var(--f-label, sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel, #9aa5b5);
+}
+.ws-badge {
+  margin-left: auto;
+  font: 700 10px/1 var(--f-label, sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #14171d;
+  background: var(--amber, #e2a43c);
+  padding: 4px 7px;
+  border-radius: 2px;
+}
+.ws-name {
+  font: 700 24px/1.1 var(--f-display, sans-serif);
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+.ws-cal {
+  font: 400 11px/1.4 var(--f-mono, monospace);
+  color: var(--steel, #9aa5b5);
+  margin-bottom: 14px;
+}
+.ws-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+.ws-stats span {
+  display: block;
+  font: 600 9px/1 var(--f-label, sans-serif);
+  letter-spacing: 0.16em;
+  color: var(--steel, #9aa5b5);
+  margin-bottom: 4px;
+}
+.ws-stats strong {
+  font: 600 13px/1 var(--f-mono, monospace);
+  color: #eef2f7;
+}
+.ws-foot {
+  margin-top: 14px;
+  font: 400 11px/1.5 var(--f-mono, monospace);
+  color: #9aa5b5;
+  text-align: center;
+}
+.ws-foot kbd {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: #eef2f7;
+}
