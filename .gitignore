@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.playwright/
+tools/baseline/actual/
+tools/baseline/diff/
+*.log
+

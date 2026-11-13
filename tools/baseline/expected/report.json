@@ -1,0 +1,362 @@
+[
+  {
+    "name": "title",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 396,
+      "tris": 1928371,
+      "geos": 240,
+      "tex": 141,
+      "programs": 124,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 0.3,
+      "state": "title"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "gameplay-spawn",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 489,
+      "tris": 2161429,
+      "geos": 259,
+      "tex": 154,
+      "programs": 133,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 0.3,
+      "state": "playing"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "gameplay-quay",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 645,
+      "tris": 3060469,
+      "geos": 257,
+      "tex": 152,
+      "programs": 133,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "adapt": {
+        "lum": 0.0892,
+        "auto": 1.286,
+        "sunVis": 0
+      },
+      "fps": 0.4,
+      "state": "playing"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "gameplay-shed",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 629,
+      "tris": 3112441,
+      "geos": 259,
+      "tex": 154,
+      "programs": 133,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "adapt": {
+        "lum": 0.355,
+        "auto": 0.6,
+        "sunVis": 1
+      },
+      "fps": 0.4,
+      "state": "playing"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-mats",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 204,
+      "tris": 149094,
+      "geos": 35,
+      "tex": 148,
+      "programs": 59,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 20.7,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-level",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 141,
+      "tris": 802348,
+      "geos": 126,
+      "tex": 124,
+      "programs": 56,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 23.3,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-backdrop",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 60,
+      "tris": 116766,
+      "geos": 38,
+      "tex": 76,
+      "programs": 41,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 47.9,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-ground",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 62,
+      "tris": 43768,
+      "geos": 23,
+      "tex": 60,
+      "programs": 37,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 29.1,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-fx",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 35,
+      "tris": 20921,
+      "geos": 12,
+      "tex": 53,
+      "programs": 31,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 2.8,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-weapon",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 38,
+      "tris": 70226,
+      "geos": 15,
+      "tex": 49,
+      "programs": 47,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 6.8,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-hands",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 28,
+      "tris": 27486,
+      "geos": 6,
+      "tex": 42,
+      "programs": 26,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 5.6,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-enemies",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 39,
+      "tris": 31368,
+      "geos": 10,
+      "tex": 50,
+      "programs": 36,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 53.5,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-props",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 307,
+      "tris": 99232,
+      "geos": 295,
+      "tex": 158,
+      "programs": 52,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 40.6,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  },
+  {
+    "name": "show-render",
+    "ready": true,
+    "fatal": null,
+    "frames": 3,
+    "errors": [],
+    "stats": {
+      "calls": 57,
+      "tris": 32270,
+      "geos": 26,
+      "tex": 49,
+      "programs": 31,
+      "res": [
+        816,
+        459
+      ],
+      "scale": 1,
+      "advanced": true,
+      "softShadows": true,
+      "fps": 36.7,
+      "state": "showcase"
+    },
+    "pageErrors": [],
+    "diff": null
+  }
+]
