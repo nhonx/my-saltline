@@ -5794,11 +5794,12 @@ function uE(n, e, t) {
   function oi(ie) {
     !ie ||
       mt ||
+      ie.type !== 'gull' ||
       Sn.has(ie) ||
       ie.alive === !1 ||
       Sn.set(ie, {
         h: null,
-        type: ie.type === 'hound' ? 'hound' : 'gull',
+        type: 'gull',
         lx: ie.pos ? ie.pos.x : 0,
         ly: ie.pos ? ie.pos.y : 0,
         lz: ie.pos ? ie.pos.z : 0,

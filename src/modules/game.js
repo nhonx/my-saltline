@@ -1,5 +1,6 @@
 // @ts-nocheck
 import * as THREE from 'three';
+import { SPAWN_CONFIG } from '../config.js';
 import { hT } from './menus.js';
 import { Hn, Is, j0, ou } from './core.js';
 
@@ -9,18 +10,19 @@ var xi = {
     interactRange: 2.2,
     interactFacing: 0.45,
     cutSeconds: 2.4,
-    patrol: { gull: 2, hound: 1 },
+    patrol: { gull: 0, hound: SPAWN_CONFIG.initialPatrolCount },
     waves: [
-      { gull: 3, hound: 1 },
-      { gull: 3, hound: 2 },
-      { gull: 4, hound: 3 },
+      { gull: 0, hound: SPAWN_CONFIG.maxAlive },
+      { gull: 0, hound: SPAWN_CONFIG.maxAlive },
+      { gull: 0, hound: SPAWN_CONFIG.maxAlive },
     ],
-    maxAlive: 9,
-    spawnStagger: 0.85,
-    spawnFar: 18,
-    pursuitEvery: 7,
-    pursuitMinAlive: 4,
-    pursuitExtra: 5,
+    maxAlive: SPAWN_CONFIG.maxAlive,
+    spawnInterval: SPAWN_CONFIG.spawnIntervalSeconds,
+    spawnStagger: SPAWN_CONFIG.waveSpawnStagger,
+    spawnFar: SPAWN_CONFIG.minSpawnDistance,
+    pursuitEvery: SPAWN_CONFIG.spawnIntervalSeconds,
+    pursuitMinAlive: SPAWN_CONFIG.maxAlive,
+    pursuitExtra: SPAWN_CONFIG.maxAlive,
     titleSpeed: 1.15,
     titleFov: 50,
   },
@@ -37,7 +39,7 @@ var xi = {
         spreadNear: 0.016,
       },
       hound: {
-        hp: 170,
+        hp: 150,
         shotDamage: 8,
         burst: 5,
         cooldown: [1.4, 2.4],
@@ -49,15 +51,16 @@ var xi = {
       ai: { maxTokens: 3, maxTokensCrowd: 4, tokenGap: 0.85, exposureUp: 0.14 },
       player: { regenDelay: 5.5, regenRate: 16 },
       flow: {
-        patrol: { gull: 3, hound: 2 },
+        patrol: { gull: 0, hound: SPAWN_CONFIG.initialPatrolCount },
         waves: [
-          { gull: 4, hound: 2 },
-          { gull: 5, hound: 3 },
-          { gull: 6, hound: 4 },
+          { gull: 0, hound: SPAWN_CONFIG.maxAlive },
+          { gull: 0, hound: SPAWN_CONFIG.maxAlive },
+          { gull: 0, hound: SPAWN_CONFIG.maxAlive },
         ],
-        maxAlive: 11,
-        pursuitEvery: 5.5,
-        pursuitExtra: 8,
+        maxAlive: SPAWN_CONFIG.maxAlive,
+        spawnInterval: SPAWN_CONFIG.spawnIntervalSeconds,
+        pursuitEvery: SPAWN_CONFIG.spawnIntervalSeconds,
+        pursuitExtra: 6,
       },
     },
     brutal: {
@@ -71,7 +74,7 @@ var xi = {
         spreadNear: 0.014,
       },
       hound: {
-        hp: 200,
+        hp: 180,
         shotDamage: 10,
         burst: 6,
         cooldown: [1, 1.9],
@@ -83,15 +86,16 @@ var xi = {
       ai: { maxTokens: 4, maxTokensCrowd: 5, tokenGap: 0.6, exposureUp: 0.18 },
       player: { regenDelay: 7, regenRate: 10 },
       flow: {
-        patrol: { gull: 4, hound: 2 },
+        patrol: { gull: 0, hound: SPAWN_CONFIG.initialPatrolCount },
         waves: [
-          { gull: 5, hound: 3 },
-          { gull: 6, hound: 4 },
-          { gull: 7, hound: 5 },
+          { gull: 0, hound: SPAWN_CONFIG.maxAlive },
+          { gull: 0, hound: SPAWN_CONFIG.maxAlive },
+          { gull: 0, hound: SPAWN_CONFIG.maxAlive },
         ],
-        maxAlive: 13,
-        pursuitEvery: 4.5,
-        pursuitExtra: 12,
+        maxAlive: SPAWN_CONFIG.maxAlive,
+        spawnInterval: SPAWN_CONFIG.spawnIntervalSeconds,
+        pursuitEvery: SPAWN_CONFIG.spawnIntervalSeconds,
+        pursuitExtra: 9,
       },
     },
   },
@@ -99,12 +103,12 @@ var xi = {
     firstDelay: 3.5,
     breather: 9,
     count: (n) => Math.min(5 + 2 * n, 30),
-    houndShare: (n) => Math.min(0.45, 0.2 + 0.03 * n),
+    houndShare: () => 1,
     stagger: (n) => Math.max(0.35, 0.9 - 0.04 * n),
     hp: (n) => Math.min(2.5, 1 + 0.07 * (n - 1)),
     dmg: (n) => Math.min(2, 1 + 0.05 * (n - 1)),
     cool: (n) => Math.max(0.6, 1 - 0.03 * (n - 1)),
-    extraAlive: (n) => Math.min(5, Math.floor(n / 2)),
+    extraAlive: () => 0,
     resupply: 90,
     reserveCap: 240,
     heal: 35,
@@ -115,11 +119,11 @@ var xi = {
   dT = ['NORTH', 'NORTH-EAST', 'EAST', 'SOUTH-EAST', 'SOUTH', 'SOUTH-WEST', 'WEST', 'NORTH-WEST'],
   Vu = {
     intro:
-      'Breacher, this is Control. The Harbormaster holds the berth. Cut its three uplinks \u2014 yard, shed, quay.',
-    contact: 'It has seen you. Gulls fly, Hounds walk. Put them down.',
+      'Breacher, this is Control. Hostiles hold the berth. Cut the three uplinks \u2014 yard, shed, quay.',
+    contact: 'Hostiles have spotted you. Armed terrorists with AK-47s \u2014 put them down.',
     cut: [
-      'One relay dark. It felt that \u2014 machines inbound.',
-      'Two dark. It is throwing everything it has left at you.',
+      'One relay dark. Reinforcements patrolling inbound.',
+      'Two dark. They are sending everything they have left at you.',
     ],
     all: 'All three dark. The boat is holding at the quay ladder, south end. Run.',
     low: 'You are hit hard. Get behind steel and breathe.',
@@ -204,10 +208,8 @@ function pT(n) {
     }
     xi.maxAlive += cs.extraAlive(Y);
     let V = cs.count(Y),
-      ne = Math.round(V * cs.houndShare(Y)),
       ye = [];
-    for (let ze = 0; ze < V; ze++) ye.push('gull');
-    for (let ze = 0; ze < ne; ze++) ye[Math.min(V - 1, 1 + Math.floor((ze * V) / Math.max(1, ne)))] = 'hound';
+    for (let ze = 0; ze < V; ze++) ye.push('hound');
     let Te = 0,
       Re = 0,
       Ue = cs.stagger(Y);
@@ -215,7 +217,7 @@ function pT(n) {
       let _e = O(ze);
       ((Te += _e.x - i.pos.x),
         (Re += _e.z - i.pos.z),
-        g.queue.push({ type: ze, pos: _e, at: g.time + 1.2 + Ge * Ue }));
+        g.queue.push({ type: ze, pos: _e, at: g.time + 1.2 + Ge * Ue, state: 'alert' }));
     }),
       (g.waveOn = !0),
       (g.waveHot = 30));
@@ -564,7 +566,7 @@ function pT(n) {
       setTimeout(() => ee(!0), 700));
   }
   function j(Y) {
-    let he = Y === 'gull' ? 'air' : 'ground',
+    let he = 'ground',
       V = (s && s.enemySpawns) || [],
       ne = V.filter((ye) => ye.type === he);
     return ne.length ? ne : V;
@@ -572,17 +574,31 @@ function pT(n) {
   function O(Y, { minDist: he = xi.spawnFar, from: V = i.pos, preferHidden: ne = !0 } = {}) {
     let ye = j(Y),
       Te = null,
-      Re = -1e9;
+      Re = -1e9,
+      activeList = (n.enemies && n.enemies.list) || [];
     for (let Ve of ye) {
       let ze = Math.hypot(Ve.pos.x - V.x, Ve.pos.z - V.z),
         Ge = n.rng() * 1.5;
       if (((Ge += ze >= he ? 2 + Math.min(1, (ze - he) / 30) * 0.5 : -(he - ze) / 4), ne)) {
-        (L.copy(Ve.pos), (L.y += Y === 'gull' ? 0 : 1));
+        (L.copy(Ve.pos), (L.y += 1.4));
         let Ne = !0;
         try {
           Ne = n.physics.lineOfSight(L, i.eye);
         } catch {}
         Ne || (Ge += 2.5);
+      }
+      // Spread patrolling enemies all over the ship (avoid clustering near other alive/queued enemies)
+      for (let en of activeList) {
+        if (en && en.alive && en.pos) {
+          let dEn = Math.hypot(Ve.pos.x - en.pos.x, Ve.pos.z - en.pos.z);
+          if (dEn < 14) Ge -= (14 - dEn) * 0.45;
+        }
+      }
+      for (let qItem of g.queue) {
+        if (qItem && qItem.pos) {
+          let dQ = Math.hypot(Ve.pos.x - qItem.pos.x, Ve.pos.z - qItem.pos.z);
+          if (dQ < 14) Ge -= (14 - dQ) * 0.45;
+        }
       }
       let _e = g.used.get(Ve);
       (_e !== void 0 && g.time - _e < 6 && (Ge -= 3), Ge > Re && ((Re = Ge), (Te = Ve)));
@@ -592,9 +608,9 @@ function pT(n) {
       (g.used.set(Te, g.time), Ue.copy(Te.pos));
       let Ve = (n.rng() - 0.5) * 2.4,
         ze = (n.rng() - 0.5) * 2.4,
-        Ge = Y === 'gull';
+        Ge = !1;
       try {
-        Ge || (Ge = n.physics.nav.isWalkable(Ue.x + Ve, Ue.z + ze));
+        Ge = n.physics.nav.isWalkable(Ue.x + Ve, Ue.z + ze);
       } catch {
         Ge = !1;
       }
@@ -603,42 +619,60 @@ function pT(n) {
       let Ve = n.rng() * Math.PI * 2;
       Ue.set(Hn(V.x + Math.cos(Ve) * 26, -34, 26), 0, Hn(V.z + Math.sin(Ve) * 26, -26, 24));
     }
-    return (Y === 'gull' && Ue.y < 2.5 && (Ue.y = 6 + n.rng() * 3), Ue);
+    return Ue;
   }
   function q(Y, he, V) {
     let ne = null;
     try {
-      ne = n.enemies.spawn(Y, he, V);
+      ne = n.enemies.spawn('hound', he, V);
     } catch (ye) {
       console.error('[game] enemies.spawn threw', ye);
     }
     return ne;
   }
   function ue() {
-    let Y = (s.playerStart && s.playerStart.pos) || i.pos;
-    for (let he of ['gull', 'hound'])
-      for (let V = 0; V < xi.patrol[he]; V++)
-        q(he, O(he, { minDist: 32, from: Y, preferHidden: !0 }), { state: 'patrol' });
+    let Y = (s.playerStart && s.playerStart.pos) || i.pos,
+      targetCount = Math.min(
+        xi.maxAlive,
+        (xi.patrol.hound || 0) + (xi.patrol.gull || 0) || SPAWN_CONFIG.initialPatrolCount,
+      );
+    for (let V = 0; V < targetCount; V++)
+      q('hound', O('hound', { minDist: SPAWN_CONFIG.minSpawnDistance, from: Y, preferHidden: !0 }), {
+        state: 'patrol',
+      });
   }
   function de(Y) {
     let he = xi.waves[Math.min(Y, xi.waves.length - 1)],
+      totalWave = Math.min(xi.maxAlive, (he.hound || 0) + (he.gull || 0)),
       V = [];
-    for (let Re = 0; Re < he.gull; Re++) V.push('gull');
-    for (let Re = 0; Re < he.hound; Re++) V.splice(Math.min(V.length, 1 + Re * 2), 0, 'hound');
+    for (let Re = 0; Re < totalWave; Re++) V.push('hound');
     let ne = 0,
       ye = 0;
     (V.forEach((Re, Ue) => {
       let Ve = O(Re);
       ((ne += Ve.x - i.pos.x),
         (ye += Ve.z - i.pos.z),
-        g.queue.push({ type: Re, pos: Ve, at: g.time + 1.6 + Ue * xi.spawnStagger }));
+        g.queue.push({ type: 'hound', pos: Ve, at: g.time + 1.2 + Ue * xi.spawnStagger, state: 'patrol' }));
     }),
       (g.waveHot = 30));
     let Te = ((Math.atan2(ne, -ye) * 180) / Math.PI + 360) % 360;
     o.warn && o.warn('Contact \u2014 ' + dT[Math.round(Te / 45) % 8], 3.4);
   }
   function $(Y) {
-    let he = se();
+    let he = se(),
+      interval = xi.spawnInterval || SPAWN_CONFIG.spawnIntervalSeconds;
+    // Constantly replenish patrolling enemies up to xi.maxAlive (3) on the configured spawn interval (1 min = 60s)
+    if (!p()) {
+      while (he + g.queue.length < xi.maxAlive) {
+        let delay = interval + g.queue.length * xi.spawnStagger;
+        g.queue.push({
+          type: 'hound',
+          pos: O('hound', { minDist: SPAWN_CONFIG.minSpawnDistance, from: i.pos, preferHidden: !0 }),
+          at: g.time + delay,
+          state: 'patrol',
+        });
+      }
+    }
     for (let V = 0; V < g.queue.length; V++) {
       let ne = g.queue[V];
       if (g.time < ne.at) continue;
@@ -646,15 +680,17 @@ function pT(n) {
         ne.at = g.time + 1;
         continue;
       }
+      let spawnState = ne.state || 'patrol';
       if (
-        !q(ne.type, ne.pos, { state: 'alert', target: i.pos }) &&
+        !q('hound', ne.pos, { state: spawnState, target: i.pos }) &&
         !n.enemies.stub &&
         (ne.tries = (ne.tries || 0) + 1) < 6
       ) {
         ne.at = g.time + 1.5;
         continue;
       }
-      (g.queue.splice(V, 1), a(n.enemies, 'alert', i.pos, 60));
+      g.queue.splice(V, 1);
+      if (spawnState === 'alert') a(n.enemies, 'alert', i.pos, 60);
       break;
     }
     if (g.allCut) {
@@ -663,8 +699,7 @@ function pT(n) {
         g.pursuitT <= 0 && g.pursuitLeft > 0 && !g.queue.length && he < xi.pursuitMinAlive)
       ) {
         ((g.pursuitT = xi.pursuitEvery), g.pursuitLeft--);
-        let V = n.rng() < 0.6 ? 'gull' : 'hound';
-        g.queue.push({ type: V, pos: O(V), at: g.time + 0.5 });
+        g.queue.push({ type: 'hound', pos: O('hound'), at: g.time + 0.5, state: 'patrol' });
       }
       g.pursuitT <= 0 && ((g.pursuitT = 4), a(n.enemies, 'alert', i.pos, 90));
     }

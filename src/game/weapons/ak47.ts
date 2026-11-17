@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { WEAPONS_CONFIG } from '../../config.js';
 
 export interface WeaponGeoHelpers {
   Mt: (
@@ -91,31 +92,7 @@ export const AK47_CONFIG = {
   squeeze: 0.88,
 };
 
-export const AK47_DEF = {
-  magSize: 30,
-  reserve: 150,
-  rpm: 600,
-  damage: 34,
-  range: 300,
-  auto: true,
-  adsTime: 0.19,
-  inspect: true,
-  flashLight: 48,
-  flashScale: 1.05,
-  smoke: true,
-  spread: {
-    hip: 0.014,
-    ads: 0.0014,
-    moveHip: 0.0145,
-    moveAds: 0.0045,
-    bloomHip: 0.0075,
-    bloomAds: 0.0026,
-    air: 0.024,
-    crouch: 0.002,
-    shot: 0.19,
-    decay: 1.45,
-  },
-};
+export const AK47_DEF = WEAPONS_CONFIG.ak47;
 
 /**
  * Builds the procedural AK-47 viewmodel geometry parts.

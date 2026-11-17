@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { WeaponGeoHelpers } from './ak47';
+import { WEAPONS_CONFIG } from '../../config.js';
 
 export const DEAGLE_RAKE = 0.314;
 export const DEAGLE_MAG_DIR: [number, number] = [-0.309, -0.951];
@@ -24,31 +25,7 @@ export const DEAGLE_CONFIG = {
   gripBack: [-0.095, -0.042] as [number, number],
 };
 
-export const DEAGLE_DEF = {
-  magSize: 7,
-  reserve: Infinity,
-  rpm: 260,
-  damage: 58,
-  range: 140,
-  auto: false,
-  adsTime: 0.16,
-  inspect: false,
-  flashLight: 40,
-  flashScale: 0.85,
-  smoke: true,
-  spread: {
-    hip: 0.0115,
-    ads: 0.0015,
-    moveHip: 0.0075,
-    moveAds: 0.0032,
-    bloomHip: 0.011,
-    bloomAds: 0.004,
-    air: 0.02,
-    crouch: 0.002,
-    shot: 0.36,
-    decay: 2.3,
-  },
-};
+export const DEAGLE_DEF = WEAPONS_CONFIG.deagle;
 
 /**
  * Builds the procedural Desert Eagle (.50 AE) viewmodel geometry parts.

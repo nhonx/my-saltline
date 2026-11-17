@@ -1,6 +1,6 @@
 import type { EngineContext } from '../../engine/core/context';
 
-type WeaponKey = 'ak47' | 'pac9' | 'deagle' | 'pac4';
+type WeaponKey = 'ak47' | 'mp5' | 'uzi' | 'pac9' | 'deagle' | 'pac4';
 
 interface WeaponBuyItem {
   key: WeaponKey;
@@ -17,34 +17,52 @@ const WEAPON_ITEMS: WeaponBuyItem[] = [
     key: 'ak47',
     hotkey: '1',
     slot: 'rifle',
-    role: 'Primary Rifle',
-    caliber: '7.62×39mm',
+    role: 'Assault Rifle',
+    caliber: '7.62×39mm M43',
+    mode: 'Full-Auto',
+    tag: 'NEW',
+  },
+  {
+    key: 'mp5',
+    hotkey: '2',
+    slot: 'rifle',
+    role: 'Submachine Gun',
+    caliber: '9×19mm Parabellum',
+    mode: 'Full-Auto',
+    tag: 'NEW',
+  },
+  {
+    key: 'uzi',
+    hotkey: '3',
+    slot: 'rifle',
+    role: 'Compact SMG',
+    caliber: '9×19mm Parabellum',
     mode: 'Full-Auto',
     tag: 'NEW',
   },
   {
     key: 'pac9',
-    hotkey: '2',
+    hotkey: '4',
     slot: 'rifle',
-    role: 'Primary Rifle',
+    role: 'Tactical Carbine',
     caliber: '5.8×40mm · HX-2 Reflex',
     mode: 'Full-Auto',
     tag: 'CLASSIC',
   },
   {
     key: 'deagle',
-    hotkey: '3',
+    hotkey: '5',
     slot: 'pistol',
-    role: 'Sidearm',
+    role: 'Heavy Sidearm',
     caliber: '.50 Action Express',
     mode: 'Semi-Auto',
     tag: 'NEW',
   },
   {
     key: 'pac4',
-    hotkey: '4',
+    hotkey: '6',
     slot: 'pistol',
-    role: 'Sidearm',
+    role: 'Service Sidearm',
     caliber: '9×19mm · PA-SVC',
     mode: 'Semi-Auto',
     tag: 'CLASSIC',
@@ -53,7 +71,7 @@ const WEAPON_ITEMS: WeaponBuyItem[] = [
 
 /**
  * Installs the in-game Weapon Buy overlay toggled by pressing `B`.
- * Allows buying/equipping both new weapons (AK-47, Desert Eagle) and classic weapons (PAC-9 Longshore, PAC-4 Bosun).
+ * Allows buying/equipping rifles/SMGs (AK-47, MP5A3, Uzi, PAC-9) and sidearms (Desert Eagle, PAC-4).
  */
 export function initWeaponSelect(ctx: EngineContext): { isOpen: () => boolean; close: () => void } {
   const root = document.createElement('div');
@@ -74,7 +92,7 @@ export function initWeaponSelect(ctx: EngineContext): { isOpen: () => boolean; c
         <button type="button" class="ws-close" data-ws-close aria-label="Close weapon buy">ESC / B</button>
       </div>
       <div class="ws-grid" data-ws-grid></div>
-      <div class="ws-foot">Click a weapon or press <kbd>1</kbd>–<kbd>4</kbd> to equip · <kbd>B</kbd> or <kbd>Esc</kbd> to close</div>
+      <div class="ws-foot">Click a weapon or press <kbd>1</kbd>–<kbd>6</kbd> to equip · <kbd>B</kbd> or <kbd>Esc</kbd> to close</div>
     </div>
   `;
 
@@ -100,6 +118,7 @@ export function initWeaponSelect(ctx: EngineContext): { isOpen: () => boolean; c
       const reserve = def ? (Number.isFinite(def.reserve) ? String(def.reserve) : '∞') : '∞';
       const dmg = def?.damage ?? 0;
       const rpm = def?.rpm ?? 0;
+      const bps = def?.bulletsPerSecond ?? +(rpm / 60).toFixed(1);
       const isActive = activeName === name;
       const isInSlot = !isActive && equippedNames.has(name);
 
@@ -114,7 +133,7 @@ export function initWeaponSelect(ctx: EngineContext): { isOpen: () => boolean; c
           <div class="ws-cal">${item.caliber} · ${item.mode}</div>
           <div class="ws-stats">
             <div><span>DMG</span><strong>${dmg}</strong></div>
-            <div><span>RPM</span><strong>${rpm}</strong></div>
+            <div><span>RPS</span><strong>${bps}/s</strong></div>
             <div><span>MAG</span><strong>${magSize}</strong></div>
             <div><span>RES</span><strong>${reserve}</strong></div>
           </div>
@@ -156,7 +175,14 @@ export function initWeaponSelect(ctx: EngineContext): { isOpen: () => boolean; c
     const btn = (e.target as HTMLElement | null)?.closest('[data-ws-key]') as HTMLElement | null;
     if (!btn) return;
     const key = btn.dataset.wsKey as WeaponKey;
-    if (key === 'ak47' || key === 'pac9' || key === 'deagle' || key === 'pac4') {
+    if (
+      key === 'ak47' ||
+      key === 'mp5' ||
+      key === 'uzi' ||
+      key === 'pac9' ||
+      key === 'deagle' ||
+      key === 'pac4'
+    ) {
       buyWeapon(key);
     }
   });
@@ -169,12 +195,16 @@ export function initWeaponSelect(ctx: EngineContext): { isOpen: () => boolean; c
   const HOTKEY_MAP: Record<string, WeaponKey> = {
     Digit1: 'ak47',
     Numpad1: 'ak47',
-    Digit2: 'pac9',
-    Numpad2: 'pac9',
-    Digit3: 'deagle',
-    Numpad3: 'deagle',
-    Digit4: 'pac4',
-    Numpad4: 'pac4',
+    Digit2: 'mp5',
+    Numpad2: 'mp5',
+    Digit3: 'uzi',
+    Numpad3: 'uzi',
+    Digit4: 'pac9',
+    Numpad4: 'pac9',
+    Digit5: 'deagle',
+    Numpad5: 'deagle',
+    Digit6: 'pac4',
+    Numpad6: 'pac4',
   };
 
   window.addEventListener(

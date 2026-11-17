@@ -1,7 +1,10 @@
 // @ts-nocheck
 import * as THREE from 'three';
+import { WEAPONS_CONFIG } from '../config.js';
 import { AK47_CONFIG, AK47_DEF, buildAk47Geometry } from '../game/weapons/ak47';
 import { DEAGLE_CONFIG, DEAGLE_DEF, DEAGLE_MAG_LEN, DEAGLE_RAKE, buildDesertEagleGeometry } from '../game/weapons/desertEagle';
+import { MP5_CONFIG, MP5_DEF, buildMp5Geometry } from '../game/weapons/mp5';
+import { UZI_CONFIG, UZI_DEF, buildUziGeometry } from '../game/weapons/uzi';
 import { Hn, Ia, Is, Ro, T0, Z0, ar, j0, u0 } from './core.js';
 import { explosivesModule } from './explosives.js';
 import { Ei, Tr, bn } from './geometry.js';
@@ -1367,35 +1370,19 @@ var Zl = (n, e, t, i, s, o, r, a, l, c = 0.012) => {
     handlePos: [-0.026, 0.007, -0.078],
     squeeze: 0.86,
   },
-  PAC9_DEF = {
-    magSize: 30,
-    reserve: 150,
-    rpm: 720,
-    damage: 26,
-    range: 300,
-    auto: !0,
-    adsTime: 0.18,
-    inspect: !0,
-    flashLight: 45,
-    flashScale: 1,
-    smoke: !0,
-    spread: {
-      hip: 0.0125,
-      ads: 0.0012,
-      moveHip: 0.013,
-      moveAds: 0.004,
-      bloomHip: 0.0065,
-      bloomAds: 0.0022,
-      air: 0.022,
-      crouch: 0.002,
-      shot: 0.17,
-      decay: 1.5,
-    },
-  },
+  PAC9_DEF = WEAPONS_CONFIG.pac9,
   wn = AK47_CONFIG;
 
 function TE() {
   return buildAk47Geometry({ Mt, Q0, Nn, h0, m0, Eu, Su, $a, kn, b0, Fs, sy, Zl });
+}
+
+function TE_MP5() {
+  return buildMp5Geometry({ Mt, Q0, Nn, h0, m0, Eu, Su, $a, kn, b0, Fs, sy, Zl });
+}
+
+function TE_UZI() {
+  return buildUziGeometry({ Mt, Q0, Nn, h0, m0, Eu, Su, $a, kn, b0, Fs, sy, Zl });
 }
 
 function TE_PAC9() {
@@ -3533,12 +3520,13 @@ function ID(n) {
   r.triggerAt = [0, T.y, T.z0];
   let w = vs([-0.0031, T.y + 0.006, T.z0 + 0.0028], [0.0031, T.y - 0.01, T.z0 + 0.0028 - 0.003], 0.003);
   ((r.grip = [m, y, b, g, M]), (r.trigger = [w]));
-  let S = Bu(n.wood || n.poly, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.006, t[2] + 0.03]),
+  let foreGeo = n.wood && n.wood.attributes && n.wood.attributes.position ? n.wood : n.poly,
+    S = Bu(foreGeo, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.006, t[2] + 0.03]),
     R = S.slice(1),
     z = Math.min(...R.map((te) => te.z0)),
     I = Math.max(...R.map((te) => te.z1)),
     L = Math.max(...R.map((te) => te.x1)),
-    U = gi(n.wood || n.poly, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.006, t[2] + 0.03]);
+    U = gi(foreGeo, [-0.03, -i - 0.085, t[2] - 0.03], [0.03, -i + 0.006, t[2] + 0.03]);
   ((r.foreTop = new Pn(0, U.max[1], (z + I) / 2)),
     (r.foreDim = { hw: L, hd: (I - z) / 2, len: U.max[1] - U.min[1] }),
     (r.fore = [
@@ -3699,22 +3687,24 @@ function zD(n) {
 }
 
 function wS(n, variant = 'ak47') {
-  let isPac9 = variant === 'pac9';
-  wn = isPac9 ? PAC9_CONFIG : AK47_CONFIG;
+  let isPac9 = variant === 'pac9',
+    isMp5 = variant === 'mp5',
+    isUzi = variant === 'uzi';
+  wn = isPac9 ? PAC9_CONFIG : isMp5 ? MP5_CONFIG : isUzi ? UZI_CONFIG : AK47_CONFIG;
   Hy = null;
   let cfg = wn,
-    def = isPac9 ? PAC9_DEF : AK47_DEF,
+    def = isPac9 ? PAC9_DEF : isMp5 ? MP5_DEF : isUzi ? UZI_DEF : AK47_DEF,
     { G: e, mats: t, mk: i, S: s, rng: o } = n,
     r = new THREE.Group();
-  r.name = isPac9 ? 'viewmodel-pac9' : 'viewmodel-ak47';
-  let a = isPac9 ? TE_PAC9() : TE();
+  r.name = `viewmodel-${variant}`;
+  let a = isPac9 ? TE_PAC9() : isMp5 ? TE_MP5() : isUzi ? TE_UZI() : TE();
   r.add(
     i(a.ano, t.ano),
     i(a.gun, t.steel),
-    i(a.poly, isPac9 ? t.poly : t.bakelite),
+    i(a.poly, variant === 'ak47' ? t.bakelite : t.poly),
     i(a.plain, t.plain),
   );
-  if (a.wood) r.add(i(a.wood, t.wood));
+  if (a.wood && a.wood.attributes && a.wood.attributes.position) r.add(i(a.wood, t.wood));
   let l = i(a.bolt, t.steel);
   r.add(l);
   let c = new THREE.Group(),
@@ -3888,25 +3878,39 @@ function wS(n, variant = 'ak47') {
       ((de = 0), x && (x.right.impulse(0.55), x.left.impulse(0.35)), B && (($ = !0), (f.visible = !1)));
     },
     recoil(B, X, re) {
-      let Y = B <= 9 ? 1 : 0.38,
+      let rec = def.recoil || {},
+        pitchKick = rec.pitchKick ?? 0.0068,
+        yawKick = rec.yawKick ?? 0.0042,
+        sustained = rec.sustainedMult ?? 0.42,
+        firstMult = rec.firstShotMult ?? bh.rifle.recoil.first,
+        shakeAmt = rec.cameraShake ?? 0.12,
+        Y = B <= 8 ? 1 : sustained,
         he =
-          (B < 4 ? (o() - 0.5) * 0.0022 : Math.sin(B * 0.57 + s.recPhase) * 0.0042 + (o() - 0.5) * 0.002) * X;
-      (re.addRecoil && re.addRecoil(0.0068 * Y * X * (0.85 + o() * 0.3), he),
-        re.addShake && re.addShake(0.12 * X));
+          (B < 4
+            ? (o() - 0.5) * yawKick * 0.65
+            : Math.sin(B * 0.57 + s.recPhase) * yawKick + (o() - 0.5) * yawKick * 0.55) * X;
+      (re.addRecoil && re.addRecoil(pitchKick * Y * X * (0.85 + o() * 0.3), he),
+        re.addShake && re.addShake(shakeAmt * X));
       let V = bh.rifle.recoil,
         ne = s.adsE,
         Te =
-          (B === 1 ? V.first : B === 2 ? 0.5 + 0.5 * V.first : 1) *
+          (B === 1 ? firstMult : B === 2 ? 0.5 + 0.5 * firstMult : 1) *
           (0.88 + o() * 0.24) *
           (re.crouching ? 0.88 : 1),
         Re = Te * u0(1, V.adsRot, ne),
-        Ue = Te * u0(1, V.adsPos, ne);
-      ((s.kZ.v += V.back * Te * u0(1, V.adsBack, ne)),
-        (s.kP.v += V.rise * Re),
-        (s.kY.v += (o() - 0.5) * V.yaw * Re),
-        (s.kR.v += (o() - 0.5) * V.roll * Re),
-        (s.kU.v += V.up * Ue * (0.7 + 0.6 * o())),
-        (s.kX.v += (o() - 0.5) * 2 * V.side * Ue));
+        Ue = Te * u0(1, V.adsPos, ne),
+        vBack = rec.viewBack ?? V.back,
+        vRise = rec.viewRise ?? V.rise,
+        vYaw = rec.viewYaw ?? V.yaw,
+        vRoll = rec.viewRoll ?? V.roll,
+        vUp = rec.viewUp ?? V.up,
+        vSide = rec.viewSide ?? V.side;
+      ((s.kZ.v += vBack * Te * u0(1, V.adsBack, ne)),
+        (s.kP.v += vRise * Re),
+        (s.kY.v += (o() - 0.5) * vYaw * Re),
+        (s.kR.v += (o() - 0.5) * vRoll * Re),
+        (s.kU.v += vUp * Ue * (0.7 + 0.6 * o())),
+        (s.kX.v += (o() - 0.5) * 2 * vSide * Ue));
     },
     reload(B, X) {
       let re = n.ev,
@@ -4081,31 +4085,7 @@ var Hu = 0.0128,
     gripFront: [-0.0335, -0.06],
     gripBack: [-0.0925, -0.06],
   },
-  PAC4_DEF = {
-    magSize: 15,
-    reserve: 1 / 0,
-    rpm: 420,
-    damage: 34,
-    range: 120,
-    auto: !1,
-    adsTime: 0.14,
-    inspect: !1,
-    flashLight: 30,
-    flashScale: 0.55,
-    smoke: !1,
-    spread: {
-      hip: 0.0105,
-      ads: 0.0017,
-      moveHip: 0.0065,
-      moveAds: 0.003,
-      bloomHip: 0.0085,
-      bloomAds: 0.003,
-      air: 0.018,
-      crouch: 0.002,
-      shot: 0.3,
-      decay: 2.8,
-    },
-  },
+  PAC4_DEF = WEAPONS_CONFIG.pac4,
   No = DEAGLE_CONFIG.sightY,
   ES = 0.0074,
   Oy = 0.0046,
@@ -5253,19 +5233,29 @@ function zS(n, variant = 'deagle') {
       ((le = 0), b && (b.right.impulse(0.8), b.left.impulse(0.6)), ge && ((xe = !0), (d.visible = !1)));
     },
     recoil(ge, ce, P) {
-      (P.addRecoil && P.addRecoil(0.0092 * ce * (0.9 + s() * 0.2), (s() - 0.5) * 0.005 * ce),
-        P.addShake && P.addShake(0.14 * ce));
+      let rec = def.recoil || {},
+        pitchKick = rec.pitchKick ?? 0.0092,
+        yawKick = rec.yawKick ?? 0.005,
+        shakeAmt = rec.cameraShake ?? 0.14;
+      (P.addRecoil && P.addRecoil(pitchKick * ce * (0.9 + s() * 0.2), (s() - 0.5) * yawKick * ce),
+        P.addShake && P.addShake(shakeAmt * ce));
       let D = bh.pistol.recoil,
         B = i.adsE,
         X = (0.9 + s() * 0.2) * (P.crouching ? 0.9 : 1),
         re = X * u0(1, D.adsRot, B),
-        Y = X * u0(1, D.adsPos, B);
-      ((i.kZ.v += D.back * X * u0(1, D.adsBack, B)),
-        (i.kP.v += D.rise * re),
-        (i.kY.v += (s() - 0.5) * D.yaw * re),
-        (i.kR.v += (s() - 0.5) * D.roll * re),
-        (i.kU.v += D.up * Y),
-        (i.kX.v += (s() - 0.5) * 2 * D.side * Y));
+        Y = X * u0(1, D.adsPos, B),
+        vBack = rec.viewBack ?? D.back,
+        vRise = rec.viewRise ?? D.rise,
+        vYaw = rec.viewYaw ?? D.yaw,
+        vRoll = rec.viewRoll ?? D.roll,
+        vUp = rec.viewUp ?? D.up,
+        vSide = rec.viewSide ?? D.side;
+      ((i.kZ.v += vBack * X * u0(1, D.adsBack, B)),
+        (i.kP.v += vRise * re),
+        (i.kY.v += (s() - 0.5) * vYaw * re),
+        (i.kR.v += (s() - 0.5) * vRoll * re),
+        (i.kU.v += vUp * Y),
+        (i.kX.v += (s() - 0.5) * 2 * vSide * Y));
     },
     reload(ge, ce) {
       let P = n.ev,
@@ -5586,13 +5576,18 @@ async function I5(n) {
   }
   let p = vS(n, Ro),
     d = { G: n, S: a, mats: o, mk: i, rng: r, ev: f, arms: p },
-    rifles = { ak47: wS(d, 'ak47'), pac9: wS(d, 'pac9') },
+    rifles = {
+      ak47: wS(d, 'ak47'),
+      mp5: wS(d, 'mp5'),
+      uzi: wS(d, 'uzi'),
+      pac9: wS(d, 'pac9'),
+    },
     pistols = { deagle: zS(d, 'deagle'), pac4: zS(d, 'pac4') },
     m = rifles.ak47,
     x = pistols.deagle,
     v = { rifle: m, pistol: x },
     y = [m, x],
-    allRigs = [rifles.ak47, rifles.pac9, pistols.deagle, pistols.pac4];
+    allRigs = [rifles.ak47, rifles.mp5, rifles.uzi, rifles.pac9, pistols.deagle, pistols.pac4];
   for (let B of allRigs)
     (B.root.traverse((X) => {
       X.layers.set(Ro);
@@ -5606,10 +5601,54 @@ async function I5(n) {
   let b = m,
     g = !0,
     catalog = {
-      ak47: { id: 'ak47', slot: 'rifle', rig: rifles.ak47, role: 'Primary Rifle', caliber: '7.62×39mm', mode: 'Full-Auto' },
-      pac9: { id: 'pac9', slot: 'rifle', rig: rifles.pac9, role: 'Primary Rifle', caliber: '5.8×40mm', mode: 'Full-Auto' },
-      deagle: { id: 'deagle', slot: 'pistol', rig: pistols.deagle, role: 'Sidearm', caliber: '.50 Action Express', mode: 'Semi-Auto' },
-      pac4: { id: 'pac4', slot: 'pistol', rig: pistols.pac4, role: 'Sidearm', caliber: '9×19mm', mode: 'Semi-Auto' },
+      ak47: {
+        id: 'ak47',
+        slot: 'rifle',
+        rig: rifles.ak47,
+        role: WEAPONS_CONFIG.ak47.role,
+        caliber: WEAPONS_CONFIG.ak47.caliber,
+        mode: WEAPONS_CONFIG.ak47.mode,
+      },
+      mp5: {
+        id: 'mp5',
+        slot: 'rifle',
+        rig: rifles.mp5,
+        role: WEAPONS_CONFIG.mp5.role,
+        caliber: WEAPONS_CONFIG.mp5.caliber,
+        mode: WEAPONS_CONFIG.mp5.mode,
+      },
+      uzi: {
+        id: 'uzi',
+        slot: 'rifle',
+        rig: rifles.uzi,
+        role: WEAPONS_CONFIG.uzi.role,
+        caliber: WEAPONS_CONFIG.uzi.caliber,
+        mode: WEAPONS_CONFIG.uzi.mode,
+      },
+      pac9: {
+        id: 'pac9',
+        slot: 'rifle',
+        rig: rifles.pac9,
+        role: WEAPONS_CONFIG.pac9.role,
+        caliber: WEAPONS_CONFIG.pac9.caliber,
+        mode: WEAPONS_CONFIG.pac9.mode,
+      },
+      deagle: {
+        id: 'deagle',
+        slot: 'pistol',
+        rig: pistols.deagle,
+        role: WEAPONS_CONFIG.deagle.role,
+        caliber: WEAPONS_CONFIG.deagle.caliber,
+        mode: WEAPONS_CONFIG.deagle.mode,
+      },
+      pac4: {
+        id: 'pac4',
+        slot: 'pistol',
+        rig: pistols.pac4,
+        role: WEAPONS_CONFIG.pac4.role,
+        caliber: WEAPONS_CONFIG.pac4.caliber,
+        mode: WEAPONS_CONFIG.pac4.mode,
+      },
     },
     E = {
       state: 'idle',
@@ -6108,12 +6147,13 @@ async function I5(n) {
           n.events.emit('weapon:reload', { phase: 'done', empty: $e.empty, weapon: Y.id })));
     } else ((a.reloadW = 0), (a.rackW = 0), (a.antYT = 0), (a.antRT = 0));
     a.cooldown -= B;
-    let Ue = !a.reload && !ne && a.sprintT < 0.45;
+    let Ue = !a.reload && !ne && a.sprintT < 0.45,
+      shotInterval = he.bulletsPerSecond > 0 ? 1 / he.bulletsPerSecond : 60 / he.rpm;
     if (he.auto) {
       if (ye && Ue)
         if (V.ammo > 0) {
           let $e = 0;
-          for (; a.cooldown <= 0 && V.ammo > 0 && $e < 3;) (Q(), (a.cooldown += 60 / he.rpm), $e++);
+          for (; a.cooldown <= 0 && V.ammo > 0 && $e < 3;) (Q(), (a.cooldown += shotInterval), $e++);
         } else
           a.dryDone ||
             ((a.dryDone = !0),
@@ -6127,7 +6167,7 @@ async function I5(n) {
           a.cooldown <= 0 &&
           ((a.fireQ = 0),
           V.ammo > 0
-            ? (Q(), (a.cooldown = 60 / he.rpm))
+            ? (Q(), (a.cooldown = shotInterval))
             : (n.events.emit('weapon:dry', { weapon: Y.id }),
               (a.bump.v -= 0.08),
               (a.cooldown = 0.12),

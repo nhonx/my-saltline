@@ -1,5 +1,6 @@
 // @ts-nocheck
 import * as THREE from 'three';
+import { ENEMY_CONFIG } from '../config.js';
 import { ar, su } from './core.js';
 import { Ei, Tr, bn, th, vt } from './geometry.js';
 
@@ -195,281 +196,328 @@ var ua = (n, e = 14, t = 10, i = 1, s = 1, o = 1) => {
   jy = (n, e, t) => Xe(Ms(0.0075, 0.0075, 0.006, 6), n, e, t),
   GD = (n, e, t) => Xe(ki(0.0075, 0.0075, 0.006, 6), n, e, t),
   Ky = {
-    stand: 0.72,
-    L1: 0.4,
-    L2: 0.42,
-    l0: 0.075,
-    hipX: 0.165,
-    hipY: -0.01,
-    hipZ: 0.4,
-    footX: 0.275,
-    footZ: [0.37, 0.37, -0.42, -0.42],
-    legs: ['FL', 'FR', 'RL', 'RR'],
-    side: [1, -1, 1, -1],
-    fore: [1, 1, -1, -1],
-    muzzle: [0, 0, 0.43],
-    eye: [0, 0, 0.14],
-    footR: 0.046,
+    stand: 0.94,
+    L1: 0.43,
+    L2: 0.41,
+    armL1: 0.27,
+    armL2: 0.25,
+    hipX: 0.105,
+    hipY: -0.04,
+    shoulderX: 0.2,
+    shoulderY: 0.33,
+    muzzle: [0, 0.015, 0.58],
+    eye: [0, 0.04, 0.12],
+    footR: 0.05,
   };
 
 function VS() {
   let n = Ky,
     e = new Oh();
+  // Humanoid skeleton hierarchy (+Z forward, +Y up, +X left, -X right)
   (e.bone('root', null, 0, 0, 0),
-    e.bone('body', 'root', 0, n.stand, 0),
-    e.bone('neck', 'body', 0, 0.06, 0.49),
-    e.bone('head', 'neck', 0, 0.13, 0.12),
-    e.bone('turret', 'body', 0, 0.152, -0.03),
-    e.bone('gun', 'turret', 0, 0.095, 0.02),
-    e.bone('antenna', 'body', -0.105, 0.15, -0.46),
-    e.bone('beacon', 'body', 0.105, 0.2, -0.455));
-  for (let i = 0; i < 4; i++) {
-    let s = n.legs[i],
-      o = n.side[i];
-    (e.bone('abd' + s, 'body', o * n.hipX, n.hipY, n.fore[i] * n.hipZ),
-      e.bone('thigh' + s, 'abd' + s, o * n.l0, 0, 0),
-      e.bone('shin' + s, 'thigh' + s, 0, -n.L1, 0));
+    e.bone('body', 'root', 0, n.stand, 0), // pelvis / hips
+    e.bone('torso', 'body', 0, 0.1, 0), // spine / chest
+    e.bone('neck', 'torso', 0, 0.42, 0.01),
+    e.bone('head', 'neck', 0, 0.1, 0.01),
+    e.bone('turret', 'torso', -0.06, 0.23, 0.15), // rifle carrier mount
+    e.bone('gun', 'turret', 0, 0, 0), // AK-47 receiver pivot
+    e.bone('shoulderL', 'torso', n.shoulderX, n.shoulderY, 0),
+    e.bone('forearmL', 'shoulderL', 0, -n.armL1, 0),
+    e.bone('handL', 'forearmL', 0, -n.armL2, 0),
+    e.bone('shoulderR', 'torso', -n.shoulderX, n.shoulderY, 0),
+    e.bone('forearmR', 'shoulderR', 0, -n.armL1, 0),
+    e.bone('handR', 'forearmR', 0, -n.armL2, 0),
+    e.bone('thighL', 'body', n.hipX, n.hipY, 0),
+    e.bone('shinL', 'thighL', 0, -n.L1, 0),
+    e.bone('footL', 'shinL', 0, -n.L2, 0),
+    e.bone('thighR', 'body', -n.hipX, n.hipY, 0),
+    e.bone('shinR', 'thighR', 0, -n.L1, 0),
+    e.bone('footR', 'shinR', 0, -n.L2, 0),
+    e.bone('antenna', 'torso', 0, 0.35, -0.14),
+    e.bone('beacon', 'torso', 0, 0.35, -0.14));
+
+  let t = (i, s, o, r, a) => e.add(i, s, o, r, a),
+    cJacket = [0.34, 0.39, 0.27], // olive drab guerrilla field jacket
+    cJacketDark = [0.23, 0.27, 0.19], // darker olive folds / patches
+    cJacketSeam = [0.18, 0.21, 0.15],
+    cVest = [0.16, 0.155, 0.14], // dark tactical plate carrier / chest rig
+    cWebbing = [0.22, 0.2, 0.16], // MOLLE webbing strips
+    cPouch = [0.31, 0.27, 0.2], // coyote / khaki mag pouches
+    cGrenade = [0.24, 0.31, 0.18], // olive drab M67 frag grenade body
+    cBelt = [0.11, 0.11, 0.12], // heavy tactical duty belt / polymer
+    cSling = [0.26, 0.22, 0.16], // canvas rifle sling
+    cPants = [0.47, 0.42, 0.33], // desert khaki cargo trousers
+    cPantsFold = [0.39, 0.35, 0.27],
+    cBoot = [0.1, 0.095, 0.09], // black leather/nylon combat boots
+    cSole = [0.05, 0.05, 0.055],
+    cMask = [0.14, 0.15, 0.165], // ribbed dark charcoal balaclava
+    cKeffiyeh = [0.74, 0.19, 0.15], // crimson/red keffiyeh headwrap & scarf
+    cKeffiyehBand = [0.86, 0.82, 0.75], // woven white/cream keffiyeh pattern folds
+    cSkin = [0.85, 0.64, 0.49], // warm human skin tone (driven by SSS skin shader)
+    cSkinShade = [0.74, 0.52, 0.39], // shaded facial contours / knuckles
+    cSclera = [0.92, 0.91, 0.89], // human eye sclera
+    cIris = [0.14, 0.1, 0.07], // dark brown iris/pupil
+    cBrow = [0.11, 0.09, 0.08], // dark eyebrows
+    cGlove = [0.13, 0.13, 0.14], // fingerless tactical combat gloves
+    cGlovePad = [0.22, 0.2, 0.18],
+    cAkSteel = [0.32, 0.34, 0.37],
+    cAkDark = [0.17, 0.18, 0.21],
+    cAkBolt = [1.22, 1.24, 1.28],
+    cAkWood = [1.06, 0.64, 0.34], // laminated AK-47 wood
+    cAkBake = [0.74, 0.27, 0.11]; // bakelite grip / mag accent
+
+  // --- 1. PELVIS, HIPS & TACTICAL DUTY BELT ('body') ---
+  (t('cloth', 'body', Xe(ua(0.156, 16, 12, 1.14, 0.8, 0.88), 0, 0.008, 0), cPants),
+    t('cloth', 'body', Xe(Ms(0.152, 0.162, 0.125, 16), 0, 0.048, 0), cPants),
+    // Gluteal & hip contour
+    t('cloth', 'body', Xe(ua(0.082, 12, 10, 1.05, 0.95, 0.88), -0.068, -0.005, -0.055), cPantsFold),
+    t('cloth', 'body', Xe(ua(0.082, 12, 10, 1.05, 0.95, 0.88), 0.068, -0.005, -0.055), cPantsFold),
+    // Untucked guerrilla jacket hem overhanging belt
+    t('cloth', 'body', Xe(Ms(0.162, 0.156, 0.065, 16), 0, 0.082, 0), cJacket),
+    // Heavy Tactical Duty Belt & belt loops
+    t('shell', 'body', Xe(Ms(0.161, 0.161, 0.05, 16), 0, 0.065, 0), cBelt),
+    t('metal', 'body', Xe(Tt(0.058, 0.054, 0.024, 0.004), 0, 0.065, 0.142), Bn),
+    t('metal', 'body', Xe(Tt(0.024, 0.044, 0.028, 0.003), 0, 0.065, 0.145), cAkDark),
+    // Right-hip tactical polymer holster + holstered sidearm grip
+    t('shell', 'body', Xe(Tt(0.052, 0.135, 0.088, 0.012), -0.168, -0.02, 0.02, 0.08, 0, 0), cBelt),
+    t('shell', 'body', Xe(Tt(0.032, 0.075, 0.045, 0.006), -0.168, 0.055, 0.005, -0.28, 0, 0), cGlove),
+    t('metal', 'body', Xe(Tt(0.028, 0.035, 0.08, 0.004), -0.168, 0.048, 0.035, 0.08, 0, 0), cAkSteel),
+    // Left-hip utility / IFAK pouch & rear dump pouch + canteen
+    t('cloth', 'body', Xe(Tt(0.068, 0.115, 0.082, 0.014), 0.164, 0.04, -0.03), cPouch),
+    t('cloth', 'body', Xe(Tt(0.11, 0.11, 0.068, 0.014), -0.045, 0.055, -0.148), cPouch),
+    t('shell', 'body', Xe(Ms(0.042, 0.042, 0.11, 10), 0.075, 0.045, -0.142), cJacketDark));
+
+  // --- 2. MUSCULAR V-TAPER TORSO, GUERRILLA JACKET & PLATE CARRIER ('torso') ---
+  (t('cloth', 'torso', Vh([0, -0.02, 0], [0, 0.37, 0], 0.148, 0.188, 16), cJacket),
+    t('cloth', 'torso', Xe(Tt(0.358, 0.365, 0.215, 0.058), 0, 0.195, 0.005), cJacket),
+    // Pectoral & latissimus dorsi muscular shaping under jacket
+    t('cloth', 'torso', Xe(ua(0.105, 12, 10, 1.15, 0.85, 0.72), -0.078, 0.255, 0.068), cJacket),
+    t('cloth', 'torso', Xe(ua(0.105, 12, 10, 1.15, 0.85, 0.72), 0.078, 0.255, 0.068), cJacket),
+    // Center jacket storm flap & zipper seam
+    t('cloth', 'torso', Xe(Tt(0.028, 0.35, 0.018, 0.004), 0, 0.19, 0.108), cJacketSeam),
+    // Broadened anatomical deltoid shoulder caps + epaulet straps
+    t('cloth', 'torso', Xe(ua(0.098, 14, 10, 1.28, 0.88, 0.98), -0.175, 0.332, 0), cJacketDark),
+    t('cloth', 'torso', Xe(ua(0.098, 14, 10, 1.28, 0.88, 0.98), 0.175, 0.332, 0), cJacketDark),
+    t('cloth', 'torso', Xe(Tt(0.085, 0.018, 0.042, 0.005), -0.145, 0.382, 0, 0, 0, 0.18), cPouch),
+    t('cloth', 'torso', Xe(Tt(0.085, 0.018, 0.042, 0.005), 0.145, 0.382, 0, 0, 0, -0.18), cPouch),
+    // Sculpted multi-fold Keffiyeh / Shemagh scarf draped around collar & upper chest
+    t('cloth', 'torso', Xe(new THREE.TorusGeometry(0.126, 0.044, 12, 20), 0, 0.386, 0.015, al + 0.14, 0, 0), cKeffiyeh),
+    t('cloth', 'torso', Xe(new THREE.TorusGeometry(0.118, 0.028, 10, 18), 0, 0.358, 0.028, al + 0.22, 0.12, 0), cKeffiyehBand),
+    t('cloth', 'torso', Xe(Tt(0.17, 0.125, 0.048, 0.018), 0, 0.315, 0.112, 0.22, 0, 0), cKeffiyeh),
+    t('cloth', 'torso', Xe(Tt(0.12, 0.095, 0.038, 0.014), 0.025, 0.285, 0.118, 0.18, 0, -0.15), cKeffiyehBand),
+    // Tactical Plate Carrier / Chest Rig (front & back ballistic plates + cummerbund)
+    t('cloth', 'torso', Xe(Tt(0.308, 0.285, 0.238, 0.032), 0, 0.175, 0.01), cVest),
+    t('shell', 'torso', Xe(Tt(0.25, 0.24, 0.032, 0.012), 0, 0.185, 0.118), cVest),
+    // Padded shoulder harness straps
+    t('cloth', 'torso', Xe(Tt(0.062, 0.145, 0.225, 0.014), -0.106, 0.322, 0.005), cVest),
+    t('cloth', 'torso', Xe(Tt(0.062, 0.145, 0.225, 0.014), 0.106, 0.322, 0.005), cVest),
+    // Diagonal canvas rifle sling across torso
+    t('cloth', 'torso', Vh([0.135, 0.36, 0.105], [-0.145, 0.04, 0.125], 0.018, 0.018, 6), cSling),
+    t('cloth', 'torso', Vh([0.135, 0.36, -0.105], [-0.145, 0.04, -0.115], 0.018, 0.018, 6), cSling));
+
+  // Horizontal MOLLE webbing rows on chest rig
+  for (let r = 0; r < 3; r++) {
+    t('cloth', 'torso', Xe(Tt(0.24, 0.016, 0.012, 0.003), 0, 0.225 + r * 0.032, 0.132), cWebbing);
   }
-  let t = (i, s, o, r, a) => e.add(i, s, o, r, a);
-  (t('metal', 'body', Xe(Tt(0.27, 0.2, 0.98, 0.02), 0, -0.01, 0), k0),
-    t('shell', 'body', Xe(Tt(0.35, 0.05, 0.3, 0.014), 0, 0.125, 0.33), Bs),
-    t('shell', 'body', Xe(Tt(0.35, 0.05, 0.36, 0.014), 0, 0.125, -0.012), Bs),
-    t('shell', 'body', Xe(Tt(0.1, 0.052, 0.36, 0.01), 0, 0.126, -0.012 + 0), F5));
-  for (let i of [-0.15, 0.15])
-    for (let s of [0.21, 0.45, -0.17, 0.145]) t('metal', 'body', jy(i, 0.152, s), Bn);
-  t('metal', 'body', Xe(Tt(0.31, 0.03, 0.25, 0.006), 0, 0.112, -0.335), Os);
-  for (let i = 0; i < 10; i++)
-    t('metal', 'body', Xe(Tt(0.007, 0.062, 0.225, 0.002), -0.126 + i * 0.028, 0.155, -0.335), Bn);
-  (t('metal', 'body', Xe(Tt(0.3, 0.012, 0.02, 0.003), 0, 0.186, -0.24), k0),
-    t('metal', 'body', Xe(Tt(0.3, 0.012, 0.02, 0.003), 0, 0.186, -0.43), k0));
-  for (let i of [1, -1]) {
-    (t('shell', 'body', Xe(Tt(0.032, 0.15, 0.31, 0.012), i * 0.15, 0.022, -0.075), Bs),
-      t('shell', 'body', Xe(Tt(0.032, 0.15, 0.135, 0.012), i * 0.15, 0.022, 0.1625), F5),
-      t(
-        'metal',
-        'body',
-        bn(
-          [
-            [i * 0.168, 0.06, 0.125],
-            [i * 0.182, 0.06, 0.135],
-            [i * 0.182, 0.06, 0.19],
-            [i * 0.168, 0.06, 0.2],
-          ],
-          0.005,
-          5,
-        ),
-        Bn,
-      ),
-      t('shell', 'body', Xe(Tt(0.034, 0.016, 0.135, 0.004), i * 0.151, -0.035, 0.1625), V1),
-      t('shell', 'body', Xe(Tt(0.034, 0.042, 0.46, 0.008), i * 0.151, -0.078, 0), Hs),
-      t('shell', 'body', Xe(Tt(0.028, 0.1, 0.11, 0.008), i * 0.146, 0.01, 0.305), oc));
-    for (let s = 0; s < 4; s++)
-      t('metal', 'body', Xe(Tt(0.004, 0.012, 0.085, 0.001), i * 0.161, -0.02 + s * 0.022, 0.305), k0);
-    for (let s of [-0.035, 0.08])
-      for (let o of [-0.21, 0.06, 0.115, 0.21]) t('metal', 'body', OS(i * 0.167, s, o), Bn);
-    t(
-      'metal',
-      'body',
-      bn(
-        [
-          [i * 0.135, 0.148, -0.19],
-          [i * 0.135, 0.205, -0.16],
-          [i * 0.135, 0.212, 0],
-          [i * 0.135, 0.205, 0.43],
-          [i * 0.135, 0.148, 0.465],
-        ],
-        0.0105,
-        6,
-      ),
-      Bn,
-    );
-    for (let s of [0, 0.26]) t('metal', 'body', Xe(Ms(0.008, 0.008, 0.06, 6), i * 0.135, 0.178, s), Bn);
-    (t(
-      'shell',
-      'body',
-      bn(
-        [
-          [i * 0.118, -0.105, -0.36],
-          [i * 0.132, -0.118, -0.2],
-          [i * 0.13, -0.112, 0.1],
-          [i * 0.118, -0.1, 0.36],
-        ],
-        0.009,
-        5,
-      ),
-      rl,
-    ),
-      t(
-        'metal',
-        'body',
-        Xe(new THREE.TorusGeometry(0.02, 0.005, 5, 10), i * 0.17, 0.085, -0.335, 0, al, 0),
-        Bn,
-      ));
+
+  // 3 Front AK-47 Magazine Pouches with exposed curved steel mags & pull-tabs
+  for (let i = -1; i <= 1; i++) {
+    let px = i * 0.082;
+    (t('cloth', 'torso', Xe(Tt(0.068, 0.138, 0.05, 0.01), px, 0.122, 0.14, -0.05, 0, i * 0.04), cPouch),
+      t('cloth', 'torso', Xe(Tt(0.072, 0.042, 0.054, 0.008), px, 0.178, 0.142), cJacketDark),
+      t('metal', 'torso', Xe(Tt(0.046, 0.034, 0.026, 0.004), px, 0.202, 0.136, 0, 0, i * 0.05), cAkBake),
+      t('cloth', 'torso', Xe(Tt(0.016, 0.022, 0.018, 0.003), px, 0.22, 0.138), cBelt));
   }
-  (t('shell', 'body', Xe(Tt(0.3, 0.15, 0.075, 0.018), 0, -0.005, 0.505), Hs),
-    t('shell', 'body', Xe(Tt(0.2, 0.07, 0.02, 0.006), 0, 0.012, 0.545), oc));
-  for (let i = 0; i < 6; i++)
-    t(
-      'shell',
-      'body',
-      Xe(Tt(0.05, 0.034, 0.014, 0.003), -0.125 + i * 0.05, -0.098, 0.538, 0, 0, 0),
-      i % 2 ? oc : V1,
-    );
-  for (let i of [-0.115, 0.115])
-    (t('metal', 'body', Xe(ki(0.021, 0.021, 0.014, 10), i, 0.012, 0.547), k0),
-      t('glow', 'body', Xe(ki(0.015, 0.015, 0.004, 10), i, 0.012, 0.556), [6.5, 4.6, 2.2], !1));
-  (t('metal', 'body', Xe(Tt(0.24, 0.095, 0.56, 0.02), 0, -0.145, 0), Os),
-    t('shell', 'body', Xe(Tt(0.246, 0.03, 0.09, 0.006), 0, -0.14, 0.12), Hs),
-    t('shell', 'body', Xe(Tt(0.246, 0.03, 0.09, 0.006), 0, -0.14, -0.12), Hs),
-    t('shell', 'body', Xe(Tt(0.29, 0.15, 0.05, 0.014), 0, 0, -0.495), Bs),
-    t('shell', 'body', Xe(Tt(0.17, 0.05, 0.012, 0.004), 0, 0.03, -0.523), oc),
-    t('glow', 'body', Xe(Tt(0.13, 0.012, 0.004, 0.001), 0, 0.03, -0.531), [5, 0.3, 0.1], !1),
-    t('metal', 'body', Xe(ki(0.022, 0.022, 0.02, 10), 0.085, -0.035, -0.525), Bn),
-    t('metal', 'body', Xe(new THREE.TorusGeometry(0.024, 0.006, 5, 10), -0.07, -0.05, -0.528, al, 0, 0), Bn));
-  for (let i of [-0.125, 0.125]) for (let s of [-0.055, 0.055]) t('metal', 'body', GD(i, s, -0.523), Bn);
-  (t(
-    'shell',
-    'body',
-    bn(
-      [
-        [0.09, 0.15, -0.2],
-        [0.13, 0.2, -0.16],
-        [0.12, 0.2, -0.08],
-        [0.09, 0.165, -0.05],
-      ],
-      0.009,
-      5,
-    ),
-    rl,
-  ),
-    t('metal', 'neck', Vh([0, -0.02, -0.02], [0, 0.11, 0.1], 0.045, 0.036, 10), k0));
-  for (let i = 0; i < 3; i++) {
-    let s = 0.2 + i * 0.28;
-    t(
-      'shell',
-      'neck',
-      Vh(
-        [0, -0.02 + 0.13 * s - 0.008, -0.02 + 0.12 * s - 0.0075],
-        [0, -0.02 + 0.13 * s + 0.008, -0.02 + 0.12 * s + 0.0075],
-        0.052,
-        0.052,
-        10,
-      ),
-      rl,
-    );
+
+  // 2 M67 Fragmentation Grenades clipped on upper chest rig
+  for (let gSide of [-1, 1]) {
+    let gx = gSide * 0.095,
+      gy = 0.255,
+      gz = 0.142;
+    (t('metal', 'torso', Xe(ua(0.026, 10, 8, 0.95, 1.12, 0.95), gx, gy, gz), cGrenade),
+      t('metal', 'torso', Xe(Ms(0.01, 0.012, 0.018, 8), gx, gy + 0.03, gz), Bn),
+      t('metal', 'torso', Xe(Tt(0.008, 0.038, 0.016, 0.002), gx + gSide * 0.012, gy + 0.012, gz + 0.012, 0.2, 0, 0), cAkSteel),
+      t('metal', 'torso', Xe(new THREE.TorusGeometry(0.009, 0.002, 6, 10), gx - gSide * 0.01, gy + 0.032, gz + 0.01), cAkBolt));
   }
-  (t('shell', 'neck', Xe(Tt(0.13, 0.05, 0.1, 0.012), 0, -0.01, -0.03), Bs),
-    t(
-      'shell',
-      'neck',
-      bn(
-        [
-          [0.05, -0.02, -0.04],
-          [0.07, 0.05, 0.02],
-          [0.06, 0.11, 0.07],
-          [0.045, 0.12, 0.1],
-        ],
-        0.007,
-        5,
-      ),
-      rl,
-    ),
-    t('shell', 'head', Xe(Tt(0.19, 0.118, 0.25, 0.03), 0, 0, 0), Bs),
-    t('shell', 'head', Xe(Tt(0.168, 0.074, 0.03, 0.012), 0, -0.004, 0.118), oc),
-    t('lens', 'head', Xe(Tt(0.128, 0.024, 0.006, 0.002), 0, 0.006, 0.1345), [1, 1, 1], !1));
-  for (let i of [-0.056, 0.056])
-    (t('metal', 'head', Xe(ki(0.015, 0.015, 0.012, 10), i, -0.022, 0.132), k0),
-      t('metal', 'head', Xe(ki(0.009, 0.009, 0.004, 8), i, -0.022, 0.139), [0.1, 0.12, 0.2]));
-  (t('shell', 'head', Xe(Tt(0.062, 0.008, 0.2, 0.003), 0, 0.06, -0.005), Hs),
-    t('metal', 'head', Xe(Uo(0.032, 0.032, 0.214, 12), 0, 0, -0.055), k0));
-  for (let i of [1, -1]) t('shell', 'head', Xe(Uo(0.022, 0.022, 0.006, 10), i * 0.108, 0, -0.055), Hs);
-  (t('metal', 'head', Xe(Ms(0.036, 0.036, 0.026, 14), 0, 0.072, -0.05), k0),
-    t('metal', 'head', Xe(Ms(0.037, 0.037, 0.006, 14), 0, 0.074, -0.05), [0.2, 0.3, 0.5]),
-    t('metal', 'head', Xe(Tt(0.12, 0.03, 0.13, 0.008), 0, -0.068, 0.02), Os));
-  for (let i of [-0.08, 0.08]) for (let s of [-0.09, 0.07]) t('metal', 'head', jy(i, 0.061, s), Bn);
-  (t('metal', 'turret', Xe(Ms(0.105, 0.118, 0.034, 18), 0, 0, 0), k0),
-    t('metal', 'turret', Xe(Tt(0.18, 0.02, 0.16, 0.005), 0, 0.026, 0), Os));
-  for (let i of [1, -1])
-    (t('shell', 'turret', Xe(Tt(0.028, 0.115, 0.15, 0.012), i * 0.078, 0.085, 0.005), Bs),
-      t('metal', 'turret', Xe(Uo(0.022, 0.022, 0.008, 10), i * 0.094, 0.095, 0.02), Bn));
-  (t('shell', 'gun', Xe(Tt(0.108, 0.086, 0.21, 0.016), 0, 0, -0.012), Bs),
-    t('shell', 'gun', Xe(Tt(0.11, 0.02, 0.212, 0.006), 0, -0.022, -0.012), Hs),
-    t('metal', 'gun', Xe(ki(0.035, 0.035, 0.11, 12), 0, 0, 0.145), k0));
-  for (let i = 0; i < 4; i++) t('metal', 'gun', Xe(ki(0.039, 0.039, 0.008, 12), 0, 0, 0.105 + i * 0.026), Os);
-  (t('metal', 'gun', Xe(ki(0.022, 0.024, 0.3, 12), 0, 0, 0.25), Os),
-    t('metal', 'gun', Xe(ki(0.036, 0.036, 0.06, 10), 0, 0, 0.395), k0),
-    t('metal', 'gun', Xe(Tt(0.08, 0.012, 0.025, 0.003), 0, 0, 0.395), [0.15, 0.15, 0.15]),
-    t('metal', 'gun', Xe(Uo(0.056, 0.056, 0.06, 14), 0.084, -0.004, -0.045), k0),
-    t('metal', 'gun', Xe(Uo(0.02, 0.02, 0.066, 8), 0.084, -0.004, -0.045), OD),
-    t('metal', 'gun', Xe(Tt(0.036, 0.036, 0.095, 0.008), -0.03, 0.06, 0), k0),
-    t('glow', 'gun', Xe(ki(0.011, 0.011, 0.003, 8), -0.03, 0.06, 0.049), [1.6, 0.12, 0.05], !1),
-    t(
-      'shell',
-      'gun',
-      bn(
-        [
-          [0.05, -0.03, -0.11],
-          [0.06, -0.07, -0.13],
-          [0.04, -0.09, -0.1],
-        ],
-        0.008,
-        5,
-      ),
-      rl,
-    ),
-    t('metal', 'body', Xe(Ms(0.022, 0.026, 0.05, 10), 0.105, 0.175, -0.455), k0),
-    t('glow', 'beacon', Xe(ua(0.02, 10, 6, 1, 1.25, 1), 0, 0.012, 0), [14, 5.5, 0.5], !1),
-    t('metal', 'antenna', Xe(Ms(0.011, 0.014, 0.05, 8), 0, 0.025, 0), k0),
-    t('metal', 'antenna', Xe(Ms(0.0028, 0.005, 0.62, 5), 0, 0.36, 0), k0),
-    t('shell', 'antenna', Xe(ua(0.009, 6, 4), 0, 0.67, 0), Hs));
-  for (let i = 0; i < 4; i++) {
-    let s = n.legs[i],
-      o = n.side[i],
-      r = 'abd' + s,
-      a = 'thigh' + s,
-      l = 'shin' + s;
-    (t('metal', r, Xe(ki(0.06, 0.06, 0.17, 14), -o * 0.02, 0, 0), k0),
-      t('shell', r, Xe(Tt(0.11, 0.05, 0.155, 0.014), o * 0, 0.058, 0), Bs),
-      t('metal', r, Xe(ki(0.03, 0.03, 0.18, 8), -o * 0.02, 0, 0), Bn),
-      t('shell', a, Xe(Uo(0.078, 0.078, 0.07, 18), 0, 0, 0), Bs),
-      t('shell', a, Xe(Uo(0.081, 0.081, 0.016, 18), o * 0.012, 0, 0), Hs),
-      t('metal', a, Xe(Uo(0.048, 0.048, 0.082, 12), 0, 0, 0), k0));
-    for (let c = 0; c < 5; c++) {
-      let u = c * 1.2566;
-      t('metal', a, OS(o * 0.039, Math.cos(u) * 0.062, Math.sin(u) * 0.062), Bn);
+
+  // Angled Combat Knife & Sheath on chest rig + Tactical Radio on left shoulder + Rear Assault Pack
+  (t('shell', 'torso', Xe(Tt(0.028, 0.12, 0.018, 0.004), -0.025, 0.265, 0.136, 0, 0, 0.52), cBelt),
+    t('shell', 'torso', Xe(Tt(0.024, 0.068, 0.02, 0.004), -0.065, 0.325, 0.138, 0, 0, 0.52), cGlove),
+    t('metal', 'torso', Xe(Tt(0.038, 0.01, 0.022, 0.002), -0.046, 0.296, 0.138, 0, 0, 0.52), Bn),
+    // Tactical VHF Radio + flexible whip antenna on left shoulder
+    t('shell', 'torso', Xe(Tt(0.046, 0.082, 0.034, 0.006), 0.11, 0.285, 0.118), cBelt),
+    t('metal', 'torso', Vh([0.118, 0.325, 0.118], [0.132, 0.46, 0.085], 0.0035, 0.0018, 6), cAkDark),
+    // Back tactical hydration / assault pack with straps
+    t('cloth', 'torso', Xe(Tt(0.245, 0.275, 0.088, 0.024), 0, 0.195, -0.138), cPouch),
+    t('cloth', 'torso', Xe(Tt(0.21, 0.12, 0.045, 0.014), 0, 0.145, -0.182), cJacketDark),
+    t('shell', 'torso', Xe(Tt(0.22, 0.022, 0.092, 0.004), 0, 0.24, -0.142), cBelt));
+
+  // --- 3. HUMAN NECK & ANATOMICAL HEAD ('neck', 'head') ---
+  // Exposed muscular neck skin & sternocleidomastoid contour above balaclava collar
+  (t('cloth', 'neck', Vh([0, -0.025, 0], [0, 0.065, 0.008], 0.068, 0.062, 14), cMask),
+    t('skin', 'neck', Vh([0, 0.045, 0.006], [0, 0.105, 0.012], 0.061, 0.058, 14), cSkin),
+    // Cranium, jaw & chin in dark knitted balaclava
+    t('cloth', 'head', Xe(ua(0.108, 18, 14, 0.94, 1.12, 1.03), 0, 0.066, 0), cMask),
+    t('cloth', 'head', Xe(Tt(0.142, 0.108, 0.138, 0.036), 0, 0.014, 0.018), cMask),
+    t('cloth', 'head', Xe(ua(0.052, 12, 10, 1.15, 0.82, 1.1), 0, -0.018, 0.052), cMask),
+    // Balaclava mouth/nose fabric breathing vent relief
+    t('cloth', 'head', Xe(Tt(0.068, 0.046, 0.026, 0.008), 0, 0.012, 0.088, 0.12, 0, 0), cBelt),
+    // Anatomical Human Face Inside Balaclava Eye-Opening:
+    // Forehead / brow ridge, upper cheekbones, and sculpted nose bridge
+    t('skin', 'head', Xe(Tt(0.128, 0.046, 0.052, 0.014), 0, 0.068, 0.078), cSkin),
+    t('skin', 'head', Xe(Tt(0.132, 0.018, 0.036, 0.007), 0, 0.086, 0.094, 0.12, 0, 0), cSkinShade),
+    t('skin', 'head', Xe(ua(0.034, 10, 8, 1.15, 0.65, 0.8), -0.042, 0.052, 0.088), cSkinShade),
+    t('skin', 'head', Xe(ua(0.034, 10, 8, 1.15, 0.65, 0.8), 0.042, 0.052, 0.088), cSkinShade),
+    t('skin', 'head', Xe(Tt(0.024, 0.04, 0.034, 0.008), 0, 0.062, 0.104, -0.24, 0, 0), cSkin),
+    // Realistic Human Eyes (Sclera, Dark Iris/Pupil, Upper Eyelids & Angled Eyebrows)
+    t('shell', 'head', Xe(ua(0.0145, 10, 8, 1.25, 0.82, 0.65), -0.034, 0.069, 0.098), cSclera, !1),
+    t('shell', 'head', Xe(ua(0.0145, 10, 8, 1.25, 0.82, 0.65), 0.034, 0.069, 0.098), cSclera, !1),
+    t('metal', 'head', Xe(ua(0.0078, 8, 6, 1.05, 1.05, 0.55), -0.033, 0.069, 0.1055), cIris, !1),
+    t('metal', 'head', Xe(ua(0.0078, 8, 6, 1.05, 1.05, 0.55), 0.033, 0.069, 0.1055), cIris, !1),
+    t('skin', 'head', Xe(Tt(0.032, 0.009, 0.018, 0.003), -0.034, 0.076, 0.1, 0.1, 0, -0.08), cSkinShade),
+    t('skin', 'head', Xe(Tt(0.032, 0.009, 0.018, 0.003), 0.034, 0.076, 0.1, 0.1, 0, 0.08), cSkinShade),
+    t('cloth', 'head', Xe(Tt(0.036, 0.008, 0.014, 0.002), -0.035, 0.083, 0.102, 0, 0, -0.14), cBrow),
+    t('cloth', 'head', Xe(Tt(0.036, 0.008, 0.014, 0.002), 0.035, 0.083, 0.102, 0, 0, 0.14), cBrow),
+    // Balaclava eye-hole rim trim
+    t('cloth', 'head', Xe(Tt(0.136, 0.012, 0.032, 0.004), 0, 0.044, 0.094), cMask),
+    // Keffiyeh / Shemagh Headwrap Crown, Forehead Fold & Dual Black Agal Cords
+    t('cloth', 'head', Xe(ua(0.118, 18, 14, 0.99, 0.88, 1.08), 0, 0.102, -0.008), cKeffiyeh),
+    t('cloth', 'head', Xe(Tt(0.152, 0.034, 0.12, 0.012), 0, 0.102, 0.042, 0.12, 0, 0), cKeffiyehBand),
+    t('shell', 'head', Xe(new THREE.TorusGeometry(0.109, 0.016, 10, 20), 0, 0.118, -0.002, al - 0.12, 0, 0), cBelt),
+    t('shell', 'head', Xe(new THREE.TorusGeometry(0.111, 0.013, 10, 20), 0, 0.098, 0.002, al - 0.12, 0, 0), cBelt),
+    // Heavy Ballistic Goggles pushed up onto Forehead Wrap
+    t('shell', 'head', Xe(Tt(0.146, 0.044, 0.036, 0.008), 0, 0.128, 0.086, -0.22, 0, 0), cBelt),
+    t('lens', 'head', Xe(Tt(0.056, 0.03, 0.014, 0.004), -0.036, 0.128, 0.101, -0.22, 0, 0), [0.18, 0.2, 0.22], !1),
+    t('lens', 'head', Xe(Tt(0.056, 0.03, 0.014, 0.004), 0.036, 0.128, 0.101, -0.22, 0, 0), [0.18, 0.2, 0.22], !1),
+    // Draped Keffiyeh side tails & back folds
+    t('cloth', 'head', Vh([-0.098, 0.075, -0.015], [-0.116, -0.075, -0.035], 0.038, 0.048, 10), cKeffiyeh),
+    t('cloth', 'head', Vh([0.098, 0.075, -0.015], [0.116, -0.075, -0.035], 0.038, 0.048, 10), cKeffiyeh),
+    t('cloth', 'head', Xe(Tt(0.16, 0.13, 0.045, 0.016), 0, 0.025, -0.098, 0.18, 0, 0), cKeffiyehBand));
+
+  // --- 4. ARMS, ROLLED SLEEVES, BARE MUSCULAR FOREARMS & 5-FINGERED HANDS ---
+  for (let side of [1, -1]) {
+    let sKey = side > 0 ? 'L' : 'R',
+      sh = 'shoulder' + sKey,
+      fa = 'forearm' + sKey,
+      ha = 'hand' + sKey;
+    // Upper arm jacket sleeve + bicep/tricep + tactical velcro patch + rolled sleeve cuff at elbow
+    (t('cloth', sh, Xe(ua(0.064, 12, 10), 0, 0, 0), cJacket),
+      t('cloth', sh, Vh([0, 0, 0], [0, -n.armL1 * 0.88, 0], 0.06, 0.052, 14), cJacket),
+      t('cloth', sh, Xe(Tt(0.026, 0.095, 0.072, 0.008), side * 0.05, -0.105, 0), cJacketDark),
+      t('cloth', sh, Xe(Tt(0.012, 0.055, 0.046, 0.003), side * 0.06, -0.105, 0), cKeffiyeh),
+      // Rolled-up guerrilla jacket cuff just above elbow
+      t('cloth', sh, Xe(new THREE.TorusGeometry(0.05, 0.018, 10, 16), 0, -n.armL1 * 0.86, 0, al, 0, 0), cJacketDark),
+      t('skin', sh, Xe(ua(0.047, 10, 8), 0, -n.armL1, 0), cSkin),
+      // Bare muscular human forearm (brachioradialis muscle belly tapering to wrist)
+      t('skin', fa, Vh([0, 0, 0], [0, -n.armL2 * 0.52, 0], 0.048, 0.042, 14), cSkin),
+      t('skin', fa, Vh([0, -n.armL2 * 0.48, 0], [0, -n.armL2 * 0.88, 0], 0.042, 0.033, 12), cSkin),
+      t('skin', fa, Xe(ua(0.032, 10, 8, 0.85, 1.35, 1.05), side * 0.01, -n.armL2 * 0.28, 0.012), cSkinShade));
+    // Tactical wristwatch on left wrist
+    if (side > 0) {
+      (t('shell', fa, Xe(Ms(0.036, 0.036, 0.022, 12), 0, -n.armL2 * 0.8, 0), cBelt),
+        t('metal', fa, Xe(Tt(0.028, 0.026, 0.012, 0.003), 0.026, -n.armL2 * 0.8, 0.01, 0, 0, -al), cAkDark));
     }
-    (t('shell', a, Xe(Tt(0.062, n.L1 - 0.07, 0.1, 0.022), 0, -n.L1 * 0.5 - 0.005, 0.004), Bs),
-      t('metal', a, Xe(Tt(0.044, n.L1 - 0.04, 0.06, 0.012), 0, -n.L1 * 0.5, -0.035), k0),
-      t('shell', a, Xe(Tt(0.065, 0.045, 0.103, 0.01), 0, -0.145, 0.004), Hs),
-      t('shell', a, Xe(Tt(0.064, 0.012, 0.102, 0.004), 0, -0.26, 0.004), oc),
-      t('metal', a, Vh([0, -0.06, -0.082], [0, -n.L1 * 0.62, -0.078], 0.021, 0.021, 10), Bn),
-      t('metal', a, Vh([0, -n.L1 * 0.62, -0.078], [0, -n.L1 + 0.025, -0.058], 0.009, 0.009, 6), HD),
-      t('metal', a, Xe(Tt(0.05, 0.03, 0.035, 0.006), 0, -0.055, -0.07), Os),
-      t(
-        'shell',
-        a,
-        bn(
-          [
-            [o * 0.036, -0.02, 0.05],
-            [o * 0.044, -0.13, 0.062],
-            [o * 0.042, -0.28, 0.058],
-            [o * 0.034, -n.L1 + 0.03, 0.035],
-          ],
-          0.0065,
-          5,
-        ),
-        rl,
-      ),
-      t('metal', a, Xe(Uo(0.05, 0.05, 0.086, 14), 0, -n.L1, 0), k0),
-      t('shell', a, Xe(Uo(0.036, 0.036, 0.092, 12), 0, -n.L1, 0), F5),
-      t('metal', l, Xe(Ms(0.03, 0.021, n.L2 - 0.08, 10), 0, -(n.L2 - 0.08) / 2 - 0.01, 0), k0),
-      t('shell', l, Xe(Tt(0.052, 0.21, 0.04, 0.014), 0, -0.14, 0.02), Bs),
-      t('shell', l, Xe(Tt(0.054, 0.02, 0.042, 0.006), 0, -0.215, 0.02), Hs),
-      t('metal', l, Xe(Tt(0.03, 0.06, 0.05, 0.008), 0, -0.02, -0.03), Os),
-      t('metal', l, Xe(Ms(0.024, 0.03, 0.03, 10), 0, -n.L2 + 0.085, 0), Bn),
-      t('shell', l, Xe(ua(n.footR + 0.002, 12, 8, 1, 0.86, 1.08), 0, -n.L2 + n.footR * 0.86, 0.004), rl));
+    // Fingerless tactical glove wrist strap, palm & molded knuckle guard
+    (t('cloth', fa, Xe(Ms(0.037, 0.036, 0.034, 12), 0, -n.armL2 + 0.014, 0), cGlove),
+      t('cloth', ha, Xe(Tt(0.044, 0.056, 0.072, 0.012), 0, -0.018, 0.014), cGlove),
+      t('shell', ha, Xe(Tt(0.046, 0.018, 0.058, 0.005), side * 0.016, -0.022, 0.018), cGlovePad),
+      // Exposed human thumb (proximal + distal phalanx wrapped around grip)
+      t('skin', ha, Xe(Tt(0.018, 0.028, 0.024, 0.006), -side * 0.022, -0.002, 0.028, 0.35, side * 0.25, 0), cSkin),
+      t('skin', ha, Xe(Tt(0.016, 0.024, 0.022, 0.005), -side * 0.018, 0.008, 0.046, 0.65, side * 0.4, 0), cSkinShade));
+    // 4 Individual Articulated Human Fingers (Index, Middle, Ring, Little) curled around AK-47
+    for (let fIdx = 0; fIdx < 4; fIdx++) {
+      let fz = -0.008 + fIdx * 0.016,
+        fLen = fIdx === 1 ? 0.032 : fIdx === 3 ? 0.025 : 0.029;
+      // Gloved proximal knuckle base + bare proximal/middle/distal curled phalanges
+      (t('cloth', ha, Xe(Tt(0.018, 0.02, 0.014, 0.004), side * 0.008, -0.042, fz + 0.02), cGlove),
+        t('skin', ha, Xe(Tt(0.016, fLen, 0.014, 0.004), side * 0.004, -0.056, fz + 0.032, -0.55, 0, side * 0.35), cSkin),
+        t('skin', ha, Xe(Tt(0.014, fLen * 0.82, 0.013, 0.004), -side * 0.01, -0.06, fz + 0.044, -1.15, 0, side * 0.85), cSkinShade));
+    }
   }
-  return e.build(['shell', 'metal', 'glow', 'lens']);
+
+  // --- 5. LEGS, BAGGED CARGO TROUSERS, CONTOURED KNEE PADS & LACED COMBAT BOOTS ---
+  for (let side of [1, -1]) {
+    let sKey = side > 0 ? 'L' : 'R',
+      thB = 'thigh' + sKey,
+      shB = 'shin' + sKey,
+      ftB = 'foot' + sKey;
+    // Muscular thigh cargo trousers + bellowed side cargo pocket with flap + thigh tie strap
+    (t('cloth', thB, Xe(ua(0.09, 14, 10), 0, 0, 0), cPants),
+      t('cloth', thB, Vh([0, 0, 0], [0, -n.L1, 0], 0.09, 0.07, 14), cPants),
+      t('cloth', thB, Xe(ua(0.065, 10, 8, 0.9, 1.6, 1.05), 0, -0.18, 0.022), cPants),
+      t('cloth', thB, Xe(Tt(0.04, 0.165, 0.125, 0.012), side * 0.078, -0.21, 0.005), cPantsFold),
+      t('cloth', thB, Xe(Tt(0.044, 0.042, 0.13, 0.008), side * 0.08, -0.14, 0.005), cJacketDark),
+      t('shell', thB, Xe(Ms(0.082, 0.08, 0.024, 12), 0, -0.19, 0), cBelt),
+      t('cloth', thB, Xe(ua(0.068, 12, 10), 0, -n.L1, 0), cPants),
+      // Shin + contoured hard-shell tactical knee pad with dual elastic straps
+      t('cloth', shB, Xe(Tt(0.1, 0.125, 0.052, 0.016), 0, -0.032, 0.042), cPouch),
+      t('shell', shB, Xe(Tt(0.088, 0.095, 0.042, 0.014), 0, -0.032, 0.056), cBelt),
+      t('shell', shB, Xe(Ms(0.069, 0.068, 0.018, 12), 0, -0.008, 0), cBelt),
+      t('shell', shB, Xe(Ms(0.066, 0.065, 0.018, 12), 0, -0.058, 0), cBelt),
+      // Baggy bloused lower trouser leg gathered above combat boot
+      t('cloth', shB, Vh([0, 0, 0], [0, -n.L2 * 0.72, 0], 0.068, 0.058, 14), cPants),
+      t('cloth', shB, Xe(new THREE.TorusGeometry(0.052, 0.016, 8, 14), 0, -n.L2 * 0.7, 0, al, 0, 0), cPantsFold),
+      // High-top laced combat boot shaft & padded collar
+      t('shell', shB, Vh([0, -n.L2 * 0.68, 0], [0, -n.L2, 0], 0.056, 0.049, 12), cBoot),
+      t('cloth', shB, Xe(Tt(0.042, 0.11, 0.025, 0.006), 0, -n.L2 * 0.84, 0.046), cGlovePad),
+      // Combat boot foot, reinforced toe cap, heel counter & deep lugged sole
+      t('shell', ftB, Xe(Tt(0.098, 0.07, 0.215, 0.022), 0, -0.022, 0.044), cBoot),
+      t('shell', ftB, Xe(ua(0.05, 12, 8, 1, 0.74, 1.38), 0, -0.025, 0.118), cBoot),
+      t('shell', ftB, Xe(Tt(0.1, 0.058, 0.065, 0.014), 0, -0.02, -0.035), cBoot),
+      t('shell', ftB, Xe(Tt(0.104, 0.026, 0.236, 0.006), 0, -0.048, 0.046), cSole));
+  }
+
+  // --- 6. HIGH-DETAIL WORLD AK-47 ASSAULT RIFLE ON 'gun' BONE (+Z is forward) ---
+  // Stamped steel receiver (-0.09 .. +0.12 in Z) + mag-well dimples + selector lever
+  (t('metal', 'gun', Xe(Tt(0.038, 0.052, 0.22, 0.006), 0, -0.004, 0.015), cAkDark),
+    t('metal', 'gun', Xe(Tt(0.041, 0.016, 0.048, 0.003), 0, -0.012, 0.062), cAkSteel),
+    t('metal', 'gun', Xe(Tt(0.006, 0.014, 0.095, 0.002), -0.021, -0.002, 0.01, -0.08, 0, 0), cAkSteel),
+    // Ribbed top dust cover & recoil spring guide button at rear
+    t('metal', 'gun', Xe(Tt(0.036, 0.026, 0.2, 0.008), 0, 0.024, 0.01), cAkSteel),
+    t('metal', 'gun', Xe(Tt(0.014, 0.014, 0.014, 0.003), 0, 0.02, -0.092), cAkSteel),
+    // Polished steel bolt carrier & charging handle on right side (-X)
+    t('metal', 'gun', Xe(Tt(0.012, 0.018, 0.075, 0.003), -0.016, 0.016, 0.045), cAkBolt),
+    t('metal', 'gun', Xe(Uo(0.006, 0.006, 0.026, 8), -0.028, 0.018, 0.068), cAkBolt),
+    // Classic angled laminated wooden AK-47 buttstock (-0.09 .. -0.34 in Z) + steel buttplate & sling loop
+    t('wood', 'gun', Vh([0, -0.008, -0.09], [0, -0.058, -0.32], 0.024, 0.036, 10), cAkWood),
+    t('wood', 'gun', Xe(Tt(0.034, 0.088, 0.065, 0.008), 0, -0.062, -0.305), cAkWood),
+    t('metal', 'gun', Xe(Tt(0.036, 0.092, 0.014, 0.003), 0, -0.062, -0.338), cAkDark),
+    t('metal', 'gun', Xe(new THREE.TorusGeometry(0.008, 0.002, 6, 10), 0.019, -0.082, -0.295), cAkSteel),
+    // Checkered Bakelite pistol grip at z = -0.048, y = -0.072 (target for right hand!) + grip ferrule
+    t('metal', 'gun', Xe(Tt(0.032, 0.014, 0.044, 0.003), 0, -0.028, -0.036), cAkSteel),
+    t('shell', 'gun', Xe(Tt(0.03, 0.105, 0.042, 0.008), 0, -0.072, -0.048, -0.28, 0, 0), cAkBake),
+    // Trigger guard, mag release paddle & curved steel trigger
+    t('metal', 'gun', Xe(Tt(0.018, 0.028, 0.045, 0.003), 0, -0.04, -0.005), cAkDark),
+    t('metal', 'gun', Xe(Tt(0.006, 0.022, 0.008, 0.002), 0, -0.038, -0.008, 0.35, 0, 0), cAkBolt),
+    t('metal', 'gun', Xe(Tt(0.018, 0.022, 0.01, 0.002), 0, -0.036, 0.024, -0.2, 0, 0), cAkSteel),
+    // Iconic curved 30-round AK-47 banana magazine with stamped reinforcing ribs
+    t('metal', 'gun', Xe(Tt(0.028, 0.11, 0.058, 0.006), 0, -0.075, 0.072, 0.24, 0, 0), cAkBake),
+    t('metal', 'gun', Xe(Tt(0.031, 0.095, 0.012, 0.002), 0, -0.08, 0.085, 0.24, 0, 0), cAkDark),
+    t('metal', 'gun', Xe(Tt(0.027, 0.11, 0.056, 0.006), 0, -0.16, 0.112, 0.52, 0, 0), cAkBake),
+    t('metal', 'gun', Xe(Tt(0.03, 0.095, 0.012, 0.002), 0, -0.162, 0.125, 0.52, 0, 0), cAkDark),
+    t('metal', 'gun', Xe(Tt(0.031, 0.018, 0.062, 0.004), 0, -0.208, 0.142, 0.56, 0, 0), cAkDark),
+    // Wooden Lower & Upper Handguards (+0.12 .. +0.29 in Z, target for left hand at z=+0.205!) + vent slots
+    t('wood', 'gun', Xe(Tt(0.042, 0.042, 0.175, 0.01), 0, -0.01, 0.208), cAkWood),
+    t('wood', 'gun', Xe(Tt(0.034, 0.026, 0.155, 0.008), 0, 0.022, 0.205), cAkWood),
+    t('metal', 'gun', Xe(Tt(0.038, 0.01, 0.055, 0.002), 0, 0.01, 0.205), cAkDark),
+    t('metal', 'gun', Xe(Tt(0.044, 0.046, 0.014, 0.003), 0, 0.004, 0.298), cAkDark),
+    // Rear tangent sight block & leaf
+    t('metal', 'gun', Xe(Tt(0.028, 0.024, 0.052, 0.004), 0, 0.034, 0.125), cAkSteel),
+    t('metal', 'gun', Xe(Tt(0.022, 0.008, 0.046, 0.002), 0, 0.047, 0.125), cAkBolt),
+    // 7.62mm Rifled Barrel (+0.12 .. +0.58 in Z) & Gas Tube (+0.14 .. +0.37 in Z)
+    t('metal', 'gun', Xe(ki(0.011, 0.011, 0.46, 12), 0, 0.002, 0.35), cAkSteel),
+    t('metal', 'gun', Xe(ki(0.0095, 0.0095, 0.22, 10), 0, 0.024, 0.255), cAkDark),
+    // Cleaning rod under barrel
+    t('metal', 'gun', Xe(ki(0.0035, 0.0035, 0.38, 6), 0, -0.012, 0.34), cAkDark),
+    // 45-degree gas block
+    t('metal', 'gun', Xe(Tt(0.022, 0.038, 0.034, 0.004), 0, 0.014, 0.365, -0.35, 0, 0), cAkSteel),
+    // Classic AK-47 Triangular Front Sight Post & Protective Ears at z = +0.525
+    t('metal', 'gun', Xe(Tt(0.02, 0.048, 0.03, 0.004), 0, 0.022, 0.522, -0.18, 0, 0), cAkDark),
+    t('metal', 'gun', Xe(Tt(0.024, 0.018, 0.022, 0.003), 0, 0.046, 0.525), cAkDark),
+    // Slant Muzzle Brake at z = +0.57
+    t('metal', 'gun', Xe(ki(0.013, 0.013, 0.042, 10), 0, 0.002, 0.568), cAkDark));
+
+  return e.build(['cloth', 'skin', 'shell', 'metal', 'wood', 'glow', 'lens']);
 }
 
 var N5 = {
@@ -1128,27 +1176,27 @@ function XS(n, e, t, i) {
 }
 
 var tb = {
-    hp: 140,
-    shotDamage: 5,
-    burst: 4,
-    burstGap: 0.11,
-    telegraph: 0.5,
-    cooldown: [1.8, 3],
-    runSpeed: 4.5,
-    stalkSpeed: 2,
-    patrolSpeed: 1.5,
-    accel: 7,
-    turnRate: 2.5,
-    rangeMin: 8,
-    rangeMax: 18,
-    spreadFar: 0.12,
-    spreadNear: 0.045,
-    lungeRange: 3,
+    hp: ENEMY_CONFIG.hp,
+    shotDamage: ENEMY_CONFIG.shotDamage,
+    burst: ENEMY_CONFIG.burst,
+    burstGap: ENEMY_CONFIG.burstGap,
+    telegraph: ENEMY_CONFIG.telegraph,
+    cooldown: ENEMY_CONFIG.cooldown,
+    runSpeed: ENEMY_CONFIG.runSpeed,
+    stalkSpeed: ENEMY_CONFIG.stalkSpeed,
+    patrolSpeed: ENEMY_CONFIG.patrolSpeed,
+    accel: ENEMY_CONFIG.accel,
+    turnRate: ENEMY_CONFIG.turnRate,
+    rangeMin: ENEMY_CONFIG.rangeMin,
+    rangeMax: ENEMY_CONFIG.rangeMax,
+    spreadFar: ENEMY_CONFIG.spreadFar,
+    spreadNear: ENEMY_CONFIG.spreadNear,
+    lungeRange: 0,
     lungeDamage: 15,
     lungeCooldown: 3.5,
     lungeSpeed: 9.5,
-    replan: 0.6,
-    smokeBelow: 0.4,
+    replan: ENEMY_CONFIG.replan ?? 0.55,
+    smokeBelow: 0,
   },
   c0 = tb,
   Yn = Ky,
@@ -1158,22 +1206,185 @@ var tb = {
   Oo = new THREE.Vector3(),
   YS = new THREE.Vector3(),
   G1 = new THREE.Vector3(),
+  shellPos = new THREE.Vector3(),
+  shellVel = new THREE.Vector3(),
   Qy = new THREE.Vector3(0, 1, 0),
-  B5 = { abd: 0, hip: 0, knee: 0, reach: 0 },
-  H5 = [8, 4, 0.7],
-  YD = [14, 1, 0.35],
+  ikD = new THREE.Vector3(),
+  ikU = new THREE.Vector3(),
+  ikP = new THREE.Vector3(),
+  ikE = new THREE.Vector3(),
+  ikF = new THREE.Vector3(),
+  ikX = new THREE.Vector3(),
+  ikY = new THREE.Vector3(),
+  ikM = new THREE.Matrix4(),
+  ikGripR = new THREE.Vector3(),
+  ikGripL = new THREE.Vector3(),
+  ikShR = new THREE.Vector3(-Yn.shoulderX, Yn.shoulderY, 0),
+  ikShL = new THREE.Vector3(Yn.shoulderX, Yn.shoulderY, 0),
+  ikPoleR = new THREE.Vector3(-0.26, -0.32, -0.18),
+  ikPoleL = new THREE.Vector3(0.24, -0.34, -0.1),
+  gunEuler = new THREE.Euler(0, 0, 0, 'YXZ'),
+  gunQuat = new THREE.Quaternion(),
+  H5 = [0.22, 0.2, 0.18],
+  YD = [0.35, 0.22, 0.16],
   O5 = (n, e) => {
     let t = (n - e) % (Math.PI * 2);
     return (t > Math.PI ? (t -= Math.PI * 2) : t < -Math.PI && (t += Math.PI * 2), t);
   },
-  bo = (n, e, t) => (n < e ? e : n > t ? t : n),
-  V5 = [
-    [0, 3],
-    [1, 2],
-  ];
+  bo = (n, e, t) => (n < e ? e : n > t ? t : n);
 
 function ll(n, e, t, i, s) {
   return ((n.v += ((e - n.x) * t - n.v * i) * s), (n.x += n.v * s), n.x);
+}
+
+/**
+ * Custom Subsurface Scattering (SSS) & Pore Micro-Relief Shader for Human Skin.
+ * Adds warm sub-dermal blood scatter across light terminators, subtle skin pore grain,
+ * and natural sebaceous skin sheen at grazing angles so faces/forearms/hands look organic.
+ */
+function createHumanSkinMaterial() {
+  let mat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    roughness: 0.54,
+    metalness: 0.02,
+    vertexColors: !0,
+  });
+  mat.name = 'human_skin_sss';
+  mat.onBeforeCompile = (shader) => {
+    shader.vertexShader = shader.vertexShader
+      .replace(
+        '#include <common>',
+        `#include <common>
+varying vec3 vSkinBindPos;`,
+      )
+      .replace(
+        '#include <begin_vertex>',
+        `#include <begin_vertex>
+vSkinBindPos = position;`,
+      );
+    shader.fragmentShader = shader.fragmentShader
+      .replace(
+        '#include <common>',
+        `#include <common>
+varying vec3 vSkinBindPos;
+float skinHash(vec3 p) {
+  p = fract(p * 0.3183099 + vec3(0.71, 0.113, 0.419));
+  p *= 17.0;
+  return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
+}
+float skinNoise(vec3 x) {
+  vec3 i = floor(x), f = fract(x);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(mix(skinHash(i), skinHash(i + vec3(1, 0, 0)), f.x), mix(skinHash(i + vec3(0, 1, 0)), skinHash(i + vec3(1, 1, 0)), f.x), f.y),
+    mix(mix(skinHash(i + vec3(0, 0, 1)), skinHash(i + vec3(1, 0, 1)), f.x), mix(skinHash(i + vec3(0, 1, 1)), skinHash(i + vec3(1, 1, 1)), f.x), f.y),
+    f.z
+  );
+}`,
+      )
+      .replace(
+        '#include <map_fragment>',
+        `#include <map_fragment>
+  float skMacro = skinNoise(vSkinBindPos * 28.0);
+  float skPore = skinNoise(vSkinBindPos * 380.0);
+  vec3 skSubdermal = vec3(0.94, 0.29, 0.18);
+  diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * skSubdermal * 1.25, 0.12 + 0.08 * (1.0 - skMacro));
+  diffuseColor.rgb *= 0.94 + 0.12 * skMacro + 0.05 * (skPore - 0.5);`,
+      )
+      .replace(
+        '#include <roughnessmap_fragment>',
+        `#include <roughnessmap_fragment>
+  roughnessFactor = clamp(roughnessFactor + (skPore - 0.5) * 0.12 - (1.0 - skMacro) * 0.06, 0.32, 0.78);`,
+      )
+      .replace(
+        '#include <lights_fragment_end>',
+        `#include <lights_fragment_end>
+  {
+    vec3 skV = normalize(geometryViewDir);
+    vec3 skN = normalize(geometryNormal);
+    float skNdotV = clamp(dot(skN, skV), 0.0, 1.0);
+    float skFresnel = pow(1.0 - skNdotV, 3.0);
+    // Warm sub-dermal blood scatter in shadow terminator & grazing edges
+    vec3 skBlood = vec3(0.88, 0.22, 0.11) * diffuseColor.rgb;
+    float skDirectLum = dot(reflectedLight.directDiffuse, vec3(0.333));
+    float skTerminator = smoothstep(0.0, 0.45, skDirectLum) * (1.0 - smoothstep(0.35, 0.95, skDirectLum));
+    reflectedLight.directDiffuse += skBlood * (skTerminator * 0.42 + skDirectLum * 0.12);
+    reflectedLight.indirectDiffuse += skBlood * (0.14 + 0.22 * skFresnel);
+    reflectedLight.indirectSpecular += vec3(1.0, 0.92, 0.86) * (skFresnel * 0.045);
+  }`,
+      );
+  };
+  mat.customProgramCacheKey = () => 'human-skin-sss-v1';
+  return mat;
+}
+
+/**
+ * Enhances the tactical fabric material ('cloth') with procedural ripstop/twill micro-weave
+ * and cotton/velvet Fresnel rim-sheen so guerrilla clothing looks like woven fabric.
+ */
+function enhanceHumanClothShader(clothMat) {
+  if (!clothMat) return clothMat;
+  let prevCompile = clothMat.onBeforeCompile;
+  clothMat.onBeforeCompile = (shader, renderer) => {
+    if (prevCompile) prevCompile(shader, renderer);
+    shader.fragmentShader = shader.fragmentShader.replace(
+      '#include <lights_fragment_end>',
+      `#include <lights_fragment_end>
+  {
+    vec3 clV = normalize(geometryViewDir);
+    vec3 clN = normalize(geometryNormal);
+    float clNdotV = clamp(dot(clN, clV), 0.0, 1.0);
+    // Cotton / canvas microfiber velvet rim-sheen at grazing angles
+    float clSheen = pow(1.0 - clNdotV, 2.8);
+    reflectedLight.indirectDiffuse += diffuseColor.rgb * (clSheen * 0.28);
+    reflectedLight.directDiffuse += diffuseColor.rgb * (clSheen * 0.14);
+  }`,
+    );
+  };
+  let prevKey = clothMat.customProgramCacheKey ? clothMat.customProgramCacheKey.bind(clothMat) : null;
+  clothMat.customProgramCacheKey = () => (prevKey ? prevKey() : 'cloth') + '-velvet-v1';
+  return clothMat;
+}
+
+/**
+ * Analytical 3D 2-bone arm IK solver in torso space.
+ * Positions shoulderBone & forearmBone so the wrist at (0, -L2, 0) in forearm space
+ * reaches targetPos, with the elbow pointing toward poleDir.
+ */
+function solveArmIK(shoulderBone, forearmBone, handBone, shoulderPos, targetPos, poleDir, L1, L2, side) {
+  ikD.subVectors(targetPos, shoulderPos);
+  let rawDist = ikD.length(),
+    minDist = Math.abs(L1 - L2) + 0.015,
+    maxDist = (L1 + L2) * 0.996,
+    d = bo(rawDist, minDist, maxDist);
+  if (rawDist > 1e-5) ikU.copy(ikD).multiplyScalar(1 / rawDist);
+  else ikU.set(0, -1, 0);
+
+  let cosAlpha = bo((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d), -1, 1),
+    sinAlpha = Math.sqrt(Math.max(0, 1 - cosAlpha * cosAlpha)),
+    cosBeta = bo((L1 * L1 + L2 * L2 - d * d) / (2 * L1 * L2), -1, 1),
+    thetaElbow = Math.PI - Math.acos(cosBeta);
+
+  // Project poleDir perpendicular to ikU
+  ikP.copy(poleDir).addScaledVector(ikU, -poleDir.dot(ikU));
+  let pLen = ikP.length();
+  if (pLen > 1e-5) ikP.multiplyScalar(1 / pLen);
+  else ikP.set(side, 0, -1).normalize();
+
+  // Unit vector from shoulder to elbow (ikE) and perpendicular in bend plane toward wrist (ikF)
+  ikE.copy(ikU).multiplyScalar(cosAlpha).addScaledVector(ikP, sinAlpha).normalize();
+  ikF.copy(ikU).multiplyScalar(sinAlpha).addScaledVector(ikP, -cosAlpha).normalize();
+
+  // In shoulderBone rest frame, bone extends along -Y, and forearm (-thetaElbow around X) bends toward +Z
+  ikY.copy(ikE).negate();
+  ikX.crossVectors(ikY, ikF).normalize();
+  ikF.crossVectors(ikX, ikY).normalize();
+  ikM.makeBasis(ikX, ikY, ikF);
+  shoulderBone.quaternion.setFromRotationMatrix(ikM);
+  forearmBone.rotation.set(-thetaElbow, 0, 0);
+  if (handBone) {
+    handBone.rotation.set(0.15, side * -0.18, side * 0.12);
+  }
 }
 
 function jS(n, e, t, i) {
@@ -1182,31 +1393,12 @@ function jS(n, e, t, i) {
     r = t.lensBase.clone(),
     a = z5(
       e,
-      { shell: t.shell, metal: t.metal, glow: t.glow, lens: r },
-      { radius: 1.5, center: [0, 0.6, 0] },
+      { cloth: t.cloth, skin: t.skin, shell: t.shell, metal: t.metal, wood: t.wood, glow: t.glow, lens: r },
+      { radius: 2.1, center: [0, 0.95, 0] },
     ),
     l = a.bones;
   a.group.visible = !1;
-  let c = [],
-    u = [],
-    f = [];
-  for (let k = 0; k < 4; k++)
-    (c.push(l['abd' + Yn.legs[k]]), u.push(l['thigh' + Yn.legs[k]]), f.push(l['shin' + Yn.legs[k]]));
-  let h = s.mats.label('H-' + String(i + 3).padStart(2, '0'), {
-      color: 'black',
-      font: 'stencil',
-      distress: 0.3,
-    }),
-    p = 0.2,
-    d = Math.min(0.085, p / (h.aspect || 3)),
-    m = new THREE.PlaneGeometry(p, d);
-  (m.rotateY(Math.PI / 2), m.translate(0.1675, 0.03, -0.085));
-  let x = new THREE.PlaneGeometry(p, d);
-  (x.rotateY(-Math.PI / 2), x.translate(-0.1675, 0.03, -0.085));
-  let v = n.mergeSimple([m, x]),
-    y = new THREE.Mesh(v, h.material);
-  ((y.castShadow = !1), (y.receiveShadow = !0), l.body.add(y));
-  let b = [0, 1, 2, 3].map(() => ({
+  let b = [0, 1].map(() => ({
       p: new THREE.Vector3(),
       from: new THREE.Vector3(),
       to: new THREE.Vector3(),
@@ -1257,12 +1449,17 @@ function jS(n, e, t, i) {
       waitT: 0,
       moveT: 0,
       stuckT: 0,
-      sw: -1,
-      swT: 0,
-      swDur: 0.2,
-      lastPair: 1,
+      walkPhase: 0,
+      strideAmp: 0,
+      aimBlend: 0,
+      gunRecoil: 0,
+      barrelHeat: 0,
+      barrelSmokeT: 0,
+      strafeDir: 1,
+      strafeT: 0,
+      strafeVel: 0,
+      stepSide: 1,
       idleT: 0,
-      lift: 0.08,
       sY: { x: 0, v: 0 },
       sP: { x: 0, v: 0 },
       sR: { x: 0, v: 0 },
@@ -1283,6 +1480,7 @@ function jS(n, e, t, i) {
       vy: 0,
       dieRoll: 0,
       diePitch: 0,
+      dieDir: 1,
       wreck: !1,
       sink: 0,
       loop: null,
@@ -1293,13 +1491,15 @@ function jS(n, e, t, i) {
         if (((g.hp -= k), s.events.emit('enemy:hit', { enemy: g, point: C, part: F || 'body' }), A)) {
           let H = Math.cos(g.yaw),
             N = Math.sin(g.yaw),
-            Z = Math.min(1.6, k / 28),
+            Z = Math.min(1.65, k / 26),
             Q = A.x * N + A.z * H,
             W = A.x * H - A.z * N;
-          ((g.sL.v += W * 1.4 * Z),
-            (g.sR.v += -W * 3.2 * Z),
-            (g.sP.v += Q * 2.4 * Z * (F === 'weak' ? 1.6 : 1)),
-            (g.sY.v -= 0.5 * Z));
+          // Realistic anatomical hit-flinch impulse on torso, head & pelvis
+          ((g.sL.v += W * 0.95 * Z),
+            (g.sR.v += -W * 2.35 * Z),
+            (g.sP.v += Q * 2.25 * Z * (F === 'weak' ? 1.55 : 1)),
+            (g.sY.v -= 0.38 * Z),
+            (g.hpitch += Q * 0.22 * Z));
         }
         return (n.provoke(g), g.hp <= 0 ? (L(A), !0) : !1);
       },
@@ -1326,17 +1526,26 @@ function jS(n, e, t, i) {
           (g.exposure = 0),
           (g.senseT = o() * 0.2),
           (g.hasToken = !1),
-          (g.patrolR = C.patrolRadius ?? 7),
+          (g.patrolR = C.patrolRadius ?? 24),
           (g.patrolLine = C.patrolLine || null),
           (g.patrolI = 0),
           (g.es = 'move'),
-          (g.cool = 0.6 + o()),
+          (g.cool = 0.5 + o() * 0.8),
           (g.lungeCd = 0.3),
           (g.path = null),
           (g.hasGoal = !1),
-          (g.waitT = o() * 1.5),
+          (g.waitT = o() * 0.4),
           (g.planT = 0),
-          (g.sw = -1),
+          (g.walkPhase = o() * 6.283),
+          (g.strideAmp = 0),
+          (g.aimBlend = C.state === 'alert' ? 0.65 : 0),
+          (g.gunRecoil = 0),
+          (g.barrelHeat = 0),
+          (g.barrelSmokeT = 0),
+          (g.strafeDir = o() < 0.5 ? 1 : -1),
+          (g.strafeT = 1 + o() * 1.5),
+          (g.strafeVel = 0),
+          (g.stepSide = 1),
           (g.idleT = 0),
           (g.crouch = 0),
           (g.feelT = 0),
@@ -1347,19 +1556,14 @@ function jS(n, e, t, i) {
           (g.tyaw = g.hyaw = 0),
           (g.tpitch = g.hpitch = 0));
         for (let A of [g.sY, g.sP, g.sR, g.sL, g.sA, g.sA2]) ((A.x = 0), (A.v = 0));
-        for (let A = 0; A < 4; A++) E(b[A].p, A, g.pos.x, g.pos.z, g.yaw);
-        if (
-          (l.neck.rotation.set(0, 0, 0),
+        (b[0].p.set(g.pos.x, g.pos.y, g.pos.z),
+          b[1].p.set(g.pos.x, g.pos.y, g.pos.z),
+          l.neck.rotation.set(0, 0, 0),
+          l.torso.rotation.set(0, 0, 0),
           l.gun.rotation.set(0, 0, 0),
+          l.beacon.scale.setScalar(1e-4),
           (a.group.visible = !0),
-          I(0.016),
-          s.audio && s.audio.loop && !g.loop)
-        )
-          try {
-            g.loop = s.audio.loop('hound_servo', { pos: g.pos, gain: 0 });
-          } catch {
-            g.loop = null;
-          }
+          I(0.016));
       },
       _deactivate() {
         if (
@@ -1373,29 +1577,67 @@ function jS(n, e, t, i) {
       },
       _raycast(k, C, A, F) {
         let H = !1;
-        KS(k, C, g.headPos, 0.155, A, F) && ((F.part = 'weak'), (F.enemy = g), (H = !0));
-        let N = Math.cos(g.yaw),
-          Z = Math.sin(g.yaw),
-          Q = g.pos.y + Yn.stand + g.sY.x - g.crouch;
-        return (
-          _s.set(g.pos.x - Z * 0.45, Q + 0.03, g.pos.z - N * 0.45),
-          Gh.set(g.pos.x + Z * 0.47, Q + 0.03, g.pos.z + N * 0.47),
-          ZS(k, C, _s, Gh, 0.27, A, F) && ((F.part = 'body'), (F.enemy = g), (H = !0)),
-          (_s.y = Gh.y = g.pos.y + (Q - g.pos.y) * 0.45),
-          ZS(k, C, _s, Gh, 0.25, A, F) && ((F.part = 'body'), (F.enemy = g), (H = !0)),
-          H
-        );
+        // Headshot sphere ('weak' part = 2.2x damage)
+        KS(k, C, g.headPos, 0.165, A, F) && ((F.part = 'weak'), (F.enemy = g), (H = !0));
+        let hipY = g.pos.y + Yn.stand + g.sY.x - g.crouch * 0.38;
+        // Upper torso & chest capsule
+        (_s.set(g.pos.x, hipY - 0.05, g.pos.z),
+          Gh.set(g.pos.x, hipY + 0.48, g.pos.z),
+          ZS(k, C, _s, Gh, 0.25, A, F) && ((F.part = 'body'), (F.enemy = g), (H = !0)));
+        // Lower body / legs capsule
+        (_s.set(g.pos.x, g.pos.y + 0.08, g.pos.z),
+          Gh.set(g.pos.x, hipY, g.pos.z),
+          ZS(k, C, _s, Gh, 0.22, A, F) && ((F.part = 'body'), (F.enemy = g), (H = !0)));
+        return H;
       },
       _update(k) {
         g.alive ? S(k) : U(k);
       },
     };
-  function E(k, C, A, F, H) {
-    let N = Yn.side[C] * Yn.footX,
-      Z = Yn.footZ[C],
-      Q = Math.cos(H),
-      W = Math.sin(H);
-    return (k.set(A + N * Q + Z * W, 0, F - N * W + Z * Q), k);
+  function pickPatrolPoint() {
+    // If a custom small patrolRadius was explicitly requested (e.g. showcase), stay within it
+    if (g.patrolR < 4) {
+      return s.physics.nav.randomPoint(g.home, g.patrolR);
+    }
+    let spawns = (s.level && s.level.enemySpawns) || [],
+      covers = (s.level && s.level.coverPoints) || [],
+      best = null,
+      bestScore = -1e9;
+    // Sample waypoints across the whole ship/map so enemies patrol all over the ship
+    for (let i = 0; i < 10; i++) {
+      let cand = null;
+      if (spawns.length && o() < 0.6) {
+        let sp = spawns[Math.floor(o() * spawns.length)];
+        if (sp && sp.type === 'ground' && sp.pos) cand = sp.pos;
+      }
+      if (!cand && covers.length && o() < 0.75) {
+        cand = covers[Math.floor(o() * covers.length)];
+      }
+      if (!cand) {
+        cand = s.physics.nav.randomPoint(g.pos, g.patrolR);
+      }
+      if (!cand) continue;
+      let dist = Math.hypot(cand.x - g.pos.x, cand.z - g.pos.z);
+      if (dist < 6) continue;
+      let score = (dist > 10 && dist < 42 ? 12 : 4) + o() * 6;
+      // Avoid crowding the exact same patrol destination as other patrolling terrorists
+      for (let other of n.list) {
+        if (other !== g && other.alive && other.hasGoal) {
+          let dOther = Math.hypot(cand.x - other.goal.x, cand.z - other.goal.z);
+          if (dOther < 8) score -= (8 - dOther) * 2.5;
+        }
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        best = cand;
+      }
+    }
+    if (best) {
+      Oo.copy(best);
+      g.home.copy(Oo);
+      return Oo;
+    }
+    return s.physics.nav.randomPoint(g.pos, g.patrolR);
   }
   function M(k, C) {
     (!C && g.hasGoal && g.goal.distanceToSquared(k) < 0.25) ||
@@ -1433,7 +1675,7 @@ function jS(n, e, t, i) {
       Q = A.z - g.pos.z;
     g.wantYaw = Math.atan2(Z, Q);
     let W = Math.abs(O5(g.wantYaw, g.yaw));
-    return ((g.maxSpeed = W > 1.1 ? 0 : Math.min(C * (1 - W * 0.5), 0.4 + N * 2.6)), !1);
+    return ((g.maxSpeed = W > 1.25 ? 0.2 : Math.min(C * (1 - W * 0.38), 0.45 + N * 2.6)), !1);
   }
   function w() {
     let k = s.player;
@@ -1460,7 +1702,7 @@ function jS(n, e, t, i) {
           (j > 0.86 && (J += (14 * (j - 0.86)) / 0.14), Math.hypot(Z.x - ee.x, Z.z - ee.z) < 3 && (J += 16));
         }
         J >= C ||
-          (G1.set(Z.x, Z.y + 0.95, Z.z),
+          (G1.set(Z.x, Z.y + 1.45, Z.z),
           s.physics.lineOfSight(G1, A) || (J += 22),
           J < C && ((C = J), g.firePos.set(Z.x, Z.y, Z.z)));
       },
@@ -1487,11 +1729,10 @@ function jS(n, e, t, i) {
       (g.bursts = 0));
   }
   function S(k) {
-    let C = s.player,
-      A = n.t;
+    let C = s.player;
     (g.fwd.set(Math.sin(g.yaw), 0, Math.cos(g.yaw)),
       g.sensor.copy(g.headPos),
-      n.think(g, k, 0.55),
+      n.think(g, k, 0.5),
       g.mode !== g.modeSeen &&
         ((g.modeSeen = g.mode),
         (g.hasGoal = !1),
@@ -1507,16 +1748,16 @@ function jS(n, e, t, i) {
     let F = null,
       H = null,
       N = 0,
-      Z = !1,
+      wantStrafe = 0,
       Q = C ? Math.hypot(C.pos.x - g.pos.x, C.pos.z - g.pos.z) : 1e9;
     if (g.mode === 'patrol') {
-      if (g.hasGoal) T(k, c0.patrolSpeed) && (g.waitT = 1.5 + o() * 3);
+      if (g.hasGoal) T(k, c0.patrolSpeed) && (g.waitT = 0.35 + o() * 0.85);
       else if (((g.waitT -= k), g.waitT <= 0))
         if (g.patrolLine)
           ((g.patrolI = (g.patrolI + 1) % g.patrolLine.length), M(g.patrolLine[g.patrolI], !0));
         else {
-          let D = s.physics.nav.randomPoint(g.home, g.patrolR);
-          D ? M(D, !0) : (g.waitT = 1);
+          let D = pickPatrolPoint();
+          D ? M(D, !0) : (g.waitT = 0.5);
         }
     } else if (g.mode === 'investigate' || g.mode === 'search') {
       H = g.lastKnown;
@@ -1527,22 +1768,12 @@ function jS(n, e, t, i) {
     } else if (C) {
       ((F = C.pos), (H = C.pos));
       let D = Math.atan2(C.pos.x - g.pos.x, C.pos.z - g.pos.z);
-      switch (
-        ((g.es === 'move' || g.es === 'aim' || g.es === 'cool') &&
-          Q < c0.lungeRange &&
-          g.lungeCd <= 0 &&
-          C.alive &&
-          ((g.es = 'wind'),
-          (g.esT = 0.28),
-          n.releaseToken(g),
-          s.events.emit('enemy:telegraph', { enemy: g, type: 'hound', time: 0.28, pos: g.pos, melee: !0 })),
-        g.es)
-      ) {
+      switch (g.es) {
         case 'move': {
           g.moveT += k;
           let B = T(k, c0.runSpeed),
-            X = Q > c0.rangeMin - 1 && Q < c0.rangeMax + 2;
-          B || (g.moveT > 1.4 && g.los && X && o() < k * 0.7) || g.moveT > 7
+            X = Q > c0.rangeMin - 2 && Q < c0.rangeMax + 3;
+          B || (g.moveT > 1.1 && g.los && X && o() < k * 0.85) || (g.los && Q < 8) || g.moveT > 6.5
             ? ((g.es = 'aim'), (g.esT = 0), (g.hasGoal = !1))
             : C.pos.distanceToSquared(g.firePlayer) > 49 && w();
           break;
@@ -1551,12 +1782,16 @@ function jS(n, e, t, i) {
         case 'cool': {
           ((g.wantYaw = D),
             (g.esT += k),
+            (N = 0.08),
+            (g.strafeT -= k),
+            g.strafeT <= 0 && ((g.strafeT = 1.1 + o() * 1.4), (g.strafeDir = o() < 0.65 ? -g.strafeDir : g.strafeDir)),
+            (wantStrafe = g.strafeDir * 0.62),
             g.los
-              ? Q < c0.rangeMin - 3 && g.esT > 0.8
+              ? Q < c0.rangeMin - 4.5 && g.esT > 1.1 && g.cool > 0.3
                 ? w()
                 : g.cool <= 0 &&
                   C.alive &&
-                  Math.abs(O5(D - g.yaw, g.tyaw)) < 0.14 &&
+                  Math.abs(O5(D - g.yaw, g.tyaw)) < 0.22 &&
                   n.requestToken(g) &&
                   ((g.es = 'tele'),
                   (g.esT = c0.telegraph),
@@ -1573,7 +1808,8 @@ function jS(n, e, t, i) {
           ((g.wantYaw = D),
             (g.esT -= k),
             (g.flare = Math.min(1, g.flare + k * 5)),
-            (N = 0.05),
+            (N = 0.14),
+            (wantStrafe = g.strafeDir * 0.25),
             g.esT <= 0 && ((g.es = 'burst'), (g.shots = c0.burst), (g.esT = 0)));
           break;
         }
@@ -1581,52 +1817,29 @@ function jS(n, e, t, i) {
           ((g.wantYaw = D),
             (g.esT -= k),
             (g.flare = 1),
-            (N = 0.05),
+            (N = 0.16),
             g.esT <= 0 && ((g.esT = c0.burstGap), g.shots--, R(C)),
             g.shots <= 0 &&
               (n.releaseToken(g),
               (g.cool = c0.cooldown[0] + o() * (c0.cooldown[1] - c0.cooldown[0])),
               g.bursts++,
-              g.bursts >= 1 + (o() < 0.4 ? 1 : 0) ? w() : ((g.es = 'cool'), (g.esT = 0))));
+              g.bursts >= 1 + (o() < 0.45 ? 1 : 0) ? w() : ((g.es = 'cool'), (g.esT = 0))));
           break;
         }
-        case 'wind': {
-          ((g.wantYaw = D),
-            (g.esT -= k),
-            (N = 0.16),
-            (g.sP.v += 3 * k),
-            g.esT <= 0 && ((g.es = 'lunge'), (g.esT = 0.36), (g.speed = c0.lungeSpeed), (g.yaw = D)));
-          break;
-        }
-        case 'lunge': {
-          ((Z = !0),
-            (g.esT -= k),
-            (g.wantYaw = D),
-            (g.maxSpeed = c0.lungeSpeed),
-            (g.speed = c0.lungeSpeed),
-            Q < 1.35 &&
-              C.alive &&
-              (C.damage(c0.lungeDamage, g.pos),
-              s.events.emit('enemy:melee', { enemy: g, pos: g.pos }),
-              (g.esT = 0),
-              (g.sP.v -= 4)),
-            g.esT <= 0 &&
-              ((g.es = 'recover'), (g.esT = 0.55), (g.lungeCd = c0.lungeCooldown), (g.speed *= 0.3)));
-          break;
-        }
-        case 'recover': {
-          ((g.esT -= k), (g.wantYaw = D), g.esT <= 0 && w());
+        default: {
+          w();
           break;
         }
       }
     }
     let W = O5(g.wantYaw, g.yaw),
-      J = bo(W * 6, -c0.turnRate, c0.turnRate) * (Z ? 2 : 1);
-    ((g.yawRate += (J - g.yawRate) * (1 - Math.exp(-10 * k))), (g.yaw += g.yawRate * k));
-    let G = g.maxSpeed > g.speed ? c0.accel : -c0.accel * 1.4;
+      J = bo(W * 6.5, -c0.turnRate, c0.turnRate);
+    ((g.yawRate += (J - g.yawRate) * (1 - Math.exp(-11 * k))), (g.yaw += g.yawRate * k));
+    let G = g.maxSpeed > g.speed ? c0.accel : -c0.accel * 1.5;
     ((g.prevSpeed = g.speed),
-      (g.speed = Z ? g.speed : bo(g.speed + G * k, 0, Math.max(g.maxSpeed, 0))),
-      !Z && G < 0 && g.speed < g.maxSpeed && (g.speed = g.maxSpeed));
+      (g.speed = bo(g.speed + G * k, 0, Math.max(g.maxSpeed, 0))),
+      G < 0 && g.speed < g.maxSpeed && (g.speed = g.maxSpeed),
+      (g.strafeVel += (wantStrafe - g.strafeVel) * (1 - Math.exp(-7 * k))));
     let te = Math.sin(g.yaw),
       oe = Math.cos(g.yaw);
     for (let D of n.list) {
@@ -1634,25 +1847,25 @@ function jS(n, e, t, i) {
       let B = g.pos.x - D.pos.x,
         X = g.pos.z - D.pos.z,
         re = Math.hypot(B, X);
-      if (re < 1.7 && re > 0.001) {
-        let Y = ((1.7 - re) * 2.2) / re;
+      if (re < 1.5 && re > 0.001) {
+        let Y = ((1.5 - re) * 2.2) / re;
         ((g.push.x += B * Y * k * 6), (g.push.z += X * Y * k * 6));
       }
     }
-    if (C && !Z && Q < 1.25 && Q > 0.001) {
-      let D = ((1.25 - Q) * 3) / Q;
+    if (C && Q < 1.2 && Q > 0.001) {
+      let D = ((1.2 - Q) * 3) / Q;
       ((g.push.x += (g.pos.x - C.pos.x) * D * k * 6), (g.push.z += (g.pos.z - C.pos.z) * D * k * 6));
     }
     g.push.multiplyScalar(Math.exp(-5 * k));
-    let ee = g.pos.x + (te * g.speed + g.push.x) * k,
-      le = g.pos.z + (oe * g.speed + g.push.z) * k,
+    let ee = g.pos.x + (te * g.speed + oe * g.strafeVel + g.push.x) * k,
+      le = g.pos.z + (oe * g.speed - te * g.strafeVel + g.push.z) * k,
       xe = s.physics.nav;
     if (((g.feelT -= k), g.feelT <= 0 && g.speed > 0.3)) {
-      ((g.feelT = 0.12), Oo.set(g.pos.x, g.pos.y + 0.55, g.pos.z), Ho.set(te, 0, oe));
-      let D = s.physics.raycast(Oo, Ho, 0.75 + g.speed * 0.12);
+      ((g.feelT = 0.12), Oo.set(g.pos.x, g.pos.y + 0.85, g.pos.z), Ho.set(te, 0, oe));
+      let D = s.physics.raycast(Oo, Ho, 0.7 + g.speed * 0.12);
       g.blocked = !!D;
     } else g.speed <= 0.3 && (g.blocked = !1);
-    (((xe.isWalkable && !xe.isWalkable(ee, le)) || (g.blocked && !Z) || (g.blocked && Z && g.esT < 0.3)) &&
+    (((xe.isWalkable && !xe.isWalkable(ee, le)) || g.blocked) &&
       (g.blocked
         ? ((ee = g.pos.x + g.push.x * k),
           (le = g.pos.z + g.push.z * k),
@@ -1663,6 +1876,8 @@ function jS(n, e, t, i) {
             ? (ee = g.pos.x)
             : ((ee = g.pos.x), (le = g.pos.z)),
       (g.speed *= 0.6),
+      (g.strafeDir = -g.strafeDir),
+      (g.strafeVel = 0),
       (g.stuckT += k),
       g.stuckT > 0.5 &&
         ((g.stuckT = 0),
@@ -1672,60 +1887,57 @@ function jS(n, e, t, i) {
       (g.pos.z = le),
       (g.pos.y += (s.physics.groundHeight(ee, le, g.pos.y + 0.6) - g.pos.y) * (1 - Math.exp(-12 * k))),
       z(k),
-      (g.crouch += (N - g.crouch) * (1 - Math.exp(-12 * k))));
+      (g.crouch += (N - g.crouch) * (1 - Math.exp(-10 * k))));
+
+    // Barrel heat dissipation & post-burst gunsmoke wisps from AK-47 muzzle
+    if (g.barrelHeat > 0.05) {
+      g.barrelHeat = Math.max(0, g.barrelHeat - k * 0.32);
+      g.barrelSmokeT -= k;
+      if (g.barrelSmokeT <= 0 && g.es !== 'burst' && s.fx && s.fx.smoke) {
+        g.barrelSmokeT = 0.14 + o() * 0.12;
+        s.fx.smoke(g.muzzle, { size: 0.11, life: 0.65, color: 6908265, rise: 0.45 });
+      }
+    }
+
     let j = Math.cos(g.yaw),
       O = Math.sin(g.yaw),
       q = 0,
       ue = 0,
       de = 0,
-      $ = 0.05,
-      se = g.pos.y + Yn.stand + g.sY.x - g.crouch;
+      $ = 0.02,
+      se = g.pos.y + Yn.stand + g.sY.x - g.crouch * 0.35;
     if (F) {
       let D = F.x - g.pos.x,
         B = F.z - g.pos.z,
-        X = F.y + 1 - (se + 0.25);
-      ((q = Math.atan2(D * j - B * O, D * O + B * j)),
-        (ue = bo(Math.atan2(-X, Math.hypot(D, B)), -0.9, 0.35)));
-    } else ((g.scan += k * 0.5), (q = Math.sin(g.scan * 0.9 + g.phase) * 1.1));
+        X = F.y + 1.05 - (se + 0.38);
+      ((q = bo(Math.atan2(D * j - B * O, D * O + B * j), -1.1, 1.1)),
+        (ue = bo(Math.atan2(-X, Math.hypot(D, B)), -0.75, 0.55)));
+    } else ((g.scan += k * 0.45), (q = Math.sin(g.scan * 0.85 + g.phase) * 0.25));
     if (H) {
       let D = H.x - g.pos.x,
         B = H.z - g.pos.z,
-        X = H.y + 1.2 - (se + 0.2);
-      ((de = bo(Math.atan2(D * j - B * O, D * O + B * j), -1.2, 1.2)),
-        ($ = bo(Math.atan2(-X, Math.hypot(D, B)), -0.6, 0.5)));
-    } else de = Math.sin(n.t * 0.7 + g.phase) * 0.5 + bo(g.yawRate * 0.25, -0.6, 0.6);
-    let fe = bo(4.5 * k, 0, 1);
-    ((g.tyaw += bo(O5(q, g.tyaw), -fe, fe)), (g.tpitch += (ue - g.tpitch) * (1 - Math.exp(-10 * k))));
-    let me = 1 - Math.exp(-7 * k);
+        X = H.y + 1.2 - (se + 0.55);
+      ((de = bo(Math.atan2(D * j - B * O, D * O + B * j), -1.05, 1.05)),
+        ($ = bo(Math.atan2(-X, Math.hypot(D, B)), -0.5, 0.45)));
+    } else de = Math.sin(n.t * 0.65 + g.phase) * 0.38 + bo(g.yawRate * 0.25, -0.55, 0.55);
+    let fe = bo(6.5 * k, 0, 1);
+    ((g.tyaw += bo(O5(q, g.tyaw), -fe, fe)), (g.tpitch += (ue - g.tpitch) * (1 - Math.exp(-11 * k))));
+    // Gaze-led human head tracking (head responds faster than torso)
+    let me = 1 - Math.exp(-10 * k);
     ((g.hyaw += (de - g.hyaw) * me), (g.hpitch += ($ - g.hpitch) * me), I(k));
-    let ge = (n.t * (g.mode === 'patrol' ? 0.8 : 2.2) + g.phase) % 1;
-    l.beacon.scale.setScalar(ge < 0.12 || (ge > 0.22 && ge < 0.3) ? 1 : 1e-4);
     let ce = g.mode === 'engage' ? YD : H5,
-      P = 1 + g.flare * 3.5;
+      P = 1 + g.flare * 0.8;
     for (let D = 0; D < 3; D++) g.lensC[D] += (ce[D] - g.lensC[D]) * (1 - Math.exp(-8 * k));
     (r.color.setRGB(g.lensC[0] * P, g.lensC[1] * P, g.lensC[2] * P),
-      (g.flare = Math.max(0, g.flare - k * 2)),
-      g.hp < c0.hp * c0.smokeBelow &&
-        ((g.smokeT -= k),
-        g.smokeT <= 0 &&
-          ((g.smokeT = 0.2),
-          _s.set(g.pos.x - te * 0.3, se + 0.2, g.pos.z - oe * 0.3),
-          s.fx.smoke(_s, { size: 0.35, life: 1.3, color: 2303272, rise: 0.9 }),
-          o() < 0.2 && s.fx.sparks(_s, Qy, 3))),
-      g.loop &&
-        (g.loop.setPos(g.pos),
-        g.loop.setGain(bo(0.12 + g.speed * 0.12 + Math.abs(g.yawRate) * 0.1, 0, 0.8)),
-        g.loop.setPitch(0.8 + g.speed * 0.08)));
+      (g.flare = Math.max(0, g.flare - k * 2)));
   }
   function R(k) {
-    let C = Math.cos(g.yaw + g.tyaw),
-      A = Math.sin(g.yaw + g.tyaw);
     (Oo.setFromMatrixPosition(l.gun.matrixWorld),
       (Oo.lengthSq() < 1e-6 || Math.abs(Oo.x - g.pos.x) > 2) &&
-        Oo.set(g.pos.x, g.pos.y + Yn.stand + 0.25, g.pos.z),
+        Oo.set(g.pos.x, g.pos.y + 1.32, g.pos.z),
       G1.set(k.pos.x, k.pos.y + 1, k.pos.z),
       Ho.copy(G1).sub(Oo).normalize(),
-      g.muzzle.copy(Oo).addScaledVector(Ho, 0.43));
+      g.muzzle.copy(Oo).addScaledVector(Ho, 0.56));
     let F = (c0.spreadFar + (c0.spreadNear - c0.spreadFar) * g.exposure) * (1 + n.playerSpeed * 0.3);
     ((Ho.x += (o() - 0.5) * 2 * F),
       (Ho.y += (o() - 0.5) * 2 * F),
@@ -1739,120 +1951,221 @@ function jS(n, e, t, i) {
           : 90;
     (YS.copy(g.muzzle).addScaledVector(Ho, Z),
       s.fx.tracer(g.muzzle, YS, { color: 16760944, speed: 260, width: 0.035 }),
-      s.fx.muzzleFlash(g.muzzle, Ho, { scale: 0.9 }),
+      s.fx.muzzleFlash(g.muzzle, Ho, { scale: 0.95 }),
       s.render && s.render.lightPool && s.render.lightPool.flash(g.muzzle, 16756832, 22, 7, 0.05),
-      s.events.emit('enemy:fire', { enemy: g, pos: g.muzzle, dir: Ho, type: 'hound' }),
-      (g.sP.v += 1.1),
-      (g.sY.v -= 0.25));
+      s.events.emit('enemy:fire', { enemy: g, pos: g.muzzle, dir: Ho, type: 'hound' }));
+    // Eject spinning 7.62x39mm brass shell casing to the shooter's right-up-forward
+    if (s.fx && s.fx.shell) {
+      let aimYawWorld = g.yaw + g.tyaw,
+        rightX = -Math.cos(aimYawWorld),
+        rightZ = Math.sin(aimYawWorld),
+        fwdX = Math.sin(aimYawWorld),
+        fwdZ = Math.cos(aimYawWorld);
+      shellPos.copy(Oo).addScaledVector(Ho, 0.06);
+      shellPos.x += rightX * 0.04;
+      shellPos.y += 0.025;
+      shellPos.z += rightZ * 0.04;
+      shellVel.set(
+        rightX * (1.7 + o() * 0.7) + fwdX * (0.4 + o() * 0.4),
+        1.45 + o() * 0.65,
+        rightZ * (1.7 + o() * 0.7) + fwdZ * (0.4 + o() * 0.4),
+      );
+      s.fx.shell(shellPos, shellVel);
+    }
+    // Realistic AK-47 recoil kick on rifle, barrel heat & shooter's upper body
+    ((g.gunRecoil = Math.min(0.068, g.gunRecoil + 0.04)),
+      (g.barrelHeat = Math.min(1, g.barrelHeat + 0.28)),
+      (g.sP.v -= 1.05),
+      (g.sR.v += (o() - 0.5) * 0.55),
+      (g.sY.v -= 0.12));
   }
   function z(k) {
-    let C = Math.sin(g.yaw) * g.speed + g.push.x,
-      A = Math.cos(g.yaw) * g.speed + g.push.z,
-      F = g.speed > 0.15 || Math.abs(g.yawRate) > 0.25;
-    if (g.sw < 0) {
-      g.idleT = F ? 0 : g.idleT + k;
-      let H = g.speed + Math.abs(g.yawRate) * 0.5,
-        N = bo(0.27 - H * 0.026, 0.14, 0.27),
-        Z = -1,
-        Q = 0;
-      for (let J = 0; J < 2; J++) {
-        let G = 0;
-        for (let te of V5[J]) {
-          E(_s, te, g.pos.x + C * N, g.pos.z + A * N, g.yaw + g.yawRate * N);
-          let oe = Math.hypot(_s.x - b[te].p.x, _s.z - b[te].p.z);
-          oe > G && (G = oe);
+    // Smooth continuous human bipedal locomotion phase & footstep trigger
+    let moveMag = Math.hypot(g.speed, g.strafeVel) + Math.abs(g.yawRate) * 0.22,
+      moving = moveMag > 0.08,
+      targetAmp = moving ? bo(moveMag / c0.runSpeed, 0.18, 1.15) : 0;
+    g.strideAmp += (targetAmp - g.strideAmp) * (1 - Math.exp(-10 * k));
+    if (moving) {
+      let prevSin = Math.sin(g.walkPhase),
+        freq = 2.6 + moveMag * 1.48;
+      g.walkPhase = (g.walkPhase + freq * k) % (Math.PI * 2);
+      let curSin = Math.sin(g.walkPhase);
+      // Trigger synchronized human footstep sound & surface puddle/dust FX on each heel-strike
+      if ((prevSin < 0 && curSin >= 0) || (prevSin > 0 && curSin <= 0)) {
+        let footIdx = curSin >= 0 ? 0 : 1,
+          side = footIdx === 0 ? 1 : -1;
+        b[footIdx].p.set(
+          g.pos.x + Math.cos(g.yaw) * side * Yn.hipX,
+          g.pos.y,
+          g.pos.z - Math.sin(g.yaw) * side * Yn.hipX,
+        );
+        s.events.emit('enemy:step', { pos: b[footIdx].p, type: 'hound', enemy: g, speed: moveMag });
+        if (s.fx) {
+          let inWater = !1;
+          try {
+            inWater = !!(s.ground && s.ground.isPuddle && s.ground.isPuddle(b[footIdx].p.x, b[footIdx].p.z));
+          } catch {}
+          if (inWater && s.fx.splash) {
+            s.fx.splash(b[footIdx].p, moveMag > 3.2 ? 0.48 : 0.32);
+          } else if (moveMag > 3.2 && o() < 0.45 && s.fx.dust) {
+            s.fx.dust(b[footIdx].p, Qy);
+          }
         }
-        (J !== g.lastPair && (G *= 1.25), G > Q && ((Q = G), (Z = J)));
-      }
-      let W = F ? 0.09 : g.idleT > 0.25 ? 0.035 : 1e9;
-      if (Z >= 0 && Q > W) {
-        ((g.sw = Z), (g.swT = 0), (g.swDur = N), (g.lift = 0.065 + Math.min(0.09, H * 0.02)));
-        for (let J of V5[Z]) {
-          let G = b[J];
-          (G.from.copy(G.p),
-            E(G.to, J, g.pos.x + C * N * 1.5, g.pos.z + A * N * 1.5, g.yaw + g.yawRate * N * 1.5),
-            (G.to.y = s.physics.groundHeight(G.to.x, G.to.z, g.pos.y + 0.6)));
-        }
+        g.sY.v -= 0.06 + moveMag * 0.018;
       }
     } else {
-      g.swT += k / g.swDur;
-      let H = g.swT >= 1 ? 1 : g.swT,
-        N = H * H * (3 - 2 * H);
-      for (let Z of V5[g.sw]) {
-        let Q = b[Z];
-        (Q.p.lerpVectors(Q.from, Q.to, N), (Q.p.y += Math.sin(Math.PI * H) * g.lift));
-      }
-      if (g.swT >= 1) {
-        let Z = b[V5[g.sw][0]];
-        (s.events.emit('enemy:step', { pos: Z.p, type: 'hound', enemy: g, speed: g.speed }),
-          (g.sY.v -= 0.12 + g.speed * 0.03),
-          (g.lastPair = g.sw),
-          (g.sw = -1));
-      }
+      // Smoothly relax phase toward neutral standing posture when stopped
+      let rem = O5(0, g.walkPhase);
+      g.walkPhase += rem * (1 - Math.exp(-6 * k));
     }
   }
   function I(k) {
-    let C = Math.cos(g.yaw),
-      A = Math.sin(g.yaw),
-      F = (b[0].p.y + b[1].p.y) * 0.5,
-      H = (b[2].p.y + b[3].p.y) * 0.5,
-      N = (b[0].p.y + b[2].p.y) * 0.5,
-      Z = (b[1].p.y + b[3].p.y) * 0.5,
-      Q = (F + H) * 0.5 - g.pos.y,
-      W = k > 0 ? (g.speed - g.prevSpeed) / k : 0,
-      J = Math.atan2(H - F, 0.8) * 0.6 + bo(W * 0.006, -0.07, 0.07),
-      G = Math.atan2(N - Z, 0.55) * 0.6 + bo(g.yawRate * g.speed * 0.02, -0.12, 0.12),
-      te = Q * 0.45 - Math.min(0.05, g.speed * 0.011);
-    (g.alive || ((J = g.diePitch), (G = g.dieRoll), (te = 0)),
-      g.alive &&
-        (ll(g.sY, te, 160, 17, k),
-        ll(g.sP, J, 130, 15, k),
-        ll(g.sR, G, 130, 15, k),
-        ll(g.sL, 0, 110, 13, k)));
-    let oe = g.alive ? Math.sin(n.t * 1.7 + g.phase) * 0.004 : 0,
-      ee = g.sL.x,
-      le = Yn.stand + g.sY.x - g.crouch + oe,
-      xe = g.sP.x,
-      j = g.sR.x;
-    ((a.group.rotation.y = g.yaw),
-      l.body.position.set(ee, le, 0),
-      l.body.rotation.set(xe, 0, j),
-      (l.turret.rotation.y = g.tyaw),
-      (l.gun.rotation.x = g.tpitch - xe * 0.5),
-      l.head.rotation.set(g.hpitch, g.hyaw, 0),
-      ll(g.sA, bo(-W * 0.03 - xe, -0.6, 0.6), 60, 5, k),
-      ll(g.sA2, bo(g.yawRate * 0.12 - j, -0.6, 0.6), 60, 5, k),
-      l.antenna.rotation.set(g.sA.x, 0, g.sA2.x));
-    let O = Math.cos(xe),
-      q = Math.sin(xe),
-      ue = Math.cos(j),
-      de = Math.sin(j);
-    for (let $ = 0; $ < 4; $++) {
-      let se = b[$].p,
-        fe = se.x - g.pos.x,
-        me = se.y + Yn.footR * 0.6 - g.pos.y,
-        ge = se.z - g.pos.z,
-        ce = fe * C - ge * A - ee,
-        P = me - le,
-        D = fe * A + ge * C,
-        B = P * O + D * q,
-        X = -P * q + D * O,
-        re = ce * ue + B * de,
-        Y = -ce * de + B * ue;
-      (US(
-        B5,
-        re - Yn.side[$] * Yn.hipX,
-        Y - Yn.hipY,
-        X - Yn.fore[$] * Yn.hipZ,
-        Yn.side[$],
-        Yn.l0,
-        Yn.L1,
-        Yn.L2 - Yn.footR * 0.6,
-      ),
-        (c[$].rotation.z = B5.abd),
-        (u[$].rotation.x = B5.hip),
-        (f[$].rotation.x = B5.knee));
+    let accel = k > 0 ? (g.speed - g.prevSpeed) / k : 0,
+      amp = g.strideAmp,
+      ph = g.walkPhase,
+      sinP = Math.sin(ph),
+      cosP = Math.cos(ph),
+      sin2P = Math.sin(ph * 2),
+      cos2P = Math.cos(ph * 2);
+
+    // Target aimBlend: 0 = relaxed patrol carry, 0.58 = alert search, 1.0 = shouldered ADS firing
+    let wantAim =
+      !g.alive
+        ? 0.12
+        : g.mode === 'engage'
+          ? g.es === 'move' && g.speed > 2.8
+            ? 0.65
+            : 1
+          : g.mode === 'investigate' || g.mode === 'search'
+            ? 0.58
+            : 0.08;
+    g.aimBlend += (wantAim - g.aimBlend) * (1 - Math.exp(-8 * k));
+    g.gunRecoil *= Math.exp(-16 * k);
+
+    if (g.alive) {
+      let targetP = bo(accel * 0.012, -0.06, 0.08),
+        targetR = bo(-g.yawRate * g.speed * 0.022 - g.strafeVel * 0.065, -0.12, 0.12);
+      ll(g.sY, 0, 150, 16, k);
+      ll(g.sP, targetP, 120, 14, k);
+      ll(g.sR, targetR, 120, 14, k);
+      ll(g.sL, 0, 110, 13, k);
     }
+
+    let breathRate = g.mode === 'engage' ? 3.1 : 2.1,
+      breath = g.alive ? Math.sin(n.t * breathRate + g.phase) : 0,
+      idleShift = g.alive && amp < 0.25 ? Math.sin(n.t * 0.85 + g.phase * 1.7) * (1 - amp * 4) : 0,
+      crouchAmt = g.crouch,
+      // Natural human pelvis vertical bounce (double-frequency per stride) & lateral weight shift
+      bobY = g.alive ? (-Math.abs(cosP) * 0.044 + sin2P * 0.013) * amp : 0,
+      swayX = g.alive ? -sinP * 0.028 * amp + idleShift * 0.016 + g.sL.x : g.sL.x,
+      pelvisY = Yn.stand + g.sY.x - crouchAmt * 0.34 + bobY + breath * 0.0035,
+      pelvisYaw = g.alive ? sinP * 0.09 * amp + g.tyaw * 0.12 : 0,
+      pelvisRoll = g.alive ? sinP * 0.046 * amp + idleShift * 0.022 + g.sR.x : g.sR.x,
+      pelvisPitch = g.sP.x + crouchAmt * 0.18;
+
+    a.group.rotation.y = g.yaw;
+    l.body.position.set(swayX, pelvisY, 0);
+    l.body.rotation.set(pelvisPitch, pelvisYaw, pelvisRoll);
+
+    // --- LEGS: Smooth Human Hip, Knee & Ankle Gait Kinematics ---
+    let hipSwingAmp = 0.58 * amp,
+      kneeSwingAmp = 0.95 * amp,
+      strafeBank = bo(g.strafeVel * 0.12, -0.12, 0.12);
+    for (let leg = 0; leg < 2; leg++) {
+      let isL = leg === 0,
+        side = isL ? 1 : -1,
+        legPh = isL ? ph : ph + Math.PI,
+        sL = Math.sin(legPh),
+        cL = Math.cos(legPh),
+        swing = Math.max(0, cL), // > 0 when leg is swinging forward
+        stance = Math.max(0, -cL), // > 0 when foot is planted pushing back
+        thighBone = isL ? l.thighL : l.thighR,
+        shinBone = isL ? l.shinL : l.shinR,
+        footBone = isL ? l.footL : l.footR;
+
+      if (g.alive) {
+        // Negative X rotation swings thigh forward (+Z); positive X rotation bends knee backward (-Z)
+        let kneeFlex =
+            Math.pow(Math.max(0, Math.sin(legPh - 0.38)), 1.25) * kneeSwingAmp +
+            stance * Math.max(0, Math.sin(legPh + 0.9)) * 0.15 * amp +
+            crouchAmt * 1.55 +
+            0.06,
+          hipFlex =
+            -sL * hipSwingAmp -
+            swing * 0.19 * amp -
+            crouchAmt * 0.82 -
+            0.03,
+          // Ankle: heel-strike dorsiflexion when swinging forward, plantarflexion push-off at end of stance
+          footPitch =
+            -Math.sin(legPh + 0.4) * 0.23 * amp -
+            (hipFlex + kneeFlex) * (0.65 - 0.35 * swing);
+        thighBone.rotation.set(
+          hipFlex,
+          side * -0.035,
+          side * (-0.025 - 0.02 * crouchAmt) - pelvisRoll * 0.65 + sL * strafeBank,
+        );
+        shinBone.rotation.set(kneeFlex, 0, 0);
+        footBone.rotation.set(bo(footPitch, -0.45, 0.55), 0, 0);
+      } else {
+        // Multi-stage human death collapse: knees buckle first, then relax as torso hits ground
+        let buckle = bo(g.dieT * 3.2, 0, 1) * (1 - bo((g.dieT - 0.45) * 1.4, 0, 0.55)),
+          settle = bo(g.dieT * 1.6, 0, 1);
+        thighBone.rotation.set(
+          -0.55 * buckle - 0.18 * settle + side * 0.14 * settle,
+          side * 0.18 * settle,
+          side * -0.08 * settle,
+        );
+        shinBone.rotation.set(1.15 * buckle + 0.38 * settle, 0, 0);
+        footBone.rotation.set(0.25 * settle, 0, 0);
+      }
+    }
+
+    // --- TORSO, NECK & HEAD (Gaze-Led Multi-Segment Spine) ---
+    let aim = g.aimBlend,
+      leanForward = g.alive
+        ? g.speed * 0.04 + crouchAmt * 0.28 + aim * 0.09 + breath * 0.01 - g.sP.x * 0.6
+        : 0.18 * bo(g.dieT * 2, 0, 1),
+      torsoYaw = g.alive ? O5(g.tyaw, pelvisYaw) * (0.42 + 0.34 * aim) - sinP * 0.095 * amp * (1 - aim * 0.5) : 0,
+      torsoRoll = g.alive ? -pelvisRoll * 0.55 + g.sR.x * 0.45 + strafeBank * 0.35 : 0;
+    l.torso.rotation.set(leanForward, torsoYaw, torsoRoll);
+
+    let neckPitch = g.alive ? g.hpitch * 0.42 - leanForward * 0.45 + breath * 0.014 : 0.28,
+      headPitch = g.alive ? g.hpitch * 0.58 - leanForward * 0.35 : 0.32,
+      headYaw = g.alive ? O5(g.hyaw, pelvisYaw + torsoYaw) : g.hyaw * 0.45,
+      headRoll = g.alive ? -0.11 * aim + bo(headYaw * 0.12, -0.08, 0.08) : g.dieRoll * 0.28; // natural cheek-weld tilt onto AK stock
+    l.neck.rotation.set(neckPitch, headYaw * 0.38, 0);
+    l.head.rotation.set(headPitch, headYaw * 0.62, headRoll);
+
+    // --- AK-47 RIFLE POSITION & ORIENTATION + 2-BONE ARM IK ---
+    // Blend smoothly between low-ready patrol carry across chest and shouldered ADS firing pose
+    let walkSwayX = g.alive ? cosP * 0.025 * amp * (1 - aim * 0.72) : 0,
+      walkSwayY = g.alive ? -Math.abs(sinP) * 0.02 * amp * (1 - aim * 0.72) : 0,
+      walkSwayYaw = g.alive ? -sinP * 0.082 * amp * (1 - aim * 0.75) : 0,
+      gunPosX = -0.035 * (1 - aim) + -0.095 * aim + walkSwayX,
+      gunPosY = 0.175 * (1 - aim) + 0.265 * aim + walkSwayY + breath * 0.0045,
+      gunPosZ = 0.185 * (1 - aim) + 0.205 * aim - g.gunRecoil,
+      patrolPitch = 0.26 + Math.sin(n.t * 1.5 + g.phase) * 0.025,
+      patrolYaw = 0.44 + walkSwayYaw,
+      patrolRoll = -0.22,
+      aimYawLocal = O5(g.tyaw, pelvisYaw + torsoYaw),
+      aimPitchLocal = g.tpitch - (pelvisPitch + leanForward) * 0.75 - g.gunRecoil * 1.45,
+      gunPitch = patrolPitch * (1 - aim) + aimPitchLocal * aim,
+      gunYaw = patrolYaw * (1 - aim) + aimYawLocal * aim,
+      gunRoll = patrolRoll * (1 - aim) + -0.04 * aim;
+
+    l.turret.position.set(gunPosX, gunPosY, gunPosZ);
+    l.turret.rotation.set(0, gunYaw, 0);
+    l.gun.rotation.set(gunPitch, 0, gunRoll);
+
+    // Compute exact world-in-torso positions of AK-47 pistol grip (R hand) and wooden handguard (L hand)
+    gunEuler.set(gunPitch, gunYaw, gunRoll, 'YXZ');
+    gunQuat.setFromEuler(gunEuler);
+    ikGripR.set(0, -0.072, -0.048).applyQuaternion(gunQuat).add(l.turret.position);
+    ikGripL.set(0.012, -0.024, 0.205).applyQuaternion(gunQuat).add(l.turret.position);
+
+    solveArmIK(l.shoulderR, l.forearmR, l.handR, ikShR, ikGripR, ikPoleR, Yn.armL1, Yn.armL2, -1);
+    solveArmIK(l.shoulderL, l.forearmL, l.handL, ikShL, ikGripL, ikPoleL, Yn.armL1, Yn.armL2, 1);
+
     (a.group.updateMatrixWorld(!0), g.headPos.setFromMatrixPosition(l.head.matrixWorld));
   }
   function L(k) {
@@ -1861,24 +2174,22 @@ function jS(n, e, t, i) {
       (g.dieT = 0),
       (g.vy = 0),
       (g.es = 'move'),
-      l.beacon.scale.setScalar(1e-4),
-      (g.dieRoll = (o() < 0.5 ? -1 : 1) * (0.25 + o() * 0.3)),
-      (g.diePitch = (o() - 0.5) * 0.25),
-      (g.sR.v += g.dieRoll * 3),
-      (g.sP.v += (o() - 0.5) * 2));
-    for (let C = 0; C < 4; C++) {
-      let A = b[C];
-      g.sw >= 0 && (A.p.y = g.pos.y);
-      let F = g.yaw,
-        H = Yn.side[C] * (0.16 + o() * 0.2),
-        N = Yn.fore[C] * (0.05 + o() * 0.22) + (o() - 0.5) * 0.1;
-      A.slide.set(H * Math.cos(F) + N * Math.sin(F), 0, -H * Math.sin(F) + N * Math.cos(F));
+      l.beacon.scale.setScalar(1e-4));
+    // Determine natural human fall direction from hit impulse (backward or forward/sideways collapse)
+    let fallBack = !0;
+    if (k) {
+      let fwdDot = k.x * Math.sin(g.yaw) + k.z * Math.cos(g.yaw);
+      fallBack = fwdDot >= -0.1;
     }
-    ((g.sw = -1),
-      (g.speed *= 0.3),
+    ((g.dieDir = fallBack ? -1 : 1),
+      (g.diePitch = g.dieDir * (1.44 + o() * 0.12)),
+      (g.dieRoll = (o() < 0.5 ? -1 : 1) * (0.2 + o() * 0.26)),
+      (g.sP.v += g.dieDir * 2.8),
+      (g.sR.v += g.dieRoll * 2.4),
+      (g.speed *= 0.25),
+      (g.strafeVel = 0),
       _s.copy(g.headPos),
-      s.fx.sparks(_s, Qy, 16),
-      s.fx.debris(_s, { count: 4 }),
+      s.fx.dust(_s, Qy),
       s.events.emit('enemy:killed', { enemy: g, pos: g.pos, type: 'hound' }),
       n.addWreck(g));
   }
@@ -1889,50 +2200,34 @@ function jS(n, e, t, i) {
     }
     g.dieT += k;
     let C = g.dieT;
-    if (C < 2.2) {
-      let A = 0.215 - Yn.stand;
-      ((g.vy -= 9.8 * k * (C < 0.12 ? 0.3 : 1)),
+    if (C < 1.8) {
+      let groundOffset = 0.15 - Yn.stand,
+        fallK = bo(C / 0.62, 0, 1),
+        smoothFall = fallK * fallK * (3 - 2 * fallK);
+      ((g.vy -= 9.8 * k * (C < 0.16 ? 0.5 : 1)),
         (g.sY.x += g.vy * k),
-        g.sY.x < A &&
-          ((g.sY.x = A),
-          g.vy < -1.2 &&
-            (s.events.emit('enemy:step', { pos: g.pos, type: 'hound', enemy: g, speed: 5, crash: !0 }),
+        g.sY.x < groundOffset &&
+          ((g.sY.x = groundOffset),
+          g.vy < -1.1 &&
+            (s.events.emit('enemy:step', { pos: g.pos, type: 'hound', enemy: g, speed: 4, crash: !0 }),
             s.fx.dust(g.pos, Qy)),
-          (g.vy = -g.vy * 0.22)),
-        ll(g.sP, g.diePitch, 60, 9, k),
-        ll(g.sR, g.dieRoll, 60, 9, k),
-        ll(g.sL, 0, 40, 8, k));
-      let F = Math.exp(-3.2 * k);
-      for (let N = 0; N < 4; N++) {
-        let Z = b[N];
-        ((Z.p.x += Z.slide.x * (1 - F)), (Z.p.z += Z.slide.z * (1 - F)), Z.slide.multiplyScalar(F));
-      }
-      ((g.pos.x += Math.sin(g.yaw) * g.speed * k),
+          (g.vy = -g.vy * 0.15)),
+        ll(g.sP, g.diePitch * smoothFall, 55, 9, k),
+        ll(g.sR, g.dieRoll * smoothFall, 55, 9, k),
+        ll(g.sL, 0, 40, 8, k),
+        (g.pos.x += Math.sin(g.yaw) * g.speed * k),
         (g.pos.z += Math.cos(g.yaw) * g.speed * k),
         (g.speed *= Math.exp(-5 * k)),
-        (g.hpitch += (0.55 - g.hpitch) * (1 - Math.exp(-5 * k))),
-        (g.hyaw += (g.dieRoll - g.hyaw) * (1 - Math.exp(-3 * k))),
-        (g.tpitch += (0.3 - g.tpitch) * (1 - Math.exp(-4 * k))));
-      let H = C < 1.2 ? (Math.sin(C * 60) > 0.2 ? 1 - C / 1.2 : 0.05) : 0.02;
-      (r.color.setRGB(6 * H + 0.05, 0.6 * H + 0.01, 0.2 * H), I(k));
-    }
-    if (C < 6.5)
-      ((g.smokeT -= k),
-        g.smokeT <= 0 &&
-          ((g.smokeT = C < 2 ? 0.09 : 0.2),
-          _s.set(g.pos.x + (o() - 0.5) * 0.4, g.pos.y + 0.42, g.pos.z + (o() - 0.5) * 0.4),
-          s.fx.smoke(_s, { size: 0.5 + o() * 0.3, life: 1.8, color: 1513499, rise: 1.1 }),
-          C < 4 &&
-            o() < 0.55 &&
-            (Gh.set(o() - 0.5, 1, o() - 0.5).normalize(), s.fx.sparks(_s, Gh, C < 1 ? 8 : 3)),
-          C < 3.5 && o() < 0.4 && s.fx.smoke(_s, { size: 0.22, life: 0.45, color: 16742946, rise: 1.6 })));
-    else if (!g.wreck && ((g.wreck = !0), g.loop)) {
+        (g.hpitch += (0.35 - g.hpitch) * (1 - Math.exp(-5 * k))),
+        (g.hyaw += (g.dieRoll * 0.6 - g.hyaw) * (1 - Math.exp(-4 * k))),
+        (g.tpitch += (0.35 - g.tpitch) * (1 - Math.exp(-4 * k))),
+        I(k));
+    } else if (!g.wreck && ((g.wreck = !0), g.loop)) {
       try {
         g.loop.stop();
       } catch {}
       g.loop = null;
     }
-    g.loop && g.loop.setGain(Math.max(0, 0.4 - C * 0.3));
   }
   return g;
 }
@@ -1969,18 +2264,18 @@ function ZS(n, e, t, i, s, o, r) {
 var Bi = {
     gull: Jy,
     hound: tb,
-    sightRange: 45,
-    sightCone: 200,
-    loseSight: 4,
-    searchTime: 8,
-    hearRadius: 45,
+    sightRange: ENEMY_CONFIG.sightRange,
+    sightCone: ENEMY_CONFIG.sightCone,
+    loseSight: ENEMY_CONFIG.loseSight,
+    searchTime: ENEMY_CONFIG.searchTime,
+    hearRadius: ENEMY_CONFIG.hearRadius,
     maxTokens: 2,
     maxTokensCrowd: 3,
     tokenGap: 1.25,
     exposureUp: 0.1,
     exposureDown: 0.45,
     poolGulls: 10,
-    poolHounds: 8,
+    poolHounds: 10,
     maxWrecks: 5,
     maxBolts: 32,
   },
@@ -2009,8 +2304,13 @@ async function W5(n) {
     l = a && a.isMeshBasicMaterial ? a : new THREE.MeshBasicMaterial({ color: 16752704 }),
     c = o && o.toneMapped !== void 0 ? o.toneMapped : !0,
     u = {
+      cloth: enhanceHumanClothShader(
+        n.mats.get('glove_fabric', { color: 12895424, triplanar: !0, vertexColors: !0 }),
+      ),
+      skin: createHumanSkinMaterial(),
       shell: n.mats.get('armor_white', { triplanar: !0, vertexColors: !0 }),
       metal: n.mats.get('gunmetal', { triplanar: !0, vertexColors: !0 }),
+      wood: n.mats.get('wood_dark', { triplanar: !0, vertexColors: !0 }),
       glow: r,
       lensBase: l,
       disc: new THREE.MeshBasicMaterial({
@@ -2299,7 +2599,8 @@ async function W5(n) {
       list: t,
       TUNE: Bi,
       spawn(k, C, A = {}) {
-        let F = k === 'gull' ? d : k === 'hound' ? m : null;
+        let isGround = k === 'hound' || k === 'terrorist',
+          F = k === 'gull' ? d : isGround ? m : null;
         if (!F) return null;
         let H = null;
         for (let N of F)
@@ -2307,7 +2608,7 @@ async function W5(n) {
             H = N;
             break;
           }
-        if (!H && k === 'hound' && i.length) {
+        if (!H && isGround && i.length) {
           let N = i[0];
           (f.retire(N), (H = N));
         }
@@ -2321,12 +2622,12 @@ async function W5(n) {
           let N = t[H];
           if (!N.alive) continue;
           let Z = N.pos.x - k.x,
-            Q = N.pos.y + (N.type === 'hound' ? 0.6 : 0) - k.y,
+            Q = N.pos.y + (N.type === 'hound' ? 0.9 : 0) - k.y,
             W = N.pos.z - k.z,
             J = Z * C.x + Q * C.y + W * C.z;
-          J < -1.5 ||
-            J > A + 1.5 ||
-            Z * Z + Q * Q + W * W - J * J > 1.7 ||
+          J < -1.8 ||
+            J > A + 1.8 ||
+            Z * Z + Q * Q + W * W - J * J > 2.25 ||
             (F ||
               (F = {
                 dist: 1 / 0,
@@ -2438,31 +2739,30 @@ async function KD(n) {
   n.enemies = e;
   let t = (l, c, u) => new THREE.Vector3(l, c, u),
     i = n.params.eshow || 'both',
-    s = [3, 1.45, 3.9],
-    o = [0.5, 0.95, 0],
+    s = [2.4, 1.55, 3.1],
+    o = [0.2, 1.05, 0.2],
     r = 2.6;
   if (i === 'gull')
     (e.spawn('gull', t(0, 1.6, 0), { passive: !0, hover: 1.6, patrolRadius: 0.02, yaw: 0.7 }),
       (s = [1.25, 1.95, 1.45]),
       (o = [0, 1.52, 0]),
       (r = 1.2));
-  else if (i === 'hound')
-    (e.spawn('hound', t(0, 0, 0), { passive: !0, yaw: 0.9, patrolLine: [t(1.6, 0, 1.3), t(-1.6, 0, -1.3)] }),
-      (s = [2.1, 1, 2.3]),
-      (o = [0.5, 0.62, 0.4]),
+  else if (i === 'hound' || i === 'terrorist')
+    (e.spawn('hound', t(0, 0, 0), { passive: !0, yaw: 0.65, patrolLine: [t(1.6, 0, 1.3), t(-1.6, 0, -1.3)] }),
+      (s = [1.9, 1.35, 2.2]),
+      (o = [0.3, 1.05, 0.3]),
       (r = 1.25));
   else if (i === 'fight')
     (e.spawn('hound', t(-7, 0, -9), { state: 'alert' }),
       e.spawn('hound', t(8, 0, -7), { state: 'alert' }),
       e.spawn('hound', t(0, 0, -14), { state: 'alert' }),
-      e.spawn('gull', t(-5, 6, -13), { state: 'alert' }),
-      e.spawn('gull', t(9, 6, -11), { state: 'alert' }),
+      e.spawn('hound', t(-4, 0, -12), { state: 'alert' }),
+      e.spawn('hound', t(5, 0, -11), { state: 'alert' }),
       (s = [5, 2.6, 10]),
-      (o = [0, 2.2, -5]),
+      (o = [0, 1.6, -5]),
       (r = 7));
   else if (i === 'dead') {
-    let l = e.spawn('hound', t(0, 0, 0), { passive: !0, yaw: 0.8 }),
-      c = e.spawn('gull', t(-1.6, 3.4, -0.5), { passive: !0, hover: 3.4, patrolRadius: 0.02 });
+    let l = e.spawn('hound', t(0, 0, 0), { passive: !0, yaw: 0.8 });
     e.spawn('hound', t(2.2, 0, -1.6), {
       passive: !0,
       yaw: -0.6,
@@ -2471,13 +2771,18 @@ async function KD(n) {
     for (let u = 0; u < 30; u++) e.update(1 / 60);
     l.damage(999, l.pos, t(0.6, 0, -0.8), 'body');
     for (let u = 0; u < 110; u++) e.update(1 / 60);
-    (c.damage(999, c.pos, t(0, 0, 1), 'body'), (s = [2.6, 1.3, 3.2]), (o = [0, 0.5, 0]), (r = 0.42));
+    ((s = [2.6, 1.3, 3.2]), (o = [0, 0.7, 0]), (r = 0.42));
   } else
-    (e.spawn('gull', t(-0.9, 2.2, -0.2), { passive: !0, hover: 2.2, patrolRadius: 0.25, yaw: 0.5 }),
-      e.spawn('hound', t(0.2, 0, 0.6), {
+    (e.spawn('hound', t(-1.1, 0, -0.4), {
+      passive: !0,
+      state: 'alert',
+      yaw: 0.45,
+      patrolRadius: 0.2,
+    }),
+      e.spawn('hound', t(0.4, 0, 0.5), {
         passive: !0,
-        yaw: 1.2,
-        patrolLine: [t(2.6, 0, 1.2), t(-1.8, 0, 0.2)],
+        yaw: 1.1,
+        patrolLine: [t(2.4, 0, 1.2), t(-1.6, 0, 0.2)],
       }));
   n.params.epre != null && (r = +n.params.epre);
   for (let l = 0, c = Math.round(r * 60); l < c; l++) e.update(1 / 60);
